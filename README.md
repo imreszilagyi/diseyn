@@ -61,6 +61,46 @@ npm run firebase:deploy:indexes
 npm run firebase:deploy
 ```
 
+## Server-side Firebase access (Admin SDK)
+
+Client SDK in this project is for browser operations. For trusted server operations, use:
+
+- `src/lib/server/firebase-admin.ts`
+
+This module exposes:
+
+- `adminAuth`
+- `adminDb`
+- `adminStorage`
+
+Use it only from server files (`+server.ts`, `+page.server.ts`, hooks, server-only modules).
+
+### Get Firebase Admin credentials (service account key)
+
+1. Open Firebase Console and select your project.
+2. Go to **Project settings** -> **Service accounts**.
+3. Click **Generate new private key**.
+4. Download the JSON key file.
+5. Copy values from the JSON into server env vars:
+   - `project_id` -> `FIREBASE_ADMIN_PROJECT_ID`
+   - `client_email` -> `FIREBASE_ADMIN_CLIENT_EMAIL`
+   - `private_key` -> `FIREBASE_ADMIN_PRIVATE_KEY`
+6. When setting `FIREBASE_ADMIN_PRIVATE_KEY`, keep newlines escaped as `\\n`.
+
+Example:
+
+```env
+FIREBASE_ADMIN_PROJECT_ID=diseyndata
+FIREBASE_ADMIN_CLIENT_EMAIL=firebase-adminsdk-xxxxx@diseyndata.iam.gserviceaccount.com
+FIREBASE_ADMIN_PRIVATE_KEY="-----BEGIN PRIVATE KEY-----\n...\n-----END PRIVATE KEY-----\n"
+```
+
+Security notes:
+
+- Never commit service account JSON files.
+- Keep `FIREBASE_ADMIN_*` in server-only env/secrets.
+- Rotate/revoke keys immediately if leaked.
+
 ## Quality checks
 
 - Type/svelte checks:
