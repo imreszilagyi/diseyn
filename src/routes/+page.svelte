@@ -2,6 +2,7 @@
 	import { onMount } from 'svelte';
 	import { listDesignCategories, listPublishedDesigns } from '$lib/services/designs';
 	import type { DesignCategory, DesignItem } from '$lib/types/domain';
+	import { designCoverImageUrl } from '$lib/utils/design-media';
 
 	let categories: DesignCategory[] = [];
 	let latestDesigns: DesignItem[] = [];
@@ -96,6 +97,15 @@
 		<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
 			{#each latestDesigns as design (design.id)}
 				<a href={`/design/${design.id}`} class="card bg-base-100 border border-base-300 hover:border-primary">
+					{#if designCoverImageUrl(design)}
+						<figure class="aspect-video border-b border-base-300 bg-base-200">
+							<img
+								src={designCoverImageUrl(design) ?? ''}
+								alt=""
+								class="w-full h-full object-cover"
+							/>
+						</figure>
+					{/if}
 					<div class="card-body">
 						<h3 class="card-title text-lg">{design.title}</h3>
 						<p class="text-sm text-base-content/70 line-clamp-3">{design.description}</p>

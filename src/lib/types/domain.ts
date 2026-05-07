@@ -16,16 +16,33 @@ export interface DesignCategory {
 	description?: string;
 }
 
+export interface DesignCharacteristic {
+	key: string;
+	value: string;
+}
+
 export interface DesignItem {
 	id: string;
 	title: string;
 	description: string;
 	categoryId: string;
 	designerId: string;
+	/** Legacy single image; prefer `imageUrls` */
 	imageUrl?: string;
+	imageUrls?: string[];
+	characteristics?: DesignCharacteristic[];
 	designType: string;
 	status: 'draft' | 'published' | 'archived';
 	createdAt: string;
+}
+
+export type ManufacturerDesignVerdict = 'accepted' | 'declined';
+
+export interface ManufacturerDesignDecision {
+	manufacturerId: string;
+	designId: string;
+	verdict: ManufacturerDesignVerdict;
+	updatedAt: string;
 }
 
 export interface ManufacturerProfile {

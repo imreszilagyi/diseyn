@@ -4,7 +4,7 @@ Project-specific guidance for AI coding agents working in this repository.
 
 ## Project Context
 
-- Stack: SvelteKit + TypeScript + TailwindCSS + DaisyUI.
+- Stack: SvelteKit + TypeScript + Tailwind CSS v4 (`@tailwindcss/vite` in `vite.config.ts`) + DaisyUI v5 (`@plugin "daisyui"` in `src/app.css`).
 - Data/auth/storage: Firebase client SDK for browser, Firebase Admin SDK for server-only code.
 - Key Firebase modules:
   - Client: `src/lib/firebase/client.ts`
@@ -24,6 +24,9 @@ Project-specific guidance for AI coding agents working in this repository.
    - Validate with `npm run check` and `npm run build` after substantive changes.
 5. Keep changes minimal and consistent with current structure.
    - Prefer extending existing service/store modules before adding new abstractions.
+6. Align styling with TailwindCSS + DaisyUI.
+   - Prefer DaisyUI component utilities (`btn`, `card`, `modal`, `navbar`, form controls, alerts, etc.) and semantic theme tokens (`bg-base-100`, `text-base-content`, `primary`, `neutral`, etc.) over bespoke hex colors or one-off utility piles.
+   - Reuse patterns from nearby routes and shared layout; themes are set in `src/app.css` via `@plugin "daisyui" { themes: ... }` (currently `light` default and `dark` for `prefers-color-scheme: dark`). New UI should work in both without hard-coding a single theme’s contrast assumptions.
 
 ## Firebase Environment Contract
 
@@ -39,5 +42,6 @@ Update this file whenever one of these changes:
 - Firebase initialization contract (env variable names, module paths, emulator strategy).
 - Required validation commands (build/check/test workflow).
 - Security handling rules for credentials.
+- Styling stack or DaisyUI/Tailwind theme configuration (plugins, themes, design tokens).
 
 When updating, keep entries short, concrete, and directly actionable.

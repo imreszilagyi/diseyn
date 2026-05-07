@@ -2,7 +2,9 @@
 	import { onMount } from 'svelte';
 	import { goto } from '$app/navigation';
 	import { page } from '$app/stores';
-	import { createDesignItem, listDesignerDesigns } from '$lib/services/designs';
+	import DesignerConceptsSection from '$lib/components/dashboard/DesignerConceptsSection.svelte';
+	import ContractorCatalogSection from '$lib/components/dashboard/ContractorCatalogSection.svelte';
+	import { listDesignerDesigns } from '$lib/services/designs';
 	import { upsertManufacturerProfile } from '$lib/services/manufacturers';
 	import {
 		createOrder,
@@ -16,33 +18,41 @@
 
 	const allRoles: UserRole[] = ['customer', 'manufacturer', 'designer', 'admin'];
 
-	let activeRouteRole = '' as UserRole | '';
-	let customerOrders: Order[] = [];
-	let manufacturerOrders: Order[] = [];
-	let designerItems: DesignItem[] = [];
-	let busy = false;
-	let notice = '';
+	/** Tabs shown in “Switch role”; manufacturer is labeled Contractor. */
+	function buildSwitchTabs(roles: UserRole[]): { role: UserRole; label: string }[] {
+		const tabs: { role: UserRole; label: string }[] = [
+			{ role: 'customer', label: 'Customer' },
+			{ role: 'designer', label: 'Designer' },
+			{ role: 'manufacturer', label: 'Contractor' }
+		];
+		if (roles.includes('admin')) {
+			tabs.push({ role: 'admin', label: 'Admin' });
+		}
+		return tabs;
+	}
 
-	let orderDesignId = '';
-	let orderManufacturerId = '';
+	const activeRouteRole = $derived((($page.params.role as UserRole) || '') as UserRole | '');
+	const allowedRoles = $derived(($userProfile?.roles ?? []) as UserRole[]);
+	const switchTabs = $derived(buildSwitchTabs(allowedRoles));
+	const isAuthorized = $derived(allowedRoles.includes(activeRouteRole as UserRole));
+	const currentRole = $derived(activeRouteRole as UserRole);
 
-	let supportedDesignTypes = '';
-	let businessName = '';
-	let city = '';
-	let isAvailable = true;
+	let customerOrders = $state<Order[]>([]);
+	let manufacturerOrders = $state<Order[]>([]);
+	let designerItems = $state<DesignItem[]>([]);
+	let busy = $state(false);
+	let notice = $state('');
 
-	let designTitle = '';
-	let designDescription = '';
-	let designCategoryId = '';
-	let designType = '';
+	let orderDesignId = $state('');
+	let orderManufacturerId = $state('');
 
-	let adminTargetUid = '';
-	let adminRoles = '';
+	let supportedDesignTypes = $state('');
+	let businessName = $state('');
+	let city = $state('');
+	let isAvailable = $state(true);
 
-	$: activeRouteRole = ($page.params.role as UserRole) || '';
-	$: allowedRoles = $userProfile?.roles || [];
-	$: isAuthorized = allowedRoles.includes(activeRouteRole as UserRole);
-	$: currentRole = activeRouteRole as UserRole;
+	let adminTargetUid = $state('');
+	let adminRoles = $state('');
 
 	onMount(() => {
 		void initialize();
@@ -139,34 +149,6 @@
 		}
 	}
 
-	async function submitDesign(): Promise<void> {
-		if (!$authUser) return;
-		try {
-			busy = true;
-			notice = '';
-			await createDesignItem({
-				title: designTitle,
-				description: designDescription,
-				categoryId: designCategoryId,
-				designerId: $authUser.uid,
-				imageUrl: '',
-				designType,
-				status: 'draft',
-				createdAt: new Date().toISOString()
-			});
-			designTitle = '';
-			designDescription = '';
-			designCategoryId = '';
-			designType = '';
-			await loadRoleData();
-			notice = 'Design item created.';
-		} catch (error) {
-			notice = error instanceof Error ? error.message : 'Failed to create design item.';
-		} finally {
-			busy = false;
-		}
-	}
-
 	async function submitRoleAssignment(): Promise<void> {
 		try {
 			busy = true;
@@ -197,15 +179,17 @@
 		<div class="card bg-base-100 border border-base-300">
 			<div class="card-body">
 				<h2 class="card-title text-lg">Switch role</h2>
-				<div class="flex flex-wrap gap-2">
-					{#each allowedRoles as role (role)}
+				<div role="tablist" class="tabs tabs-box tabs-sm flex-wrap">
+					{#each switchTabs as { role, label } (role)}
 						<button
 							type="button"
-							class="btn btn-sm"
-							class:btn-primary={role === currentRole}
-							on:click={() => handleRoleSwitch(role)}
-							disabled={busy}>
-							{role}
+							role="tab"
+							class="tab"
+							class:tab-active={role === currentRole}
+							onclick={() => void handleRoleSwitch(role)}
+							disabled={busy}
+						>
+							{label}
 						</button>
 					{/each}
 				</div>
@@ -229,134 +213,182 @@
 				<div class="card bg-base-100 border border-base-300">
 					<div class="card-body">
 						<h2 class="card-title">Place order</h2>
-						<form class="grid md:grid-cols-3 gap-2" on:submit|preventDefault={submitOrder}>
-							<input class="input input-bordered" placeholder="Design ID" bind:value={orderDesignId} required />
-							<input
-								class="input input-bordered"
-								placeholder="Manufacturer ID"
-								bind:value={orderManufacturerId}
-								required />
-							<button class="btn btn-primary" type="submit" disabled={busy}>Create order</button>
+						<form
+							onsubmit={(e) => {
+								e.preventDefault();
+								void submitOrder();
+							}}
+						>
+							<fieldset class="fieldset gap-2 md:grid md:grid-cols-3">
+								<legend class="fieldset-legend md:col-span-3">New order</legend>
+								<input class="input input-bordered" placeholder="Design ID" bind:value={orderDesignId} required />
+								<input
+									class="input input-bordered"
+									placeholder="Manufacturer ID"
+									bind:value={orderManufacturerId}
+									required
+								/>
+								<button class="btn btn-primary" type="submit" class:loading={busy} disabled={busy}>Create order</button>
+							</fieldset>
 						</form>
 						<div class="divider my-2"></div>
 						<h3 class="font-semibold">My orders</h3>
 						{#if customerOrders.length === 0}
 							<p class="text-sm text-base-content/70">No orders yet.</p>
 						{:else}
-							<div class="space-y-2">
-								{#each customerOrders as order (order.id)}
-									<div class="p-3 rounded-box border border-base-300 text-sm">
-										<div><strong>#{order.id}</strong></div>
-										<div>Design: {order.designId}</div>
-										<div>Manufacturer: {order.selectedManufacturerId}</div>
-										<div>Status: {order.status}</div>
-									</div>
-								{/each}
+							<div class="overflow-x-auto rounded-box border border-base-300">
+								<table class="table table-zebra table-sm">
+									<thead>
+										<tr>
+											<th>Order</th>
+											<th>Design</th>
+											<th>Manufacturer</th>
+											<th>Status</th>
+										</tr>
+									</thead>
+									<tbody>
+										{#each customerOrders as order (order.id)}
+											<tr>
+												<td class="font-mono text-xs">#{order.id}</td>
+												<td>{order.designId}</td>
+												<td class="max-w-[12rem] truncate" title={order.selectedManufacturerId}>
+													{order.selectedManufacturerId}
+												</td>
+												<td><span class="badge badge-ghost badge-sm">{order.status}</span></td>
+											</tr>
+										{/each}
+									</tbody>
+								</table>
 							</div>
 						{/if}
 					</div>
 				</div>
 			{/if}
 
-			{#if currentRole === 'manufacturer'}
+			{#if currentRole === 'manufacturer' && $authUser}
+				<ContractorCatalogSection manufacturerId={$authUser.uid} />
+
 				<div class="card bg-base-100 border border-base-300">
 					<div class="card-body">
 						<h2 class="card-title">Assigned orders</h2>
 						{#if manufacturerOrders.length === 0}
 							<p class="text-sm text-base-content/70">No assigned orders yet.</p>
 						{:else}
-							<div class="space-y-2">
-								{#each manufacturerOrders as order (order.id)}
-									<div class="p-3 rounded-box border border-base-300">
-										<div class="font-semibold">#{order.id}</div>
-										<div class="text-sm mb-2">Current status: {order.status}</div>
-										<div class="join">
-											<button class="btn btn-xs join-item" on:click={() => setOrderStatus(order.id, 'accepted')}>
-												accept
-											</button>
-											<button class="btn btn-xs join-item" on:click={() => setOrderStatus(order.id, 'in_production')}>
-												production
-											</button>
-											<button class="btn btn-xs join-item" on:click={() => setOrderStatus(order.id, 'ready')}>
-												ready
-											</button>
-											<button class="btn btn-xs join-item" on:click={() => setOrderStatus(order.id, 'completed')}>
-												complete
-											</button>
-										</div>
-									</div>
-								{/each}
+							<div class="overflow-x-auto rounded-box border border-base-300">
+								<table class="table table-zebra">
+									<thead>
+										<tr>
+											<th>Order</th>
+											<th>Status</th>
+											<th class="text-end">Actions</th>
+										</tr>
+									</thead>
+									<tbody>
+										{#each manufacturerOrders as order (order.id)}
+											<tr>
+												<td class="font-semibold">#{order.id}</td>
+												<td><span class="badge badge-outline">{order.status}</span></td>
+												<td class="text-end">
+													<div class="join join-vertical sm:join-horizontal">
+														<button
+															type="button"
+															class="btn btn-xs join-item"
+															onclick={() => void setOrderStatus(order.id, 'accepted')}
+														>
+															accept
+														</button>
+														<button
+															type="button"
+															class="btn btn-xs join-item"
+															onclick={() => void setOrderStatus(order.id, 'in_production')}
+														>
+															production
+														</button>
+														<button
+															type="button"
+															class="btn btn-xs join-item"
+															onclick={() => void setOrderStatus(order.id, 'ready')}
+														>
+															ready
+														</button>
+														<button
+															type="button"
+															class="btn btn-xs join-item"
+															onclick={() => void setOrderStatus(order.id, 'completed')}
+														>
+															complete
+														</button>
+													</div>
+												</td>
+											</tr>
+										{/each}
+									</tbody>
+								</table>
 							</div>
 						{/if}
 
 						<div class="divider"></div>
 						<h3 class="font-semibold">Supported design types</h3>
-						<form class="grid md:grid-cols-2 gap-2" on:submit|preventDefault={saveManufacturerProfile}>
-							<input class="input input-bordered" placeholder="Business name" bind:value={businessName} required />
-							<input class="input input-bordered" placeholder="City" bind:value={city} required />
-							<input
-								class="input input-bordered md:col-span-2"
-								placeholder="Supported types (comma separated)"
-								bind:value={supportedDesignTypes}
-								required />
-							<label class="label cursor-pointer md:col-span-2 justify-start gap-2">
-								<input class="toggle toggle-primary" type="checkbox" bind:checked={isAvailable} />
-								<span class="label-text">Available for new work</span>
-							</label>
-							<button class="btn btn-primary md:col-span-2" type="submit" disabled={busy}>
-								Save profile
-							</button>
+						<form
+							onsubmit={(e) => {
+								e.preventDefault();
+								void saveManufacturerProfile();
+							}}
+						>
+							<fieldset class="fieldset gap-2 md:grid md:grid-cols-2">
+								<legend class="fieldset-legend md:col-span-2">Manufacturer profile</legend>
+								<input class="input input-bordered" placeholder="Business name" bind:value={businessName} required />
+								<input class="input input-bordered" placeholder="City" bind:value={city} required />
+								<input
+									class="input input-bordered md:col-span-2"
+									placeholder="Supported types (comma separated)"
+									bind:value={supportedDesignTypes}
+									required
+								/>
+								<label class="label md:col-span-2 cursor-pointer justify-start gap-2">
+									<input class="toggle toggle-primary" type="checkbox" bind:checked={isAvailable} />
+									<span class="label-text">Available for new work</span>
+								</label>
+								<button class="btn btn-primary md:col-span-2" type="submit" class:loading={busy} disabled={busy}>
+									Save profile
+								</button>
+							</fieldset>
 						</form>
 					</div>
 				</div>
 			{/if}
 
-			{#if currentRole === 'designer'}
-				<div class="card bg-base-100 border border-base-300">
-					<div class="card-body">
-						<h2 class="card-title">Create design item</h2>
-						<form class="grid md:grid-cols-2 gap-2" on:submit|preventDefault={submitDesign}>
-							<input class="input input-bordered md:col-span-2" placeholder="Title" bind:value={designTitle} required />
-							<textarea
-								class="textarea textarea-bordered md:col-span-2"
-								placeholder="Description"
-								bind:value={designDescription}
-								required></textarea>
-							<input class="input input-bordered" placeholder="Category ID" bind:value={designCategoryId} required />
-							<input class="input input-bordered" placeholder="Design type" bind:value={designType} required />
-							<button class="btn btn-primary md:col-span-2" type="submit" disabled={busy}>Add design</button>
-						</form>
-
-						<div class="divider"></div>
-						<h3 class="font-semibold">My design items</h3>
-						{#if designerItems.length === 0}
-							<p class="text-sm text-base-content/70">No design items yet.</p>
-						{:else}
-							<div class="space-y-2">
-								{#each designerItems as item (item.id)}
-									<div class="p-3 rounded-box border border-base-300">
-										<div class="font-semibold">{item.title}</div>
-										<div class="text-sm text-base-content/70">{item.status} - {item.designType}</div>
-									</div>
-								{/each}
-							</div>
-						{/if}
-					</div>
-				</div>
+			{#if currentRole === 'designer' && $authUser}
+				<DesignerConceptsSection
+					designerId={$authUser.uid}
+					items={designerItems}
+					onRefresh={loadRoleData}
+				/>
 			{/if}
 
 			{#if currentRole === 'admin'}
 				<div class="card bg-base-100 border border-base-300">
 					<div class="card-body">
 						<h2 class="card-title">Assign roles</h2>
-						<form class="grid md:grid-cols-2 gap-2" on:submit|preventDefault={submitRoleAssignment}>
-							<input class="input input-bordered" placeholder="User UID" bind:value={adminTargetUid} required />
-							<input
-								class="input input-bordered"
-								placeholder="Roles (customer,designer,...)"
-								bind:value={adminRoles}
-								required />
-							<button class="btn btn-primary md:col-span-2" type="submit" disabled={busy}>Apply roles</button>
+						<form
+							onsubmit={(e) => {
+								e.preventDefault();
+								void submitRoleAssignment();
+							}}
+						>
+							<fieldset class="fieldset gap-2 md:grid md:grid-cols-2">
+								<legend class="fieldset-legend md:col-span-2">Assign roles</legend>
+								<input class="input input-bordered" placeholder="User UID" bind:value={adminTargetUid} required />
+								<input
+									class="input input-bordered"
+									placeholder="Roles (customer,designer,...)"
+									bind:value={adminRoles}
+									required
+								/>
+								<button class="btn btn-primary md:col-span-2" type="submit" class:loading={busy} disabled={busy}>
+									Apply roles
+								</button>
+							</fieldset>
 						</form>
 					</div>
 				</div>
@@ -364,7 +396,7 @@
 		{/if}
 
 		{#if notice}
-			<div class="alert">
+			<div role="status" class="alert alert-info">
 				<span>{notice}</span>
 			</div>
 		{/if}

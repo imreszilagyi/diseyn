@@ -42,5 +42,19 @@ service cloud.firestore {
       allow create: if isSignedIn() && request.auth.uid == uid;
       allow update: if hasRole('admin') || request.auth.uid == uid;
     }
+
+    match /manufacturerDesignDecisions/{decisionId} {
+      allow read: if isSignedIn();
+      allow create: if hasRole('manufacturer') &&
+        request.auth.uid == request.resource.data.manufacturerId &&
+        request.resource.data.verdict in ['accepted', 'declined'] &&
+        request.resource.data.designId is string;
+      allow update: if hasRole('manufacturer') &&
+        request.auth.uid == resource.data.manufacturerId &&
+        request.auth.uid == request.resource.data.manufacturerId &&
+        request.resource.data.manufacturerId == resource.data.manufacturerId &&
+        request.resource.data.designId == resource.data.designId &&
+        request.resource.data.verdict in ['accepted', 'declined'];
+    }
   }
 }

@@ -40,7 +40,12 @@ export async function listDesignerDesigns(designerId: string): Promise<DesignIte
 	const snapshot = await getDocs(
 		query(collection(requireDb(), 'designItems'), where('designerId', '==', designerId))
 	);
-	return snapshot.docs.map((item) => ({ id: item.id, ...(item.data() as Omit<DesignItem, 'id'>) }));
+	const items = snapshot.docs.map((item) => ({
+		id: item.id,
+		...(item.data() as Omit<DesignItem, 'id'>)
+	}));
+	items.sort((a, b) => b.createdAt.localeCompare(a.createdAt));
+	return items;
 }
 
 export async function createDesignItem(payload: Omit<DesignItem, 'id'>): Promise<string> {
