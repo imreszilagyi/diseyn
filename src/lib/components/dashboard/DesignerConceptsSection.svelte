@@ -1,34 +1,62 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import { createDesignItem, listDesignCategories, updateDesignItem } from '$lib/services/designs';
+	import {
+		createDesignCategory,
+		createDesignItem,
+		createDesignSubcategory,
+		listDesignCategories,
+		listDesignSubcategories,
+		updateDesignItem
+	} from '$lib/services/designs';
 	import { uploadDesignConceptImage } from '$lib/services/design-storage';
-	import type { DesignCategory, DesignCharacteristic, DesignItem } from '$lib/types/domain';
+	import type {
+		DesignCategory,
+		DesignCharacteristic,
+		DesignItem,
+		DesignSubcategory
+	} from '$lib/types/domain';
 	import { designCoverImageUrl } from '$lib/utils/design-media';
 
-	export let designerId: string;
-	export let items: DesignItem[];
-	export let onRefresh: () => Promise<void> = async () => {};
+	const {
+		designerId,
+		items,
+		onRefresh = async () => {}
+	}: {
+		designerId: string;
+		items: DesignItem[];
+		onRefresh?: () => Promise<void>;
+	} = $props();
 
-	let categories: DesignCategory[] = [];
-	let busy = false;
-	let notice = '';
+	let categories = $state<DesignCategory[]>([]);
+	let subcategoriesByCategory = $state<Record<string, DesignSubcategory[]>>({});
+	let busy = $state(false);
+	let notice = $state('');
 
-	let newFiles: FileList | null = null;
-	let cTitle = '';
-	let cDescription = '';
-	let cCategoryId = '';
-	let cDesignType = '';
-	let cCharacteristics: DesignCharacteristic[] = [{ key: '', value: '' }];
+	let newFiles = $state<FileList | null>(null);
+	let cTitle = $state('');
+	let cDescription = $state('');
+	let cCategoryId = $state('');
+	let cCategoryMode = $state<'select' | 'create'>('select');
+	let cCategoryName = $state('');
+	let cSubcategoryIds = $state<string[]>([]);
+	let cNewSubcategoryName = $state('');
+	let cDesignType = $state('');
+	let cStatus = $state<DesignItem['status']>('published');
+	let cCharacteristics = $state<DesignCharacteristic[]>([{ key: '', value: '' }]);
 
-	let editingSelection = '';
-	let eTitle = '';
-	let eDescription = '';
-	let eCategoryId = '';
-	let eDesignType = '';
-	let eStatus: DesignItem['status'] = 'draft';
-	let eCharacteristics: DesignCharacteristic[] = [{ key: '', value: '' }];
-	let eImageUrls: string[] = [];
-	let eNewFiles: FileList | null = null;
+	let editingSelection = $state('');
+	let eTitle = $state('');
+	let eDescription = $state('');
+	let eCategoryId = $state('');
+	let eCategoryMode = $state<'select' | 'create'>('select');
+	let eCategoryName = $state('');
+	let eSubcategoryIds = $state<string[]>([]);
+	let eNewSubcategoryName = $state('');
+	let eDesignType = $state('');
+	let eStatus = $state<DesignItem['status']>('draft');
+	let eCharacteristics = $state<DesignCharacteristic[]>([{ key: '', value: '' }]);
+	let eImageUrls = $state<string[]>([]);
+	let eNewFiles = $state<FileList | null>(null);
 
 	function normalizeCharacteristics(rows: DesignCharacteristic[]): DesignCharacteristic[] {
 		return rows
@@ -44,11 +72,106 @@
 		}
 	});
 
+	async function ensureSubcategories(categoryId: string, force = false): Promise<void> {
+		const id = categoryId.trim();
+		if (!id) return;
+		if (!force && subcategoriesByCategory[id]) return;
+		try {
+			const rows = await listDesignSubcategories(id);
+			subcategoriesByCategory = { ...subcategoriesByCategory, [id]: rows };
+		} catch {
+			subcategoriesByCategory = { ...subcategoriesByCategory, [id]: [] };
+		}
+	}
+
+	function currentSubcategories(which: 'new' | 'edit'): DesignSubcategory[] {
+		const categoryId = which === 'new' ? cCategoryId : eCategoryId;
+		return subcategoriesByCategory[categoryId] ?? [];
+	}
+
+	function syncSelectedSubcategories(which: 'new' | 'edit') {
+		const allowed = new Set(currentSubcategories(which).map((row) => row.id));
+		if (which === 'new') {
+			cSubcategoryIds = cSubcategoryIds.filter((id) => allowed.has(id));
+		} else {
+			eSubcategoryIds = eSubcategoryIds.filter((id) => allowed.has(id));
+		}
+	}
+
+	async function handleCategoryChange(which: 'new' | 'edit', categoryId: string): Promise<void> {
+		if (which === 'new') {
+			cCategoryId = categoryId;
+			cSubcategoryIds = [];
+		} else {
+			eCategoryId = categoryId;
+			eSubcategoryIds = [];
+		}
+		await ensureSubcategories(categoryId);
+		syncSelectedSubcategories(which);
+	}
+
+	function toggleSubcategory(which: 'new' | 'edit', subcategoryId: string, checked: boolean) {
+		const values = which === 'new' ? cSubcategoryIds : eSubcategoryIds;
+		const next = checked ? Array.from(new Set([...values, subcategoryId])) : values.filter((id) => id !== subcategoryId);
+		if (which === 'new') cSubcategoryIds = next;
+		else eSubcategoryIds = next;
+	}
+
+	async function createCategoryInline(which: 'new' | 'edit') {
+		const categoryName = which === 'new' ? cCategoryName : eCategoryName;
+		const trimmed = categoryName.trim();
+		if (!trimmed) return;
+		try {
+			busy = true;
+			notice = '';
+			const categoryId = await createDesignCategory({ name: trimmed, createdBy: designerId });
+			categories = await listDesignCategories();
+			await ensureSubcategories(categoryId, true);
+			if (which === 'new') {
+				cCategoryId = categoryId;
+				cCategoryName = '';
+				cCategoryMode = 'select';
+			} else {
+				eCategoryId = categoryId;
+				eCategoryName = '';
+				eCategoryMode = 'select';
+			}
+		} catch (e) {
+			notice = e instanceof Error ? e.message : 'Failed to create category.';
+		} finally {
+			busy = false;
+		}
+	}
+
+	async function createSubcategoryInline(which: 'new' | 'edit') {
+		const categoryId = which === 'new' ? cCategoryId : eCategoryId;
+		const name = (which === 'new' ? cNewSubcategoryName : eNewSubcategoryName).trim();
+		if (!categoryId || !name) return;
+		try {
+			busy = true;
+			notice = '';
+			const createdId = await createDesignSubcategory({ categoryId, name, createdBy: designerId });
+			await ensureSubcategories(categoryId, true);
+			if (which === 'new') {
+				cSubcategoryIds = Array.from(new Set([...cSubcategoryIds, createdId]));
+				cNewSubcategoryName = '';
+			} else {
+				eSubcategoryIds = Array.from(new Set([...eSubcategoryIds, createdId]));
+				eNewSubcategoryName = '';
+			}
+		} catch (e) {
+			notice = e instanceof Error ? e.message : 'Failed to create sub-category.';
+		} finally {
+			busy = false;
+		}
+	}
+
 	function startEdit(item: DesignItem) {
 		editingSelection = item.id;
 		eTitle = item.title;
 		eDescription = item.description;
 		eCategoryId = item.categoryId;
+		eSubcategoryIds = [...(item.subcategoryIds ?? [])];
 		eDesignType = item.designType;
 		eStatus = item.status;
 		eCharacteristics =
@@ -59,6 +182,7 @@
 			...(item.imageUrls?.filter(Boolean) ?? (item.imageUrl ? [item.imageUrl] : []))
 		];
 		eNewFiles = null;
+		void ensureSubcategories(item.categoryId);
 	}
 
 	function cancelEdit() {
@@ -75,6 +199,7 @@
 				title: eTitle.trim(),
 				description: eDescription.trim(),
 				categoryId: eCategoryId.trim(),
+				subcategoryIds: eSubcategoryIds,
 				designType: eDesignType.trim(),
 				status: eStatus,
 				characteristics: ch.length ? ch : [],
@@ -104,6 +229,11 @@
 	}
 
 	async function createConcept() {
+		const normalizedDesignerId = designerId.trim();
+		if (!normalizedDesignerId) {
+			notice = 'Cannot create concept: designer profile is missing. Please sign in again and retry.';
+			return;
+		}
 		try {
 			busy = true;
 			notice = '';
@@ -112,19 +242,20 @@
 				title: cTitle.trim(),
 				description: cDescription.trim(),
 				categoryId: cCategoryId.trim(),
-				designerId,
+				subcategoryIds: cSubcategoryIds,
+				designerId: normalizedDesignerId,
 				imageUrls: [],
 				imageUrl: '',
 				characteristics: ch.length ? ch : [],
 				designType: cDesignType.trim(),
-				status: 'draft',
+				status: cStatus,
 				createdAt: new Date().toISOString()
 			});
 			const files = newFiles;
 			const urls: string[] = [];
 			if (files?.length) {
 				for (const f of Array.from(files)) {
-					urls.push(await uploadDesignConceptImage(designerId, id, f));
+					urls.push(await uploadDesignConceptImage(normalizedDesignerId, id, f));
 				}
 				await updateDesignItem(id, {
 					imageUrls: urls,
@@ -134,7 +265,9 @@
 			cTitle = '';
 			cDescription = '';
 			cCategoryId = '';
+			cSubcategoryIds = [];
 			cDesignType = '';
+			cStatus = 'published';
 			cCharacteristics = [{ key: '', value: '' }];
 			newFiles = null;
 			await onRefresh();
@@ -206,12 +339,61 @@
 						required
 					></textarea>
 					{#if categories.length}
-						<select class="select select-bordered w-full" bind:value={cCategoryId} required>
-							<option value="">Category…</option>
-							{#each categories as cat (cat.id)}
-								<option value={cat.id}>{cat.name}</option>
-							{/each}
-						</select>
+						<div class="space-y-2">
+							<div role="tablist" class="tabs tabs-box tabs-xs">
+								<button
+									type="button"
+									role="tab"
+									class="tab"
+									class:tab-active={cCategoryMode === 'select'}
+									onclick={() => (cCategoryMode = 'select')}
+								>
+									Select category
+								</button>
+								<button
+									type="button"
+									role="tab"
+									class="tab"
+									class:tab-active={cCategoryMode === 'create'}
+									onclick={() => (cCategoryMode = 'create')}
+								>
+									Create category
+								</button>
+							</div>
+							{#if cCategoryMode === 'select'}
+								<select
+									class="select select-bordered w-full"
+									bind:value={cCategoryId}
+									required
+									onchange={(event) =>
+										void handleCategoryChange(
+											'new',
+											(event.currentTarget as HTMLSelectElement).value
+										)}
+								>
+									<option value="">Category…</option>
+									{#each categories as cat (cat.id)}
+										<option value={cat.id}>{cat.name}</option>
+									{/each}
+								</select>
+							{:else}
+								<div class="flex gap-2">
+									<input
+										class="input input-bordered flex-1"
+										placeholder="New category name"
+										bind:value={cCategoryName}
+									/>
+									<button
+										type="button"
+										class="btn btn-outline"
+										disabled={busy || !cCategoryName.trim()}
+										onclick={() => void createCategoryInline('new')}
+									>
+										Create
+									</button>
+								</div>
+							{/if}
+						</div>
 					{:else}
 						<input
 							class="input input-bordered w-full"
@@ -220,7 +402,60 @@
 							required
 						/>
 					{/if}
+					{#if cCategoryId}
+						<div class="rounded-box border border-base-300 p-3 space-y-2">
+							<div class="text-sm font-medium">Sub-categories</div>
+							<div class="flex flex-wrap gap-1">
+								{#each cSubcategoryIds as subId (subId)}
+									<span class="badge badge-primary badge-sm">
+										{currentSubcategories('new').find((item) => item.id === subId)?.name ?? subId}
+									</span>
+								{/each}
+								{#if cSubcategoryIds.length === 0}
+									<span class="text-xs text-base-content/60">No sub-categories selected.</span>
+								{/if}
+							</div>
+							<div class="flex flex-wrap gap-2">
+								{#each currentSubcategories('new') as sub (sub.id)}
+									<label class="label cursor-pointer gap-2 p-0">
+										<input
+											type="checkbox"
+											class="checkbox checkbox-sm"
+											checked={cSubcategoryIds.includes(sub.id)}
+											onchange={(event) =>
+												toggleSubcategory(
+													'new',
+													sub.id,
+													(event.currentTarget as HTMLInputElement).checked
+												)}
+										/>
+										<span class="label-text text-sm">{sub.name}</span>
+									</label>
+								{/each}
+							</div>
+							<div class="flex gap-2">
+								<input
+									class="input input-bordered input-sm flex-1"
+									placeholder="Create sub-category"
+									bind:value={cNewSubcategoryName}
+								/>
+								<button
+									type="button"
+									class="btn btn-outline btn-sm"
+									disabled={busy || !cNewSubcategoryName.trim()}
+									onclick={() => void createSubcategoryInline('new')}
+								>
+									Add
+								</button>
+							</div>
+						</div>
+					{/if}
 					<input class="input input-bordered w-full" placeholder="Design type" bind:value={cDesignType} required />
+					<select class="select select-bordered w-full" bind:value={cStatus}>
+						<option value="draft">Draft</option>
+						<option value="published">Published</option>
+						<option value="archived">Archived</option>
+					</select>
 
 					<div class="space-y-2">
 						<div class="flex items-center justify-between">
@@ -297,20 +532,120 @@
 								required
 							></textarea>
 							{#if categories.length}
-								<select class="select select-bordered w-full" bind:value={eCategoryId} required>
-									{#each categories as cat (cat.id)}
-										<option value={cat.id}>{cat.name}</option>
-									{/each}
-								</select>
+								<div class="space-y-2">
+									<div role="tablist" class="tabs tabs-box tabs-xs">
+										<button
+											type="button"
+											role="tab"
+											class="tab"
+											class:tab-active={eCategoryMode === 'select'}
+											onclick={() => (eCategoryMode = 'select')}
+										>
+											Select category
+										</button>
+										<button
+											type="button"
+											role="tab"
+											class="tab"
+											class:tab-active={eCategoryMode === 'create'}
+											onclick={() => (eCategoryMode = 'create')}
+										>
+											Create category
+										</button>
+									</div>
+									{#if eCategoryMode === 'select'}
+										<select
+											class="select select-bordered w-full"
+											bind:value={eCategoryId}
+											required
+											onchange={(event) =>
+												void handleCategoryChange(
+													'edit',
+													(event.currentTarget as HTMLSelectElement).value
+												)}
+										>
+											{#each categories as cat (cat.id)}
+												<option value={cat.id}>{cat.name}</option>
+											{/each}
+										</select>
+									{:else}
+										<div class="flex gap-2">
+											<input
+												class="input input-bordered flex-1"
+												placeholder="New category name"
+												bind:value={eCategoryName}
+											/>
+											<button
+												type="button"
+												class="btn btn-outline"
+												disabled={busy || !eCategoryName.trim()}
+												onclick={() => void createCategoryInline('edit')}
+											>
+												Create
+											</button>
+										</div>
+									{/if}
+								</div>
 							{:else}
 								<input class="input input-bordered w-full" placeholder="Category ID" bind:value={eCategoryId} required />
 							{/if}
+							{#if eCategoryId}
+								<div class="rounded-box border border-base-300 p-3 space-y-2">
+									<div class="text-sm font-medium">Sub-categories</div>
+									<div class="flex flex-wrap gap-1">
+										{#each eSubcategoryIds as subId (subId)}
+											<span class="badge badge-primary badge-sm">
+												{currentSubcategories('edit').find((item) => item.id === subId)?.name ?? subId}
+											</span>
+										{/each}
+										{#if eSubcategoryIds.length === 0}
+											<span class="text-xs text-base-content/60">No sub-categories selected.</span>
+										{/if}
+									</div>
+									<div class="flex flex-wrap gap-2">
+										{#each currentSubcategories('edit') as sub (sub.id)}
+											<label class="label cursor-pointer gap-2 p-0">
+												<input
+													type="checkbox"
+													class="checkbox checkbox-sm"
+													checked={eSubcategoryIds.includes(sub.id)}
+													onchange={(event) =>
+														toggleSubcategory(
+															'edit',
+															sub.id,
+															(event.currentTarget as HTMLInputElement).checked
+														)}
+												/>
+												<span class="label-text text-sm">{sub.name}</span>
+											</label>
+										{/each}
+									</div>
+									<div class="flex gap-2">
+										<input
+											class="input input-bordered input-sm flex-1"
+											placeholder="Create sub-category"
+											bind:value={eNewSubcategoryName}
+										/>
+										<button
+											type="button"
+											class="btn btn-outline btn-sm"
+											disabled={busy || !eNewSubcategoryName.trim()}
+											onclick={() => void createSubcategoryInline('edit')}
+										>
+											Add
+										</button>
+									</div>
+								</div>
+							{/if}
 							<input class="input input-bordered w-full" placeholder="Design type" bind:value={eDesignType} required />
-							<select class="select select-bordered w-full" bind:value={eStatus}>
-								<option value="draft">Draft</option>
-								<option value="published">Published</option>
-								<option value="archived">Archived</option>
-							</select>
+							<label class="form-control w-full">
+								<span class="label-text text-sm">Catalog status</span>
+								<select class="select select-bordered w-full" bind:value={eStatus}>
+									<option value="draft">Draft (only you see it in listings)</option>
+									<option value="published">Published (visible in catalog)</option>
+									<option value="archived">Archived</option>
+								</select>
+							</label>
 
 							<div class="space-y-2">
 								<div class="flex items-center justify-between">

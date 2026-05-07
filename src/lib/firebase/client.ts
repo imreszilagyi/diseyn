@@ -16,8 +16,13 @@ const firebaseConfig = {
 	measurementId: env.PUBLIC_FIREBASE_MEASUREMENT_ID
 } as const;
 
-const hasConfig = Object.values(firebaseConfig).every(Boolean);
-const canInit = browser && hasConfig;
+const hasCoreConfig =
+	!!firebaseConfig.apiKey &&
+	!!firebaseConfig.authDomain &&
+	!!firebaseConfig.projectId &&
+	!!firebaseConfig.storageBucket &&
+	!!firebaseConfig.messagingSenderId &&
+	!!firebaseConfig.appId;
 const useEmulator = env.PUBLIC_FIREBASE_USE_EMULATOR === 'true';
 
 const emulatorHost = env.PUBLIC_FIREBASE_EMULATOR_HOST || '127.0.0.1';
@@ -26,6 +31,7 @@ const authEmulatorPort = Number(env.PUBLIC_FIREBASE_AUTH_EMULATOR_PORT || 9099);
 const storageEmulatorPort = Number(env.PUBLIC_FIREBASE_STORAGE_EMULATOR_PORT || 9199);
 const emulatorGuardKey = '__diseyn_firebase_emulator_connected__';
 
+const canInit = browser && hasCoreConfig;
 export const firebaseApp = canInit ? initializeApp(firebaseConfig) : null;
 export const auth = firebaseApp ? getAuth(firebaseApp) : null;
 export const db = firebaseApp ? getFirestore(firebaseApp) : null;

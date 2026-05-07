@@ -14,6 +14,18 @@ export interface DesignCategory {
 	name: string;
 	slug: string;
 	description?: string;
+	createdBy?: string;
+	createdAt?: string;
+}
+
+export interface DesignSubcategory {
+	id: string;
+	categoryId: string;
+	name: string;
+	slug: string;
+	description?: string;
+	createdBy?: string;
+	createdAt?: string;
 }
 
 export interface DesignCharacteristic {
@@ -26,6 +38,7 @@ export interface DesignItem {
 	title: string;
 	description: string;
 	categoryId: string;
+	subcategoryIds?: string[];
 	designerId: string;
 	/** Legacy single image; prefer `imageUrls` */
 	imageUrl?: string;
@@ -50,6 +63,8 @@ export interface ManufacturerProfile {
 	businessName: string;
 	city: string;
 	supportedDesignTypes: string[];
+	subscribedCategoryIds?: string[];
+	subscribedSubcategoryIds?: string[];
 	isAvailable: boolean;
 }
 

@@ -1,30 +1,83 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import { listDesignCategories, listPublishedDesigns } from '$lib/services/designs';
-	import type { DesignCategory, DesignItem } from '$lib/types/domain';
+	import { get } from 'svelte/store';
+	import {
+		listDesignCategories,
+		listDesignSubcategories,
+		listDesignerDesigns,
+		listPublishedDesigns
+	} from '$lib/services/designs';
+	import { authUser, userProfile } from '$lib/stores/auth';
+	import type { DesignCategory, DesignItem, DesignSubcategory } from '$lib/types/domain';
 	import { designCoverImageUrl } from '$lib/utils/design-media';
 
 	let categories: DesignCategory[] = [];
+	let subcategories: DesignSubcategory[] = [];
 	let latestDesigns: DesignItem[] = [];
+	let selectedCategoryId = '';
+	let selectedSubcategoryId = '';
 	let loading = true;
 	let errorMessage = '';
+
+	async function loadDesigns(): Promise<void> {
+		const published = await listPublishedDesigns({
+			categoryId: selectedCategoryId || undefined,
+			subcategoryId: selectedSubcategoryId || undefined,
+			maxItems: 8
+		});
+		const currentUser = get(authUser);
+		const profile = get(userProfile);
+		const isDesigner = !!currentUser && !!profile?.roles?.includes('designer');
+		if (!isDesigner || !currentUser) {
+			latestDesigns = published;
+			return;
+		}
+		const ownDesigns = await listDesignerDesigns(currentUser.uid);
+		const ownDrafts = ownDesigns.filter((item) => item.status === 'draft');
+		const merged = [...ownDrafts, ...published];
+		const unique = new Map<string, DesignItem>();
+		for (const item of merged) {
+			if (!unique.has(item.id)) unique.set(item.id, item);
+		}
+		latestDesigns = Array.from(unique.values()).slice(0, 8);
+	}
 
 	onMount(async () => {
 		loading = true;
 		errorMessage = '';
 		try {
-			const [categoryResult, designResult] = await Promise.all([
+			const [categoryResult, subcategoryResult] = await Promise.all([
 				listDesignCategories(),
-				listPublishedDesigns()
+				listDesignSubcategories()
 			]);
 			categories = categoryResult;
-			latestDesigns = designResult.slice(0, 8);
+			subcategories = subcategoryResult;
+			await loadDesigns();
 		} catch (error) {
 			errorMessage = error instanceof Error ? error.message : 'Failed to load landing content.';
 		} finally {
 			loading = false;
 		}
 	});
+
+	$: filteredSubcategories = selectedCategoryId
+		? subcategories.filter((item) => item.categoryId === selectedCategoryId)
+		: subcategories;
+
+	$: categoryNameById = new Map(categories.map((item) => [item.id, item.name]));
+	$: subcategoryNameById = new Map(subcategories.map((item) => [item.id, item.name]));
+
+	async function applyFilters(): Promise<void> {
+		loading = true;
+		errorMessage = '';
+		try {
+			await loadDesigns();
+		} catch (error) {
+			errorMessage = error instanceof Error ? error.message : 'Failed to filter designs.';
+		} finally {
+			loading = false;
+		}
+	}
 </script>
 
 <section class="hero bg-base-100 rounded-box border border-base-300 mb-6">
@@ -71,7 +124,39 @@
 </section>
 
 <section>
-	<h2 class="text-2xl font-semibold mb-3">Latest designs</h2>
+	<div class="flex flex-wrap items-end gap-2 justify-between mb-3">
+		<h2 class="text-2xl font-semibold">Latest designs</h2>
+		<div class="flex flex-wrap gap-2">
+			<select
+				class="select select-bordered select-sm"
+				bind:value={selectedCategoryId}
+				onchange={() => {
+					if (
+						selectedSubcategoryId &&
+						!filteredSubcategories.some((item) => item.id === selectedSubcategoryId)
+					) {
+						selectedSubcategoryId = '';
+					}
+					void applyFilters();
+				}}
+			>
+				<option value="">All categories</option>
+				{#each categories as category (category.id)}
+					<option value={category.id}>{category.name}</option>
+				{/each}
+			</select>
+			<select
+				class="select select-bordered select-sm"
+				bind:value={selectedSubcategoryId}
+				onchange={() => void applyFilters()}
+			>
+				<option value="">All sub-categories</option>
+				{#each filteredSubcategories as subcategory (subcategory.id)}
+					<option value={subcategory.id}>{subcategory.name}</option>
+				{/each}
+			</select>
+		</div>
+	</div>
 
 	{#if loading}
 		<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
@@ -110,7 +195,17 @@
 						<h3 class="card-title text-lg">{design.title}</h3>
 						<p class="text-sm text-base-content/70 line-clamp-3">{design.description}</p>
 						<div class="card-actions justify-between items-center mt-2">
-							<div class="badge badge-outline">{design.designType}</div>
+							<div class="flex flex-wrap gap-1">
+								<div class="badge badge-outline">{design.designType}</div>
+								{#if categoryNameById.get(design.categoryId)}
+									<div class="badge badge-ghost">{categoryNameById.get(design.categoryId)}</div>
+								{/if}
+								{#each design.subcategoryIds ?? [] as subcategoryId (subcategoryId)}
+									{#if subcategoryNameById.get(subcategoryId)}
+										<div class="badge badge-ghost">{subcategoryNameById.get(subcategoryId)}</div>
+									{/if}
+								{/each}
+							</div>
 							<span class="text-xs text-base-content/60">{new Date(design.createdAt).toLocaleDateString()}</span>
 						</div>
 					</div>

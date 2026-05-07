@@ -34,12 +34,34 @@ Project-specific guidance for AI coding agents working in this repository.
 - Server/admin env variables (`FIREBASE_ADMIN_*`) are expected only for server-side privileged operations.
 - Emulator support is controlled by `PUBLIC_FIREBASE_USE_EMULATOR` and related host/port env values.
 
+## Marketplace Taxonomy Contract
+
+- Catalog taxonomy uses:
+  - `designCategories/{categoryId}`
+  - `designSubcategories/{subcategoryId}` with `categoryId` foreign key
+  - `designItems/{designId}` with `categoryId` and `subcategoryIds[]`
+- Designer flow must support selecting existing category/sub-category or creating new ones in context.
+- Customer and manufacturer browsing/filtering must support both category and sub-category dimensions.
+- Manufacturer capability preferences should be stored on the manufacturer profile as taxonomy subscriptions for MVP (`subscribedCategoryIds[]`, `subscribedSubcategoryIds[]`).
+
+## Firestore Performance Guardrails
+
+- Prefer server-side filtered queries over fetching broad lists and filtering in the UI.
+- Keep reference docs (`designCategories`, `designSubcategories`) compact and cache them per view/session where practical.
+- Avoid unnecessary writes:
+  - skip `updateDoc` when payload is unchanged,
+  - use diff-based array updates for subscription toggles.
+- Maintain index parity with query changes in `firestore.indexes.json` (especially catalog filters by `status`, `categoryId`, and `subcategoryIds`).
+- For list experiences, prefer stable sort fields (`createdAt`) to reduce UI churn and repeated reads.
+
 ## Keep This File Up To Date
 
 Update this file whenever one of these changes:
 
 - Core architecture decisions (routing, auth model, role model).
 - Firebase initialization contract (env variable names, module paths, emulator strategy).
+- Taxonomy contract (category/sub-category schema, subscription model, filter behavior).
+- Firestore read/write performance strategy or index/query conventions.
 - Required validation commands (build/check/test workflow).
 - Security handling rules for credentials.
 - Styling stack or DaisyUI/Tailwind theme configuration (plugins, themes, design tokens).

@@ -1,13 +1,26 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
+	import { get } from 'svelte/store';
 	import { page } from '$app/stores';
-	import { getDesignById } from '$lib/services/designs';
-	import type { DesignItem } from '$lib/types/domain';
+	import {
+		getDesignById,
+		listDesignCategories,
+		listDesignSubcategories,
+		updateDesignItem
+	} from '$lib/services/designs';
+	import { authUser, userProfile } from '$lib/stores/auth';
+	import type { DesignCategory, DesignItem, DesignSubcategory } from '$lib/types/domain';
 	import { designCoverImageUrl } from '$lib/utils/design-media';
 
 	let loading = true;
 	let design: DesignItem | null = null;
 	let errorMessage = '';
+	let categories: DesignCategory[] = [];
+	let subcategories: DesignSubcategory[] = [];
+
+	let statusEdit: DesignItem['status'] = 'draft';
+	let statusBusy = false;
+	let statusNotice = '';
 
 	onMount(async () => {
 		loading = true;
@@ -18,9 +31,18 @@
 				errorMessage = 'Design not found.';
 				return;
 			}
-			design = await getDesignById(id);
+			const [designResult, categoryRows, subcategoryRows] = await Promise.all([
+				getDesignById(id),
+				listDesignCategories(),
+				listDesignSubcategories()
+			]);
+			design = designResult;
+			categories = categoryRows;
+			subcategories = subcategoryRows;
 			if (!design) {
 				errorMessage = 'Design not found.';
+			} else {
+				statusEdit = design.status ?? 'draft';
 			}
 		} catch (error) {
 			errorMessage = error instanceof Error ? error.message : 'Failed to load design.';
@@ -28,6 +50,33 @@
 			loading = false;
 		}
 	});
+
+	async function saveDesignStatus(): Promise<void> {
+		if (!design) return;
+		const user = get(authUser);
+		if (!user || design.designerId !== user.uid) return;
+		try {
+			statusBusy = true;
+			statusNotice = '';
+			await updateDesignItem(design.id, { status: statusEdit });
+			const next = await getDesignById(design.id);
+			design = next;
+			if (design) statusEdit = design.status ?? 'draft';
+			statusNotice = 'Status saved.';
+		} catch (error) {
+			statusNotice = error instanceof Error ? error.message : 'Could not save status.';
+		} finally {
+			statusBusy = false;
+		}
+	}
+
+	$: categoryNameById = new Map(categories.map((item) => [item.id, item.name]));
+	$: subcategoryNameById = new Map(subcategories.map((item) => [item.id, item.name]));
+	$: isDesignerOwner =
+		!!design &&
+		!!$authUser &&
+		!!$userProfile?.roles?.includes('designer') &&
+		design.designerId === $authUser.uid;
 </script>
 
 {#if loading}
@@ -50,6 +99,14 @@
 			<div class="flex gap-2 flex-wrap">
 				<div class="badge badge-outline">{design.designType}</div>
 				<div class="badge badge-secondary">{design.status}</div>
+				{#if categoryNameById.get(design.categoryId)}
+					<div class="badge badge-ghost">{categoryNameById.get(design.categoryId)}</div>
+				{/if}
+				{#each design.subcategoryIds ?? [] as subcategoryId (subcategoryId)}
+					{#if subcategoryNameById.get(subcategoryId)}
+						<div class="badge badge-ghost">{subcategoryNameById.get(subcategoryId)}</div>
+					{/if}
+				{/each}
 			</div>
 			<p class="text-sm text-base-content/70">
 				Published on {new Date(design.createdAt).toLocaleString()}
@@ -87,6 +144,38 @@
 							{/each}
 						</tbody>
 					</table>
+				</div>
+			{/if}
+
+			{#if isDesignerOwner}
+				<div class="rounded-box border border-primary/30 bg-base-200/40 p-4 space-y-3">
+					<h2 class="font-semibold text-sm">Your design — catalog visibility</h2>
+					<p class="text-xs text-base-content/70">
+						Only <span class="font-medium">Published</span> designs appear in the public catalog and customer
+						pickers. Drafts are visible to you when signed in.
+					</p>
+					<label class="form-control w-full max-w-xs">
+						<span class="label-text text-sm">Status</span>
+						<select class="select select-bordered select-sm w-full" bind:value={statusEdit}>
+							<option value="draft">Draft</option>
+							<option value="published">Published</option>
+							<option value="archived">Archived</option>
+						</select>
+					</label>
+					<div class="flex flex-wrap gap-2 items-center">
+						<button
+							type="button"
+							class="btn btn-primary btn-sm"
+							disabled={statusBusy || statusEdit === design.status}
+							onclick={() => void saveDesignStatus()}
+						>
+							{statusBusy ? 'Saving…' : 'Save status'}
+						</button>
+						<a class="btn btn-ghost btn-sm" href="/dashboard/designer">Open designer dashboard</a>
+					</div>
+					{#if statusNotice}
+						<p class="text-sm text-base-content/80">{statusNotice}</p>
+					{/if}
 				</div>
 			{/if}
 

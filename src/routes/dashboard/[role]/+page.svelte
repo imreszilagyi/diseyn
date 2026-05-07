@@ -1,11 +1,17 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
+	import { get } from 'svelte/store';
 	import { goto } from '$app/navigation';
 	import { page } from '$app/stores';
 	import DesignerConceptsSection from '$lib/components/dashboard/DesignerConceptsSection.svelte';
 	import ContractorCatalogSection from '$lib/components/dashboard/ContractorCatalogSection.svelte';
-	import { listDesignerDesigns } from '$lib/services/designs';
-	import { upsertManufacturerProfile } from '$lib/services/manufacturers';
+	import {
+		listDesignCategories,
+		listDesignSubcategories,
+		listDesignerDesigns,
+		listPublishedDesigns
+	} from '$lib/services/designs';
+	import { getManufacturerProfile, upsertManufacturerProfile } from '$lib/services/manufacturers';
 	import {
 		createOrder,
 		listCustomerOrders,
@@ -13,8 +19,16 @@
 		updateOrderStatus
 	} from '$lib/services/orders';
 	import { assignRoles } from '$lib/services/users';
-	import { authUser, switchActiveRole, userProfile } from '$lib/stores/auth';
-	import type { DesignItem, Order, OrderStatus, UserRole } from '$lib/types/domain';
+	import { authLoading, authUser, switchActiveRole, userProfile } from '$lib/stores/auth';
+	import type {
+		DesignCategory,
+		DesignItem,
+		DesignSubcategory,
+		ManufacturerProfile,
+		Order,
+		OrderStatus,
+		UserRole
+	} from '$lib/types/domain';
 
 	const allRoles: UserRole[] = ['customer', 'manufacturer', 'designer', 'admin'];
 
@@ -45,6 +59,12 @@
 
 	let orderDesignId = $state('');
 	let orderManufacturerId = $state('');
+	let orderCategories = $state<DesignCategory[]>([]);
+	let orderSubcategories = $state<DesignSubcategory[]>([]);
+	let orderDesignOptions = $state<DesignItem[]>([]);
+	let orderCategoryId = $state('');
+	let orderSubcategoryId = $state('');
+	let manufacturerProfile = $state<ManufacturerProfile | null>(null);
 
 	let supportedDesignTypes = $state('');
 	let businessName = $state('');
@@ -55,24 +75,88 @@
 	let adminRoles = $state('');
 
 	onMount(() => {
-		void initialize();
+		// Auth hydrates after first paint; reload role data when auth/profile become ready
+		// or when switching roles, so designer lists are not stuck empty.
+		const run = () => void initialize();
+		run();
+		const unsubs = [
+			authLoading.subscribe(run),
+			authUser.subscribe(run),
+			userProfile.subscribe(run),
+			page.subscribe(run)
+		];
+		return () => unsubs.forEach((u) => u());
 	});
 
 	async function initialize(): Promise<void> {
-		if (!$authUser || !$userProfile || !isAuthorized) return;
+		if (get(authLoading)) return;
+		const user = get(authUser);
+		const profile = get(userProfile);
+		const routeRole = (get(page).params.role as UserRole) || '';
+		if (!user || !profile) return;
+		if (!profile.roles.includes(routeRole)) return;
 		await loadRoleData();
 	}
 
 	async function loadRoleData(): Promise<void> {
-		if (!$authUser) return;
-		if (currentRole === 'customer') {
-			customerOrders = await listCustomerOrders($authUser.uid);
+		const user = get(authUser);
+		if (!user) return;
+		const role = (get(page).params.role as UserRole) || '';
+
+		if (role === 'customer') {
+			const [orders, categories, subcategories] = await Promise.all([
+				listCustomerOrders(user.uid),
+				listDesignCategories(),
+				listDesignSubcategories()
+			]);
+			customerOrders = orders;
+			orderCategories = categories;
+			orderSubcategories = subcategories;
+			await loadOrderDesignOptions();
 		}
-		if (currentRole === 'manufacturer') {
-			manufacturerOrders = await listManufacturerOrders($authUser.uid);
+		if (role === 'manufacturer') {
+			const [orders, profile] = await Promise.all([
+				listManufacturerOrders(user.uid),
+				getManufacturerProfile(user.uid)
+			]);
+			manufacturerOrders = orders;
+			manufacturerProfile = profile;
+			supportedDesignTypes = (profile?.supportedDesignTypes ?? []).join(', ');
+			businessName = profile?.businessName ?? '';
+			city = profile?.city ?? '';
+			isAvailable = profile?.isAvailable ?? true;
 		}
-		if (currentRole === 'designer') {
-			designerItems = await listDesignerDesigns($authUser.uid);
+		if (role === 'designer') {
+			designerItems = await listDesignerDesigns(user.uid);
+		}
+	}
+
+	const orderFilteredSubcategories = $derived(
+		orderCategoryId
+		? orderSubcategories.filter((item) => item.categoryId === orderCategoryId)
+		: orderSubcategories
+	);
+
+	async function loadOrderDesignOptions(): Promise<void> {
+		orderDesignOptions = await listPublishedDesigns({
+			categoryId: orderCategoryId || undefined,
+			subcategoryId: orderSubcategoryId || undefined,
+			maxItems: 50
+		});
+		if (orderDesignId && !orderDesignOptions.some((item) => item.id === orderDesignId)) {
+			orderDesignId = '';
+		}
+	}
+
+	async function applyOrderDesignFilter(): Promise<void> {
+		try {
+			busy = true;
+			notice = '';
+			await loadOrderDesignOptions();
+		} catch (error) {
+			notice = error instanceof Error ? error.message : 'Failed to load designs.';
+		} finally {
+			busy = false;
 		}
 	}
 
@@ -221,7 +305,42 @@
 						>
 							<fieldset class="fieldset gap-2 md:grid md:grid-cols-3">
 								<legend class="fieldset-legend md:col-span-3">New order</legend>
-								<input class="input input-bordered" placeholder="Design ID" bind:value={orderDesignId} required />
+								<select
+									class="select select-bordered"
+									bind:value={orderCategoryId}
+									onchange={() => {
+										if (
+											orderSubcategoryId &&
+											!orderFilteredSubcategories.some(
+												(item) => item.id === orderSubcategoryId
+											)
+										) {
+											orderSubcategoryId = '';
+										}
+										void applyOrderDesignFilter();
+									}}
+								>
+									<option value="">All categories</option>
+									{#each orderCategories as category (category.id)}
+										<option value={category.id}>{category.name}</option>
+									{/each}
+								</select>
+								<select
+									class="select select-bordered"
+									bind:value={orderSubcategoryId}
+									onchange={() => void applyOrderDesignFilter()}
+								>
+									<option value="">All sub-categories</option>
+									{#each orderFilteredSubcategories as subcategory (subcategory.id)}
+										<option value={subcategory.id}>{subcategory.name}</option>
+									{/each}
+								</select>
+								<select class="select select-bordered md:col-span-3" bind:value={orderDesignId} required>
+									<option value="">Choose design</option>
+									{#each orderDesignOptions as design (design.id)}
+										<option value={design.id}>{design.title} ({design.designType})</option>
+									{/each}
+								</select>
 								<input
 									class="input input-bordered"
 									placeholder="Manufacturer ID"
@@ -266,7 +385,10 @@
 			{/if}
 
 			{#if currentRole === 'manufacturer' && $authUser}
-				<ContractorCatalogSection manufacturerId={$authUser.uid} />
+				<ContractorCatalogSection
+					manufacturerId={$authUser.uid}
+					initialProfile={manufacturerProfile}
+				/>
 
 				<div class="card bg-base-100 border border-base-300">
 					<div class="card-body">

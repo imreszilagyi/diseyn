@@ -1,6 +1,9 @@
 {
   "projects": {
-    "default": "your-firebase-project-id",
-    "staging": "your-firebase-staging-project-id"
-  }
+    "default": "diseyndata",
+    "staging": "your-firebase-staging-project-id",
+    "dev": "diseyndata"
+  },
+  "targets": {},
+  "etags": {}
 }

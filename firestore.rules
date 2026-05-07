@@ -15,6 +15,11 @@ service cloud.firestore {
       allow write: if hasRole('admin') || hasRole('designer');
     }
 
+    match /designSubcategories/{subcategoryId} {
+      allow read: if true;
+      allow write: if hasRole('admin') || hasRole('designer');
+    }
+
     match /designItems/{designId} {
       allow read: if resource.data.status == 'published' || isSignedIn();
       allow create: if hasRole('designer');
@@ -24,7 +29,11 @@ service cloud.firestore {
 
     match /manufacturers/{manufacturerId} {
       allow read: if true;
-      allow write: if hasRole('admin') || (hasRole('manufacturer') && request.auth.uid == manufacturerId);
+      allow create, update: if hasRole('admin') ||
+        (hasRole('manufacturer') &&
+          request.auth.uid == manufacturerId &&
+          request.resource.data.id == manufacturerId);
+      allow delete: if hasRole('admin');
     }
 
     match /orders/{orderId} {
