@@ -21,7 +21,11 @@ service cloud.firestore {
     }
 
     match /designItems/{designId} {
-      allow read: if resource.data.status == 'published' || isSignedIn();
+      // Legacy design docs may not have a `status` field. Treat those as public
+      // read-only records to match client-side normalization.
+      allow read: if isSignedIn() ||
+        !('status' in resource.data) ||
+        resource.data.status == 'published';
       allow create: if hasRole('designer');
       allow update, delete: if hasRole('admin') ||
         (hasRole('designer') && request.auth.uid == resource.data.designerId);

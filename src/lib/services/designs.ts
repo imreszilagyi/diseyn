@@ -11,7 +11,7 @@ import {
 	updateDoc,
 	where
 } from 'firebase/firestore';
-import { db } from '$lib/firebase/client';
+import { auth, db } from '$lib/firebase/client';
 import type { DesignCategory, DesignItem, DesignSubcategory } from '$lib/types/domain';
 
 function requireDb() {
@@ -55,6 +55,17 @@ export interface ListPublishedDesignFilters {
 	categoryId?: string;
 	subcategoryId?: string;
 	maxItems?: number;
+}
+
+function isMissingIndexError(error: unknown): boolean {
+	if (!error || typeof error !== 'object') return false;
+	const maybeCode = (error as { code?: unknown }).code;
+	const maybeMessage = (error as { message?: unknown }).message;
+	return (
+		(maybeCode === 'failed-precondition' || maybeCode === 'firestore/failed-precondition') &&
+		typeof maybeMessage === 'string' &&
+		maybeMessage.toLowerCase().includes('requires an index')
+	);
 }
 
 export async function listDesignSubcategories(categoryId?: string): Promise<DesignSubcategory[]> {
@@ -145,14 +156,39 @@ export async function listPublishedDesigns(
 	publishedConstraints.push(orderBy('createdAt', 'desc'));
 	if (resolved.maxItems && resolved.maxItems > 0) publishedConstraints.push(limit(resolved.maxItems));
 
-	const publishedSnapshot = await getDocs(query(collection(store, 'designItems'), ...publishedConstraints));
-	if (publishedSnapshot.docs.length > 0) {
-		return publishedSnapshot.docs.map((item) =>
-			normalizeDesignItem(item.id, item.data() as Omit<DesignItem, 'id'>)
+	try {
+		const publishedSnapshot = await getDocs(query(collection(store, 'designItems'), ...publishedConstraints));
+		if (publishedSnapshot.docs.length > 0) {
+			return publishedSnapshot.docs.map((item) =>
+				normalizeDesignItem(item.id, item.data() as Omit<DesignItem, 'id'>)
+			);
+		}
+	} catch (error) {
+		if (!isMissingIndexError(error)) throw error;
+
+		// Graceful fallback while indexes are still building: run a simpler query and
+		// apply category/subcategory filters + sort locally.
+		const safeLimit = Math.max(resolved.maxItems ?? 50, 100);
+		const fallbackSnapshot = await getDocs(
+			query(collection(store, 'designItems'), where('status', '==', 'published'), limit(safeLimit))
 		);
+		const fallbackItems = fallbackSnapshot.docs
+			.map((item) => normalizeDesignItem(item.id, item.data() as Omit<DesignItem, 'id'>))
+			.filter((item) => (resolved.categoryId ? item.categoryId === resolved.categoryId : true))
+			.filter((item) =>
+				resolved.subcategoryId ? (item.subcategoryIds ?? []).includes(resolved.subcategoryId) : true
+			)
+			.sort((a, b) => (b.createdAt || '').localeCompare(a.createdAt || ''));
+		return resolved.maxItems && resolved.maxItems > 0
+			? fallbackItems.slice(0, resolved.maxItems)
+			: fallbackItems;
 	}
 
 	// Fallback for legacy rows where `status` may be missing.
+	// For signed-out users this broad query is rejected by rules, because it
+	// could return non-published documents.
+	if (!auth?.currentUser) return [];
+
 	const legacyConstraints: QueryConstraint[] = [];
 	if (resolved.categoryId) legacyConstraints.push(where('categoryId', '==', resolved.categoryId));
 	legacyConstraints.push(orderBy('createdAt', 'desc'));
