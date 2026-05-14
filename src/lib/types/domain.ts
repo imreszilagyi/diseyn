@@ -21,6 +21,7 @@ export interface DesignCategory {
 export interface DesignSubcategory {
 	id: string;
 	categoryId: string;
+	parentSubcategoryId?: string | null;
 	name: string;
 	slug: string;
 	description?: string;

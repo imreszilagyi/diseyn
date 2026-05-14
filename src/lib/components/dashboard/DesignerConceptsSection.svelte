@@ -1,7 +1,6 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import {
-		createDesignCategory,
 		createDesignItem,
 		createDesignSubcategory,
 		listDesignCategories,
@@ -36,10 +35,9 @@
 	let cTitle = $state('');
 	let cDescription = $state('');
 	let cCategoryId = $state('');
-	let cCategoryMode = $state<'select' | 'create'>('select');
-	let cCategoryName = $state('');
 	let cSubcategoryIds = $state<string[]>([]);
 	let cNewSubcategoryName = $state('');
+	let cNewSubcategoryParentId = $state('');
 	let cDesignType = $state('');
 	let cStatus = $state<DesignItem['status']>('published');
 	let cCharacteristics = $state<DesignCharacteristic[]>([{ key: '', value: '' }]);
@@ -48,10 +46,9 @@
 	let eTitle = $state('');
 	let eDescription = $state('');
 	let eCategoryId = $state('');
-	let eCategoryMode = $state<'select' | 'create'>('select');
-	let eCategoryName = $state('');
 	let eSubcategoryIds = $state<string[]>([]);
 	let eNewSubcategoryName = $state('');
+	let eNewSubcategoryParentId = $state('');
 	let eDesignType = $state('');
 	let eStatus = $state<DesignItem['status']>('draft');
 	let eCharacteristics = $state<DesignCharacteristic[]>([{ key: '', value: '' }]);
@@ -89,6 +86,40 @@
 		return subcategoriesByCategory[categoryId] ?? [];
 	}
 
+	function buildSubcategoryPathMap(rows: DesignSubcategory[]): Map<string, string> {
+		const byId = new Map(rows.map((row) => [row.id, row]));
+		const pathById = new Map<string, string>();
+		const visiting = new Set<string>();
+
+		const buildPath = (id: string): string => {
+			const cached = pathById.get(id);
+			if (cached) return cached;
+			const node = byId.get(id);
+			if (!node) return id;
+			if (visiting.has(id)) return node.name;
+
+			visiting.add(id);
+			const parentId = node.parentSubcategoryId?.trim();
+			const parentPath =
+				parentId && byId.has(parentId) ? `${buildPath(parentId)} / ` : '';
+			const label = `${parentPath}${node.name}`;
+			visiting.delete(id);
+			pathById.set(id, label);
+			return label;
+		};
+
+		for (const row of rows) {
+			buildPath(row.id);
+		}
+		return pathById;
+	}
+
+	function subcategoryPathLabel(which: 'new' | 'edit', subcategoryId: string): string {
+		const rows = currentSubcategories(which);
+		const pathById = buildSubcategoryPathMap(rows);
+		return pathById.get(subcategoryId) ?? rows.find((item) => item.id === subcategoryId)?.name ?? subcategoryId;
+	}
+
 	function syncSelectedSubcategories(which: 'new' | 'edit') {
 		const allowed = new Set(currentSubcategories(which).map((row) => row.id));
 		if (which === 'new') {
@@ -102,9 +133,11 @@
 		if (which === 'new') {
 			cCategoryId = categoryId;
 			cSubcategoryIds = [];
+			cNewSubcategoryParentId = '';
 		} else {
 			eCategoryId = categoryId;
 			eSubcategoryIds = [];
+			eNewSubcategoryParentId = '';
 		}
 		await ensureSubcategories(categoryId);
 		syncSelectedSubcategories(which);
@@ -117,47 +150,30 @@
 		else eSubcategoryIds = next;
 	}
 
-	async function createCategoryInline(which: 'new' | 'edit') {
-		const categoryName = which === 'new' ? cCategoryName : eCategoryName;
-		const trimmed = categoryName.trim();
-		if (!trimmed) return;
-		try {
-			busy = true;
-			notice = '';
-			const categoryId = await createDesignCategory({ name: trimmed, createdBy: designerId });
-			categories = await listDesignCategories();
-			await ensureSubcategories(categoryId, true);
-			if (which === 'new') {
-				cCategoryId = categoryId;
-				cCategoryName = '';
-				cCategoryMode = 'select';
-			} else {
-				eCategoryId = categoryId;
-				eCategoryName = '';
-				eCategoryMode = 'select';
-			}
-		} catch (e) {
-			notice = e instanceof Error ? e.message : 'Failed to create category.';
-		} finally {
-			busy = false;
-		}
-	}
-
 	async function createSubcategoryInline(which: 'new' | 'edit') {
 		const categoryId = which === 'new' ? cCategoryId : eCategoryId;
 		const name = (which === 'new' ? cNewSubcategoryName : eNewSubcategoryName).trim();
+		const parentSubcategoryId =
+			(which === 'new' ? cNewSubcategoryParentId : eNewSubcategoryParentId).trim() || null;
 		if (!categoryId || !name) return;
 		try {
 			busy = true;
 			notice = '';
-			const createdId = await createDesignSubcategory({ categoryId, name, createdBy: designerId });
+			const createdId = await createDesignSubcategory({
+				categoryId,
+				parentSubcategoryId,
+				name,
+				createdBy: designerId
+			});
 			await ensureSubcategories(categoryId, true);
 			if (which === 'new') {
 				cSubcategoryIds = Array.from(new Set([...cSubcategoryIds, createdId]));
 				cNewSubcategoryName = '';
+				cNewSubcategoryParentId = '';
 			} else {
 				eSubcategoryIds = Array.from(new Set([...eSubcategoryIds, createdId]));
 				eNewSubcategoryName = '';
+				eNewSubcategoryParentId = '';
 			}
 		} catch (e) {
 			notice = e instanceof Error ? e.message : 'Failed to create sub-category.';
@@ -181,6 +197,7 @@
 		eImageUrls = [
 			...(item.imageUrls?.filter(Boolean) ?? (item.imageUrl ? [item.imageUrl] : []))
 		];
+		eNewSubcategoryParentId = '';
 		eNewFiles = null;
 		void ensureSubcategories(item.categoryId);
 	}
@@ -266,6 +283,7 @@
 			cDescription = '';
 			cCategoryId = '';
 			cSubcategoryIds = [];
+			cNewSubcategoryParentId = '';
 			cDesignType = '';
 			cStatus = 'published';
 			cCharacteristics = [{ key: '', value: '' }];
@@ -338,77 +356,31 @@
 						bind:value={cDescription}
 						required
 					></textarea>
-					{#if categories.length}
-						<div class="space-y-2">
-							<div role="tablist" class="tabs tabs-box tabs-xs">
-								<button
-									type="button"
-									role="tab"
-									class="tab"
-									class:tab-active={cCategoryMode === 'select'}
-									onclick={() => (cCategoryMode = 'select')}
-								>
-									Select category
-								</button>
-								<button
-									type="button"
-									role="tab"
-									class="tab"
-									class:tab-active={cCategoryMode === 'create'}
-									onclick={() => (cCategoryMode = 'create')}
-								>
-									Create category
-								</button>
-							</div>
-							{#if cCategoryMode === 'select'}
-								<select
-									class="select select-bordered w-full"
-									bind:value={cCategoryId}
-									required
-									onchange={(event) =>
-										void handleCategoryChange(
-											'new',
-											(event.currentTarget as HTMLSelectElement).value
-										)}
-								>
-									<option value="">Category…</option>
-									{#each categories as cat (cat.id)}
-										<option value={cat.id}>{cat.name}</option>
-									{/each}
-								</select>
-							{:else}
-								<div class="flex gap-2">
-									<input
-										class="input input-bordered flex-1"
-										placeholder="New category name"
-										bind:value={cCategoryName}
-									/>
-									<button
-										type="button"
-										class="btn btn-outline"
-										disabled={busy || !cCategoryName.trim()}
-										onclick={() => void createCategoryInline('new')}
-									>
-										Create
-									</button>
-								</div>
-							{/if}
-						</div>
-					{:else}
-						<input
-							class="input input-bordered w-full"
-							placeholder="Category ID"
-							bind:value={cCategoryId}
-							required
-						/>
-					{/if}
+					<select
+						class="select select-bordered w-full"
+						bind:value={cCategoryId}
+						required
+						disabled={categories.length === 0}
+						onchange={(event) =>
+							void handleCategoryChange(
+								'new',
+								(event.currentTarget as HTMLSelectElement).value
+							)}
+					>
+						<option value="">
+							{categories.length ? 'Category…' : 'No categories available'}
+						</option>
+						{#each categories as cat (cat.id)}
+							<option value={cat.id}>{cat.name}</option>
+						{/each}
+					</select>
 					{#if cCategoryId}
 						<div class="rounded-box border border-base-300 p-3 space-y-2">
 							<div class="text-sm font-medium">Sub-categories</div>
 							<div class="flex flex-wrap gap-1">
 								{#each cSubcategoryIds as subId (subId)}
 									<span class="badge badge-primary badge-sm">
-										{currentSubcategories('new').find((item) => item.id === subId)?.name ?? subId}
+										{subcategoryPathLabel('new', subId)}
 									</span>
 								{/each}
 								{#if cSubcategoryIds.length === 0}
@@ -429,11 +401,20 @@
 													(event.currentTarget as HTMLInputElement).checked
 												)}
 										/>
-										<span class="label-text text-sm">{sub.name}</span>
+										<span class="label-text text-sm">{subcategoryPathLabel('new', sub.id)}</span>
 									</label>
 								{/each}
 							</div>
 							<div class="flex gap-2">
+								<select
+									class="select select-bordered select-sm"
+									bind:value={cNewSubcategoryParentId}
+								>
+									<option value="">No parent (top-level in category)</option>
+									{#each currentSubcategories('new') as sub (sub.id)}
+										<option value={sub.id}>{subcategoryPathLabel('new', sub.id)}</option>
+									{/each}
+								</select>
 								<input
 									class="input input-bordered input-sm flex-1"
 									placeholder="Create sub-category"
@@ -531,71 +512,31 @@
 								bind:value={eDescription}
 								required
 							></textarea>
-							{#if categories.length}
-								<div class="space-y-2">
-									<div role="tablist" class="tabs tabs-box tabs-xs">
-										<button
-											type="button"
-											role="tab"
-											class="tab"
-											class:tab-active={eCategoryMode === 'select'}
-											onclick={() => (eCategoryMode = 'select')}
-										>
-											Select category
-										</button>
-										<button
-											type="button"
-											role="tab"
-											class="tab"
-											class:tab-active={eCategoryMode === 'create'}
-											onclick={() => (eCategoryMode = 'create')}
-										>
-											Create category
-										</button>
-									</div>
-									{#if eCategoryMode === 'select'}
-										<select
-											class="select select-bordered w-full"
-											bind:value={eCategoryId}
-											required
-											onchange={(event) =>
-												void handleCategoryChange(
-													'edit',
-													(event.currentTarget as HTMLSelectElement).value
-												)}
-										>
-											{#each categories as cat (cat.id)}
-												<option value={cat.id}>{cat.name}</option>
-											{/each}
-										</select>
-									{:else}
-										<div class="flex gap-2">
-											<input
-												class="input input-bordered flex-1"
-												placeholder="New category name"
-												bind:value={eCategoryName}
-											/>
-											<button
-												type="button"
-												class="btn btn-outline"
-												disabled={busy || !eCategoryName.trim()}
-												onclick={() => void createCategoryInline('edit')}
-											>
-												Create
-											</button>
-										</div>
-									{/if}
-								</div>
-							{:else}
-								<input class="input input-bordered w-full" placeholder="Category ID" bind:value={eCategoryId} required />
-							{/if}
+							<select
+								class="select select-bordered w-full"
+								bind:value={eCategoryId}
+								required
+								disabled={categories.length === 0}
+								onchange={(event) =>
+									void handleCategoryChange(
+										'edit',
+										(event.currentTarget as HTMLSelectElement).value
+									)}
+							>
+								<option value="">
+									{categories.length ? 'Category…' : 'No categories available'}
+								</option>
+								{#each categories as cat (cat.id)}
+									<option value={cat.id}>{cat.name}</option>
+								{/each}
+							</select>
 							{#if eCategoryId}
 								<div class="rounded-box border border-base-300 p-3 space-y-2">
 									<div class="text-sm font-medium">Sub-categories</div>
 									<div class="flex flex-wrap gap-1">
 										{#each eSubcategoryIds as subId (subId)}
 											<span class="badge badge-primary badge-sm">
-												{currentSubcategories('edit').find((item) => item.id === subId)?.name ?? subId}
+												{subcategoryPathLabel('edit', subId)}
 											</span>
 										{/each}
 										{#if eSubcategoryIds.length === 0}
@@ -616,11 +557,20 @@
 															(event.currentTarget as HTMLInputElement).checked
 														)}
 												/>
-												<span class="label-text text-sm">{sub.name}</span>
+												<span class="label-text text-sm">{subcategoryPathLabel('edit', sub.id)}</span>
 											</label>
 										{/each}
 									</div>
 									<div class="flex gap-2">
+										<select
+											class="select select-bordered select-sm"
+											bind:value={eNewSubcategoryParentId}
+										>
+											<option value="">No parent (top-level in category)</option>
+											{#each currentSubcategories('edit') as sub (sub.id)}
+												<option value={sub.id}>{subcategoryPathLabel('edit', sub.id)}</option>
+											{/each}
+										</select>
 										<input
 											class="input input-bordered input-sm flex-1"
 											placeholder="Create sub-category"

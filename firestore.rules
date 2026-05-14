@@ -12,7 +12,7 @@ service cloud.firestore {
 
     match /designCategories/{categoryId} {
       allow read: if true;
-      allow write: if hasRole('admin') || hasRole('designer');
+      allow write: if hasRole('admin');
     }
 
     match /designSubcategories/{subcategoryId} {

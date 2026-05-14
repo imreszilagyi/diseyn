@@ -61,6 +61,16 @@ npm run firebase:deploy:indexes
 npm run firebase:deploy
 ```
 
+### 4) Seed fixed taxonomy (admin)
+
+To upsert the fixed top-level categories and the initial nested path (`Home & Living/Furniture/Dining Room`):
+
+```bash
+npm run taxonomy:seed
+```
+
+This script requires server admin env vars (`FIREBASE_ADMIN_PROJECT_ID`, `FIREBASE_ADMIN_CLIENT_EMAIL`, `FIREBASE_ADMIN_PRIVATE_KEY`).
+
 ## Server-side Firebase access (Admin SDK)
 
 Client SDK in this project is for browser operations. For trusted server operations, use:

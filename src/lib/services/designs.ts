@@ -103,16 +103,31 @@ export async function createDesignCategory(payload: {
 
 export async function createDesignSubcategory(payload: {
 	categoryId: string;
+	parentSubcategoryId?: string | null;
 	name: string;
 	description?: string;
 	createdBy?: string;
 }): Promise<string> {
 	const categoryId = payload.categoryId.trim();
+	const parentSubcategoryId = payload.parentSubcategoryId?.trim() || null;
 	const name = payload.name.trim();
 	if (!categoryId) throw new Error('Category is required.');
 	if (!name) throw new Error('Sub-category name is required.');
+
+	if (parentSubcategoryId) {
+		const parent = await getDoc(doc(requireDb(), 'designSubcategories', parentSubcategoryId));
+		if (!parent.exists()) {
+			throw new Error('Parent sub-category does not exist.');
+		}
+		const parentCategoryId = String(parent.data()?.categoryId ?? '').trim();
+		if (parentCategoryId !== categoryId) {
+			throw new Error('Parent sub-category must be in the same category.');
+		}
+	}
+
 	const ref = await addDoc(collection(requireDb(), 'designSubcategories'), {
 		categoryId,
+		parentSubcategoryId,
 		name,
 		slug: slugify(name),
 		description: payload.description?.trim() || '',

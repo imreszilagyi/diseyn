@@ -15,7 +15,8 @@
     "firebase:emulators": "npx firebase-tools@13.35.1 emulators:start",
     "firebase:deploy:rules": "npx firebase-tools@13.35.1 deploy --only firestore:rules,storage",
     "firebase:deploy:indexes": "npx firebase-tools@13.35.1 deploy --only firestore:indexes",
-    "firebase:deploy": "npx firebase-tools@13.35.1 deploy --only firestore,storage"
+    "firebase:deploy": "npx firebase-tools@13.35.1 deploy --only firestore,storage",
+    "taxonomy:seed": "node --env-file=.env scripts/seed-taxonomy.mjs"
   },
   "devDependencies": {
     "@sveltejs/adapter-auto": "^3.3.1",

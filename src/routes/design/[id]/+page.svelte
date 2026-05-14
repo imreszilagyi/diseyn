@@ -71,7 +71,34 @@
 	}
 
 	$: categoryNameById = new Map(categories.map((item) => [item.id, item.name]));
-	$: subcategoryNameById = new Map(subcategories.map((item) => [item.id, item.name]));
+	$: subcategoryPathById = (() => {
+		const byId = new Map(subcategories.map((item) => [item.id, item]));
+		const pathById = new Map<string, string>();
+		const visiting = new Set<string>();
+
+		const buildPath = (id: string): string => {
+			const cached = pathById.get(id);
+			if (cached) return cached;
+			const node = byId.get(id);
+			if (!node) return id;
+			if (visiting.has(id)) return node.name;
+
+			visiting.add(id);
+			const parentId = node.parentSubcategoryId?.trim();
+			const parentPath =
+				parentId && byId.has(parentId) ? `${buildPath(parentId)} / ` : '';
+			const label = `${parentPath}${node.name}`;
+			visiting.delete(id);
+			pathById.set(id, label);
+			return label;
+		};
+
+		for (const subcategory of subcategories) {
+			buildPath(subcategory.id);
+		}
+
+		return pathById;
+	})();
 	$: isDesignerOwner =
 		!!design &&
 		!!$authUser &&
@@ -103,8 +130,8 @@
 					<div class="badge badge-ghost">{categoryNameById.get(design.categoryId)}</div>
 				{/if}
 				{#each design.subcategoryIds ?? [] as subcategoryId (subcategoryId)}
-					{#if subcategoryNameById.get(subcategoryId)}
-						<div class="badge badge-ghost">{subcategoryNameById.get(subcategoryId)}</div>
+					{#if subcategoryPathById.get(subcategoryId)}
+						<div class="badge badge-ghost">{subcategoryPathById.get(subcategoryId)}</div>
 					{/if}
 				{/each}
 			</div>

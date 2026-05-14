@@ -73,7 +73,34 @@
 		: subcategories;
 
 	$: categoryNameById = new Map(categories.map((item) => [item.id, item.name]));
-	$: subcategoryNameById = new Map(subcategories.map((item) => [item.id, item.name]));
+	$: subcategoryPathById = (() => {
+		const byId = new Map(subcategories.map((item) => [item.id, item]));
+		const pathById = new Map<string, string>();
+		const visiting = new Set<string>();
+
+		const buildPath = (id: string): string => {
+			const cached = pathById.get(id);
+			if (cached) return cached;
+			const node = byId.get(id);
+			if (!node) return id;
+			if (visiting.has(id)) return node.name;
+
+			visiting.add(id);
+			const parentId = node.parentSubcategoryId?.trim();
+			const parentPath =
+				parentId && byId.has(parentId) ? `${buildPath(parentId)} / ` : '';
+			const label = `${parentPath}${node.name}`;
+			visiting.delete(id);
+			pathById.set(id, label);
+			return label;
+		};
+
+		for (const subcategory of subcategories) {
+			buildPath(subcategory.id);
+		}
+
+		return pathById;
+	})();
 
 	async function pickCategory(id: string) {
 		selectedCategoryId = id;
@@ -212,7 +239,7 @@
 			>
 				<option value="">All sub-categories</option>
 				{#each filteredSubcategories as sub (sub.id)}
-					<option value={sub.id}>{sub.name}</option>
+					<option value={sub.id}>{subcategoryPathById.get(sub.id) ?? sub.name}</option>
 				{/each}
 			</select>
 		</div>
@@ -244,7 +271,7 @@
 							onclick={() => void toggleSubcategorySubscription(sub.id)}
 							disabled={busy || !subscribedCategoryIds.includes(sub.categoryId)}
 						>
-							{subscribedSubcategoryIds.includes(sub.id) ? 'Subscribed' : 'Subscribe'}: {sub.name}
+						{subscribedSubcategoryIds.includes(sub.id) ? 'Subscribed' : 'Subscribe'}: {subcategoryPathById.get(sub.id) ?? sub.name}
 						</button>
 					{/each}
 				</div>
@@ -291,8 +318,8 @@
 									<span class="badge badge-ghost badge-sm">{categoryNameById.get(design.categoryId)}</span>
 								{/if}
 								{#each design.subcategoryIds ?? [] as subId (subId)}
-									{#if subcategoryNameById.get(subId)}
-										<span class="badge badge-ghost badge-sm">{subcategoryNameById.get(subId)}</span>
+									{#if subcategoryPathById.get(subId)}
+										<span class="badge badge-ghost badge-sm">{subcategoryPathById.get(subId)}</span>
 									{/if}
 								{/each}
 								{#if decisions.get(design.id) === 'accepted'}
