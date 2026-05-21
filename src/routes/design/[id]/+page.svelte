@@ -9,7 +9,16 @@
 		updateDesignItem
 	} from '$lib/services/designs';
 	import { authUser, userProfile } from '$lib/stores/auth';
-	import type { DesignCategory, DesignItem, DesignSubcategory } from '$lib/types/domain';
+	import {
+		listDecisionsForManufacturer,
+		setManufacturerDesignDecision
+	} from '$lib/services/manufacturer-design-decisions';
+	import type {
+		DesignCategory,
+		DesignItem,
+		DesignSubcategory,
+		ManufacturerDesignVerdict
+	} from '$lib/types/domain';
 	import { designCoverImageUrl } from '$lib/utils/design-media';
 
 	let loading = true;
@@ -21,6 +30,10 @@
 	let statusEdit: DesignItem['status'] = 'draft';
 	let statusBusy = false;
 	let statusNotice = '';
+	let manufacturerVerdict: ManufacturerDesignVerdict | undefined;
+	let verdictBusy = false;
+	let verdictNotice = '';
+	let loadedVerdictKey = '';
 
 	onMount(async () => {
 		loading = true;
@@ -99,11 +112,46 @@
 
 		return pathById;
 	})();
+	$: isSignedIn = !!$authUser;
+	$: activeRole = $userProfile?.activeRole;
 	$: isDesignerOwner =
 		!!design &&
-		!!$authUser &&
+		isSignedIn &&
 		!!$userProfile?.roles?.includes('designer') &&
-		design.designerId === $authUser.uid;
+		design.designerId === $authUser?.uid;
+
+	$: if (isSignedIn && design && activeRole === 'manufacturer' && $authUser) {
+		const key = `${$authUser.uid}:${design.id}`;
+		if (key !== loadedVerdictKey) {
+			loadedVerdictKey = key;
+			void loadManufacturerVerdict($authUser.uid, design.id);
+		}
+	}
+
+	async function loadManufacturerVerdict(manufacturerId: string, designId: string): Promise<void> {
+		try {
+			const decisions = await listDecisionsForManufacturer(manufacturerId);
+			manufacturerVerdict = decisions.get(designId);
+		} catch {
+			manufacturerVerdict = undefined;
+		}
+	}
+
+	async function saveManufacturerVerdict(verdict: ManufacturerDesignVerdict): Promise<void> {
+		const user = get(authUser);
+		if (!user || !design) return;
+		try {
+			verdictBusy = true;
+			verdictNotice = '';
+			await setManufacturerDesignDecision(user.uid, design.id, verdict);
+			manufacturerVerdict = verdict;
+			verdictNotice = verdict === 'accepted' ? 'Marked as accepted.' : 'Marked as declined.';
+		} catch (error) {
+			verdictNotice = error instanceof Error ? error.message : 'Could not save decision.';
+		} finally {
+			verdictBusy = false;
+		}
+	}
 </script>
 
 {#if loading}
@@ -125,7 +173,9 @@
 			<p class="text-base-content/80">{design.description}</p>
 			<div class="flex gap-2 flex-wrap">
 				<div class="badge badge-outline">{design.designType}</div>
-				<div class="badge badge-secondary">{design.status}</div>
+				{#if isDesignerOwner}
+					<div class="badge badge-secondary">{design.status}</div>
+				{/if}
 				{#if categoryNameById.get(design.categoryId)}
 					<div class="badge badge-ghost">{categoryNameById.get(design.categoryId)}</div>
 				{/if}
@@ -135,9 +185,16 @@
 					{/if}
 				{/each}
 			</div>
-			<p class="text-sm text-base-content/70">
-				Published on {new Date(design.createdAt).toLocaleString()}
-			</p>
+			{#if isDesignerOwner}
+				<p class="text-sm text-base-content/70">
+					{design.status === 'published' ? 'Published' : 'Created'} on
+					{new Date(design.createdAt).toLocaleString()}
+				</p>
+			{:else if design.createdAt}
+				<p class="text-sm text-base-content/70">
+					Added on {new Date(design.createdAt).toLocaleString()}
+				</p>
+			{/if}
 
 			{#if design.imageUrls?.filter(Boolean).length}
 				<div class="grid grid-cols-2 sm:grid-cols-3 gap-2">
@@ -206,9 +263,44 @@
 				</div>
 			{/if}
 
-			<div class="card-actions mt-2 flex-wrap">
-				<a href="/auth" class="btn btn-primary">Login to continue</a>
-				<a href="/dashboard/customer" class="btn btn-outline">Order this design</a>
+			<div class="card-actions mt-2 flex-wrap gap-2">
+				{#if !isSignedIn}
+					<a href="/auth" class="btn btn-primary">Login to continue</a>
+					<a href="/dashboard/customer" class="btn btn-outline">Order this design</a>
+				{:else if activeRole === 'manufacturer'}
+					<a class="btn btn-ghost" href="/dashboard/manufacturer">Back to catalog</a>
+					{#if manufacturerVerdict === 'accepted'}
+						<span class="badge badge-success self-center">You accepted</span>
+					{:else if manufacturerVerdict === 'declined'}
+						<span class="badge badge-neutral self-center">You declined</span>
+					{/if}
+					<button
+						type="button"
+						class="btn btn-success btn-sm"
+						disabled={verdictBusy}
+						onclick={() => void saveManufacturerVerdict('accepted')}
+					>
+						Accept
+					</button>
+					<button
+						type="button"
+						class="btn btn-outline btn-sm"
+						disabled={verdictBusy}
+						onclick={() => void saveManufacturerVerdict('declined')}
+					>
+						Decline
+					</button>
+					{#if verdictNotice}
+						<span class="text-sm text-base-content/70 w-full">{verdictNotice}</span>
+					{/if}
+				{:else if activeRole === 'customer'}
+					<a href="/dashboard/customer" class="btn btn-primary">Order this design</a>
+					<a href="/dashboard" class="btn btn-ghost">Dashboard</a>
+				{:else if activeRole === 'designer'}
+					<a href="/dashboard/designer" class="btn btn-primary">Designer dashboard</a>
+				{:else}
+					<a href="/dashboard" class="btn btn-primary">Open dashboard</a>
+				{/if}
 			</div>
 		</div>
 	</div>

@@ -176,11 +176,13 @@ export async function listPublishedDesigns(
 
 	try {
 		const publishedSnapshot = await getDocs(query(collection(store, 'designItems'), ...publishedConstraints));
-		if (publishedSnapshot.docs.length > 0) {
-			return publishedSnapshot.docs.map((item) =>
-				normalizeDesignItem(item.id, item.data() as Omit<DesignItem, 'id'>)
-			);
-		}
+		const published = publishedSnapshot.docs.map((item) =>
+			normalizeDesignItem(item.id, item.data() as Omit<DesignItem, 'id'>)
+		);
+		if (published.length > 0) return published;
+		// Query succeeded with no matches — do not fall through to legacy lookup (different
+		// index shape: categoryId + createdAt without status). Empty category is valid.
+		if (resolved.categoryId || resolved.subcategoryId) return [];
 	} catch (error) {
 		if (!isMissingIndexError(error)) throw error;
 
