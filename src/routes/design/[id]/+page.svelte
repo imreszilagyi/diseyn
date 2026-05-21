@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import { get } from 'svelte/store';
-	import { page } from '$app/stores';
+	import { page } from '$app/state';
 	import {
 		getDesignById,
 		listDesignCategories,
@@ -36,10 +36,12 @@
 	let loadedVerdictKey = '';
 
 	onMount(async () => {
+		if (!page.url.pathname.startsWith('/design/')) return;
+
 		loading = true;
 		errorMessage = '';
 		try {
-			const id = $page.params.id;
+			const id = page.params.id;
 			if (!id) {
 				errorMessage = 'Design not found.';
 				return;

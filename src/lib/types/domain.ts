@@ -59,14 +59,27 @@ export interface ManufacturerDesignDecision {
 	updatedAt: string;
 }
 
+export interface ManufacturerLocation {
+	latitude: number;
+	longitude: number;
+	/** Provider-normalized label (e.g. from geocoding). */
+	label?: string;
+}
+
 export interface ManufacturerProfile {
 	id: string;
 	businessName: string;
 	city: string;
+	addressLine1?: string;
+	addressLine2?: string;
+	postalCode?: string;
+	country?: string;
+	location?: ManufacturerLocation;
 	supportedDesignTypes: string[];
 	subscribedCategoryIds?: string[];
 	subscribedSubcategoryIds?: string[];
 	isAvailable: boolean;
+	updatedAt?: string;
 }
 
 export type OrderStatus =

@@ -1,6 +1,14 @@
 import { collection, getDoc, getDocs, query, where, setDoc, doc } from 'firebase/firestore';
 import { db } from '$lib/firebase/client';
-import type { ManufacturerProfile } from '$lib/types/domain';
+import type { ManufacturerLocation, ManufacturerProfile } from '$lib/types/domain';
+
+export type ManufacturerProfileUpdate = Partial<
+	Omit<ManufacturerProfile, 'id' | 'subscribedCategoryIds' | 'subscribedSubcategoryIds'>
+> & {
+	id: string;
+	subscribedCategoryIds?: string[];
+	subscribedSubcategoryIds?: string[];
+};
 
 function requireDb() {
 	if (!db) throw new Error('Firestore is not configured');
@@ -17,8 +25,44 @@ export async function listAvailableManufacturers(city?: string): Promise<Manufac
 	}));
 }
 
-export async function upsertManufacturerProfile(payload: ManufacturerProfile): Promise<void> {
-	await setDoc(doc(requireDb(), 'manufacturers', payload.id), payload, { merge: true });
+function locationEqual(a?: ManufacturerLocation, b?: ManufacturerLocation): boolean {
+	if (!a && !b) return true;
+	if (!a || !b) return false;
+	return (
+		a.latitude === b.latitude &&
+		a.longitude === b.longitude &&
+		(a.label ?? '') === (b.label ?? '')
+	);
+}
+
+function profilePatchChanged(
+	current: ManufacturerProfile | null,
+	patch: ManufacturerProfileUpdate
+): boolean {
+	if (!current) return true;
+	const keys = Object.keys(patch).filter((key) => key !== 'id') as (keyof ManufacturerProfileUpdate)[];
+	for (const key of keys) {
+		if (key === 'location') {
+			if (!locationEqual(current.location, patch.location)) return true;
+			continue;
+		}
+		if (JSON.stringify(current[key]) !== JSON.stringify(patch[key])) return true;
+	}
+	return false;
+}
+
+export async function upsertManufacturerProfile(payload: ManufacturerProfileUpdate): Promise<void> {
+	const current = await getManufacturerProfile(payload.id);
+	if (!profilePatchChanged(current, payload)) return;
+
+	await setDoc(
+		doc(requireDb(), 'manufacturers', payload.id),
+		{
+			...payload,
+			updatedAt: new Date().toISOString()
+		},
+		{ merge: true }
+	);
 }
 
 export async function getManufacturerProfile(id: string): Promise<ManufacturerProfile | null> {

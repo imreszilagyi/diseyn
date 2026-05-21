@@ -5,13 +5,14 @@
 	import { page } from '$app/stores';
 	import DesignerConceptsSection from '$lib/components/dashboard/DesignerConceptsSection.svelte';
 	import ContractorCatalogSection from '$lib/components/dashboard/ContractorCatalogSection.svelte';
+	import ManufacturerDashboardNav from '$lib/components/dashboard/ManufacturerDashboardNav.svelte';
 	import {
 		listDesignCategories,
 		listDesignSubcategories,
 		listDesignerDesigns,
 		listPublishedDesigns
 	} from '$lib/services/designs';
-	import { getManufacturerProfile, upsertManufacturerProfile } from '$lib/services/manufacturers';
+	import { getManufacturerProfile } from '$lib/services/manufacturers';
 	import {
 		createOrder,
 		listCustomerOrders,
@@ -66,11 +67,6 @@
 	let orderSubcategoryId = $state('');
 	let manufacturerProfile = $state<ManufacturerProfile | null>(null);
 
-	let supportedDesignTypes = $state('');
-	let businessName = $state('');
-	let city = $state('');
-	let isAvailable = $state(true);
-
 	let adminTargetUid = $state('');
 	let adminRoles = $state('');
 
@@ -121,10 +117,6 @@
 			]);
 			manufacturerOrders = orders;
 			manufacturerProfile = profile;
-			supportedDesignTypes = (profile?.supportedDesignTypes ?? []).join(', ');
-			businessName = profile?.businessName ?? '';
-			city = profile?.city ?? '';
-			isAvailable = profile?.isAvailable ?? true;
 		}
 		if (role === 'designer') {
 			designerItems = await listDesignerDesigns(user.uid);
@@ -205,29 +197,6 @@
 			await loadRoleData();
 		} catch (error) {
 			notice = error instanceof Error ? error.message : 'Failed to update status.';
-		} finally {
-			busy = false;
-		}
-	}
-
-	async function saveManufacturerProfile(): Promise<void> {
-		if (!$authUser) return;
-		try {
-			busy = true;
-			notice = '';
-			await upsertManufacturerProfile({
-				id: $authUser.uid,
-				businessName,
-				city,
-				supportedDesignTypes: supportedDesignTypes
-					.split(',')
-					.map((item) => item.trim())
-					.filter(Boolean),
-				isAvailable
-			});
-			notice = 'Manufacturer profile saved.';
-		} catch (error) {
-			notice = error instanceof Error ? error.message : 'Failed to save profile.';
 		} finally {
 			busy = false;
 		}
@@ -385,10 +354,32 @@
 			{/if}
 
 			{#if currentRole === 'manufacturer' && $authUser}
-				<ContractorCatalogSection
-					manufacturerId={$authUser.uid}
-					initialProfile={manufacturerProfile}
-				/>
+				<ManufacturerDashboardNav />
+
+				<div class="card bg-base-100 border border-base-300">
+					<div class="card-body flex-row flex-wrap items-center justify-between gap-3">
+						<div>
+							<h2 class="card-title text-lg">Profile settings</h2>
+							<p class="text-sm text-base-content/70">
+								Set your address, map location, and delivery categories for customers.
+							</p>
+							{#if manufacturerProfile?.location}
+								<p class="text-xs text-base-content/60 mt-1 font-mono">
+									{manufacturerProfile.location.latitude.toFixed(4)},
+									{manufacturerProfile.location.longitude.toFixed(4)}
+									{#if manufacturerProfile.city}
+										· {manufacturerProfile.city}
+									{/if}
+								</p>
+							{/if}
+						</div>
+						<a class="btn btn-primary btn-sm" href="/dashboard/manufacturer/settings">
+							Open settings
+						</a>
+					</div>
+				</div>
+
+				<ContractorCatalogSection manufacturerId={$authUser.uid} />
 
 				<div class="card bg-base-100 border border-base-300">
 					<div class="card-body">
@@ -448,34 +439,6 @@
 								</table>
 							</div>
 						{/if}
-
-						<div class="divider"></div>
-						<h3 class="font-semibold">Supported design types</h3>
-						<form
-							onsubmit={(e) => {
-								e.preventDefault();
-								void saveManufacturerProfile();
-							}}
-						>
-							<fieldset class="fieldset gap-2 md:grid md:grid-cols-2">
-								<legend class="fieldset-legend md:col-span-2">Manufacturer profile</legend>
-								<input class="input input-bordered" placeholder="Business name" bind:value={businessName} required />
-								<input class="input input-bordered" placeholder="City" bind:value={city} required />
-								<input
-									class="input input-bordered md:col-span-2"
-									placeholder="Supported types (comma separated)"
-									bind:value={supportedDesignTypes}
-									required
-								/>
-								<label class="label md:col-span-2 cursor-pointer justify-start gap-2">
-									<input class="toggle toggle-primary" type="checkbox" bind:checked={isAvailable} />
-									<span class="label-text">Available for new work</span>
-								</label>
-								<button class="btn btn-primary md:col-span-2" type="submit" class:loading={busy} disabled={busy}>
-									Save profile
-								</button>
-							</fieldset>
-						</form>
 					</div>
 				</div>
 			{/if}

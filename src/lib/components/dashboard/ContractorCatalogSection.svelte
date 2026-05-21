@@ -2,10 +2,6 @@
 	import { onMount } from 'svelte';
 	import { listDesignCategories, listDesignSubcategories, listPublishedDesigns } from '$lib/services/designs';
 	import {
-		getManufacturerProfile,
-		updateManufacturerSubscriptions
-	} from '$lib/services/manufacturers';
-	import {
 		listDecisionsForManufacturer,
 		setManufacturerDesignDecision
 	} from '$lib/services/manufacturer-design-decisions';
@@ -14,12 +10,10 @@
 		DesignItem,
 		DesignSubcategory,
 		ManufacturerDesignVerdict,
-		ManufacturerProfile
 	} from '$lib/types/domain';
 	import { designCoverImageUrl } from '$lib/utils/design-media';
 
 	export let manufacturerId: string;
-	export let initialProfile: ManufacturerProfile | null = null;
 
 	let categories: DesignCategory[] = [];
 	let subcategories: DesignSubcategory[] = [];
@@ -27,8 +21,6 @@
 	let selectedSubcategoryId = '';
 	let catalogDesigns: DesignItem[] = [];
 	let decisions = new Map<string, ManufacturerDesignVerdict>();
-	let subscribedCategoryIds: string[] = [];
-	let subscribedSubcategoryIds: string[] = [];
 	let busy = false;
 	let notice = '';
 
@@ -44,12 +36,6 @@
 		});
 	}
 
-	async function loadProfile() {
-		const profile = initialProfile ?? (await getManufacturerProfile(manufacturerId));
-		subscribedCategoryIds = [...(profile?.subscribedCategoryIds ?? [])];
-		subscribedSubcategoryIds = [...(profile?.subscribedSubcategoryIds ?? [])];
-	}
-
 	onMount(async () => {
 		try {
 			busy = true;
@@ -60,7 +46,7 @@
 			categories = categoryRows;
 			subcategories = subcategoryRows;
 			selectedCategoryId = '';
-			await Promise.all([loadDecisions(), loadCatalog(), loadProfile()]);
+			await Promise.all([loadDecisions(), loadCatalog()]);
 		} catch (e) {
 			notice = e instanceof Error ? e.message : 'Failed to load catalog.';
 		} finally {
@@ -126,51 +112,6 @@
 			await loadCatalog();
 		} catch (e) {
 			notice = e instanceof Error ? e.message : 'Failed to load designs.';
-		} finally {
-			busy = false;
-		}
-	}
-
-	async function toggleCategorySubscription(categoryId: string) {
-		const has = subscribedCategoryIds.includes(categoryId);
-		const nextCategories = has
-			? subscribedCategoryIds.filter((id) => id !== categoryId)
-			: [...subscribedCategoryIds, categoryId];
-		const allowedSubIds = new Set(
-			subcategories.filter((item) => nextCategories.includes(item.categoryId)).map((item) => item.id)
-		);
-		const nextSubcategories = subscribedSubcategoryIds.filter((id) => allowedSubIds.has(id));
-		try {
-			busy = true;
-			notice = '';
-			await updateManufacturerSubscriptions(manufacturerId, {
-				categoryIds: nextCategories,
-				subcategoryIds: nextSubcategories
-			});
-			subscribedCategoryIds = nextCategories;
-			subscribedSubcategoryIds = nextSubcategories;
-		} catch (e) {
-			notice = e instanceof Error ? e.message : 'Could not update subscriptions.';
-		} finally {
-			busy = false;
-		}
-	}
-
-	async function toggleSubcategorySubscription(subcategoryId: string) {
-		const has = subscribedSubcategoryIds.includes(subcategoryId);
-		const nextSubcategories = has
-			? subscribedSubcategoryIds.filter((id) => id !== subcategoryId)
-			: [...subscribedSubcategoryIds, subcategoryId];
-		try {
-			busy = true;
-			notice = '';
-			await updateManufacturerSubscriptions(manufacturerId, {
-				categoryIds: subscribedCategoryIds,
-				subcategoryIds: nextSubcategories
-			});
-			subscribedSubcategoryIds = nextSubcategories;
-		} catch (e) {
-			notice = e instanceof Error ? e.message : 'Could not update subscriptions.';
 		} finally {
 			busy = false;
 		}
@@ -242,40 +183,6 @@
 					<option value={sub.id}>{subcategoryPathById.get(sub.id) ?? sub.name}</option>
 				{/each}
 			</select>
-		</div>
-
-		<div class="rounded-box border border-base-300 p-3 space-y-3">
-			<h3 class="font-semibold text-sm">Subscriptions</h3>
-			<div class="flex flex-wrap gap-2">
-				{#each categories as cat (cat.id)}
-					<button
-						type="button"
-						class="btn btn-xs"
-						class:btn-primary={subscribedCategoryIds.includes(cat.id)}
-						class:btn-outline={!subscribedCategoryIds.includes(cat.id)}
-						onclick={() => void toggleCategorySubscription(cat.id)}
-						disabled={busy}
-					>
-						{subscribedCategoryIds.includes(cat.id) ? 'Subscribed' : 'Subscribe'}: {cat.name}
-					</button>
-				{/each}
-			</div>
-			{#if selectedCategoryId}
-				<div class="flex flex-wrap gap-2">
-					{#each filteredSubcategories as sub (sub.id)}
-						<button
-							type="button"
-							class="btn btn-xs"
-							class:btn-secondary={subscribedSubcategoryIds.includes(sub.id)}
-							class:btn-ghost={!subscribedSubcategoryIds.includes(sub.id)}
-							onclick={() => void toggleSubcategorySubscription(sub.id)}
-							disabled={busy || !subscribedCategoryIds.includes(sub.categoryId)}
-						>
-						{subscribedSubcategoryIds.includes(sub.id) ? 'Subscribed' : 'Subscribe'}: {subcategoryPathById.get(sub.id) ?? sub.name}
-						</button>
-					{/each}
-				</div>
-			{/if}
 		</div>
 
 		{#if busy && catalogDesigns.length === 0}
