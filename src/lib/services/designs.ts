@@ -73,7 +73,10 @@ export async function listDesignSubcategories(categoryId?: string): Promise<Desi
 	const cached = subcategoryCache.get(cacheKey);
 	if (cached) return cached;
 	const constraints: QueryConstraint[] = [];
-	if (categoryId) constraints.push(where('categoryId', '==', categoryId));
+	if (categoryId) {
+		constraints.push(where('categoryId', '==', categoryId));
+		constraints.push(orderBy('name'));
+	}
 	const snapshot = await getDocs(query(collection(requireDb(), 'designSubcategories'), ...constraints));
 	const results = snapshot.docs.map((item) => ({
 		id: item.id,

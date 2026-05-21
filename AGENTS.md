@@ -38,7 +38,7 @@ Project-specific guidance for AI coding agents working in this repository.
 
 - Catalog taxonomy uses:
   - `designCategories/{categoryId}`
-  - `designSubcategories/{subcategoryId}` with `categoryId` foreign key
+  - `designSubcategories/{subcategoryId}` with `categoryId` and optional `parentSubcategoryId` (hierarchical tree)
   - `designItems/{designId}` with `categoryId` and `subcategoryIds[]`
 - Designer flow must support selecting existing category/sub-category or creating new ones in context.
 - Customer and manufacturer browsing/filtering must support both category and sub-category dimensions.
@@ -51,8 +51,18 @@ Project-specific guidance for AI coding agents working in this repository.
 - Avoid unnecessary writes:
   - skip `updateDoc` when payload is unchanged,
   - use diff-based array updates for subscription toggles.
-- Maintain index parity with query changes in `firestore.indexes.json` (especially catalog filters by `status`, `categoryId`, and `subcategoryIds`).
-- For list experiences, prefer stable sort fields (`createdAt`) to reduce UI churn and repeated reads.
+- For list experiences, prefer stable sort fields (`createdAt` or `name` on reference data) to reduce UI churn and repeated reads.
+
+## Firestore composite indexes (required for new query shapes)
+
+- **Every new collection or new filtered/sorted query may need a composite index** in `firestore.indexes.json`. Firestore does not infer these at runtime; missing indexes surface as `failed-precondition` / “requires an index” errors.
+- When you add or change a client query (`where`, `orderBy`, `array-contains`, or any combination), update `firestore.indexes.json` in the same change and deploy indexes: `npm run firebase:deploy:indexes`.
+- Use the index-creation URL from the Firebase error message when unsure of field order; mirror that definition in `firestore.indexes.json` so the repo stays the source of truth.
+- Current taxonomy-related indexes on `designSubcategories` include:
+  - `categoryId` + `name` (list subcategories in a category, sorted),
+  - `categoryId` + `parentSubcategoryId` (children under a parent),
+  - `categoryId` + `parentSubcategoryId` + `name` (sorted children).
+- Catalog `designItems` indexes must stay aligned with `listPublishedDesigns` filters (`status`, `categoryId`, `subcategoryIds`, `createdAt`).
 
 ## Keep This File Up To Date
 
@@ -61,7 +71,7 @@ Update this file whenever one of these changes:
 - Core architecture decisions (routing, auth model, role model).
 - Firebase initialization contract (env variable names, module paths, emulator strategy).
 - Taxonomy contract (category/sub-category schema, subscription model, filter behavior).
-- Firestore read/write performance strategy or index/query conventions.
+- Firestore read/write performance strategy, composite index conventions, or new query patterns.
 - Required validation commands (build/check/test workflow).
 - Security handling rules for credentials.
 - Styling stack or DaisyUI/Tailwind theme configuration (plugins, themes, design tokens).
