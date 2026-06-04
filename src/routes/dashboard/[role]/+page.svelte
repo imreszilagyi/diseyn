@@ -4,31 +4,21 @@
 	import { goto } from '$app/navigation';
 	import { page } from '$app/stores';
 	import DesignerConceptsSection from '$lib/components/dashboard/DesignerConceptsSection.svelte';
-	import ContractorCatalogSection from '$lib/components/dashboard/ContractorCatalogSection.svelte';
 	import ManufacturerDashboardNav from '$lib/components/dashboard/ManufacturerDashboardNav.svelte';
-	import ManufacturerProfileSettings from '$lib/components/dashboard/ManufacturerProfileSettings.svelte';
 	import {
 		listDesignCategories,
 		listDesignSubcategories,
 		listDesignerDesigns,
 		listPublishedDesigns
 	} from '$lib/services/designs';
-	import { getManufacturerProfile } from '$lib/services/manufacturers';
-	import {
-		createOrder,
-		listCustomerOrders,
-		listManufacturerOrders,
-		updateOrderStatus
-	} from '$lib/services/orders';
+	import { createOrder, listCustomerOrders } from '$lib/services/orders';
 	import { assignRoles } from '$lib/services/users';
 	import { authLoading, authUser, switchActiveRole, userProfile } from '$lib/stores/auth';
 	import type {
 		DesignCategory,
 		DesignItem,
 		DesignSubcategory,
-		ManufacturerProfile,
 		Order,
-		OrderStatus,
 		UserRole
 	} from '$lib/types/domain';
 
@@ -50,19 +40,21 @@
 
 	const roleOrder: UserRole[] = ['customer', 'designer', 'manufacturer', 'admin'];
 
-	const activeRouteRole = $derived((($page.params.role as UserRole) || '') as UserRole | '');
-	const allowedRoles = $derived(
-		($authUser
-			? ($userProfile?.roles ?? (['customer', 'designer', 'manufacturer'] as UserRole[]))
-			: []) as UserRole[]
+	const activeRouteRole = $derived.by(
+		() => (($page.params.role as UserRole) || '') as UserRole | ''
 	);
-	const switchTabs = $derived(buildSwitchTabs(allowedRoles));
-	const hasContractorAccess = $derived(allowedRoles.includes('manufacturer'));
-	const isAuthorized = $derived(allowedRoles.includes(activeRouteRole as UserRole));
-	const currentRole = $derived(activeRouteRole as UserRole);
+	const allowedRoles = $derived.by(() => {
+		if (!$authUser) return [] as UserRole[];
+		return ($userProfile?.roles ?? ['customer', 'designer', 'manufacturer']) as UserRole[];
+	});
+	const switchTabs = $derived.by(() => buildSwitchTabs(allowedRoles));
+	const hasContractorAccess = $derived.by(() => allowedRoles.includes('manufacturer'));
+	const isAuthorized = $derived.by(
+		() => !!activeRouteRole && allowedRoles.includes(activeRouteRole)
+	);
+	const currentRole = $derived.by(() => activeRouteRole);
 
 	let customerOrders = $state<Order[]>([]);
-	let manufacturerOrders = $state<Order[]>([]);
 	let designerItems = $state<DesignItem[]>([]);
 	let busy = $state(false);
 	let notice = $state('');
@@ -74,8 +66,6 @@
 	let orderDesignOptions = $state<DesignItem[]>([]);
 	let orderCategoryId = $state('');
 	let orderSubcategoryId = $state('');
-	let manufacturerProfile = $state<ManufacturerProfile | null>(null);
-
 	let adminTargetUid = $state('');
 	let adminRoles = $state('');
 
@@ -118,14 +108,6 @@
 			orderCategories = categories;
 			orderSubcategories = subcategories;
 			await loadOrderDesignOptions();
-		}
-		if (role === 'manufacturer') {
-			const [orders, profile] = await Promise.all([
-				listManufacturerOrders(user.uid),
-				getManufacturerProfile(user.uid)
-			]);
-			manufacturerOrders = orders;
-			manufacturerProfile = profile;
 		}
 		if (role === 'designer') {
 			designerItems = await listDesignerDesigns(user.uid);
@@ -198,19 +180,6 @@
 		}
 	}
 
-	async function setOrderStatus(orderId: string, status: OrderStatus): Promise<void> {
-		try {
-			busy = true;
-			notice = '';
-			await updateOrderStatus(orderId, status, { status, at: new Date().toISOString() });
-			await loadRoleData();
-		} catch (error) {
-			notice = error instanceof Error ? error.message : 'Failed to update status.';
-		} finally {
-			busy = false;
-		}
-	}
-
 	async function submitRoleAssignment(): Promise<void> {
 		try {
 			busy = true;
@@ -258,10 +227,8 @@
 				{#if hasContractorAccess}
 					<div class="flex flex-wrap gap-2 items-center pt-2 border-t border-base-300 mt-2">
 						<span class="text-sm text-base-content/70">Contractor</span>
-						<a class="btn btn-primary btn-sm" href="/dashboard/manufacturer/settings">
-							Profile settings
-						</a>
-						<a class="btn btn-ghost btn-sm" href="/dashboard/manufacturer">Contractor dashboard</a>
+						<a class="btn btn-primary btn-sm" href="/dashboard/manufacturer">Profile settings</a>
+						<a class="btn btn-ghost btn-sm" href="/dashboard/manufacturer/catalog">Catalog</a>
 					</div>
 				{/if}
 			</div>
@@ -376,77 +343,22 @@
 			{/if}
 
 			{#if currentRole === 'manufacturer' && $authUser}
-				<ManufacturerProfileSettings
-					manufacturerId={$authUser.uid}
-					initialProfile={manufacturerProfile}
-					onSaved={() => void loadRoleData()}
-				/>
-
-				<ContractorCatalogSection manufacturerId={$authUser.uid} />
-
-				<div class="card bg-base-100 border border-base-300">
-					<div class="card-body">
-						<h2 class="card-title">Assigned orders</h2>
-						{#if manufacturerOrders.length === 0}
-							<p class="text-sm text-base-content/70">No assigned orders yet.</p>
-						{:else}
-							<div class="overflow-x-auto rounded-box border border-base-300">
-								<table class="table table-zebra">
-									<thead>
-										<tr>
-											<th>Order</th>
-											<th>Status</th>
-											<th class="text-end">Actions</th>
-										</tr>
-									</thead>
-									<tbody>
-										{#each manufacturerOrders as order (order.id)}
-											<tr>
-												<td class="font-semibold">#{order.id}</td>
-												<td><span class="badge badge-outline">{order.status}</span></td>
-												<td class="text-end">
-													<div class="join join-vertical sm:join-horizontal">
-														<button
-															type="button"
-															class="btn btn-xs join-item"
-															onclick={() => void setOrderStatus(order.id, 'accepted')}
-														>
-															accept
-														</button>
-														<button
-															type="button"
-															class="btn btn-xs join-item"
-															onclick={() => void setOrderStatus(order.id, 'in_production')}
-														>
-															production
-														</button>
-														<button
-															type="button"
-															class="btn btn-xs join-item"
-															onclick={() => void setOrderStatus(order.id, 'ready')}
-														>
-															ready
-														</button>
-														<button
-															type="button"
-															class="btn btn-xs join-item"
-															onclick={() => void setOrderStatus(order.id, 'completed')}
-														>
-															complete
-														</button>
-													</div>
-												</td>
-											</tr>
-										{/each}
-									</tbody>
-								</table>
-							</div>
-						{/if}
+				<div class="alert alert-info">
+					<span>Contractor tools moved to dedicated pages.</span>
+					<div class="flex flex-wrap gap-2 mt-2">
+						<a class="btn btn-primary btn-sm" href="/dashboard/manufacturer">Profile settings</a>
+						<a class="btn btn-ghost btn-sm" href="/dashboard/manufacturer/catalog">Catalog</a>
 					</div>
 				</div>
 			{/if}
 
 			{#if currentRole === 'designer' && $authUser}
+				{#if hasContractorAccess}
+					<div class="alert alert-info">
+						<span>You also have a contractor profile (location &amp; delivery categories).</span>
+						<a class="btn btn-primary btn-sm" href="/dashboard/manufacturer">Open contractor profile</a>
+					</div>
+				{/if}
 				<DesignerConceptsSection
 					designerId={$authUser.uid}
 					items={designerItems}

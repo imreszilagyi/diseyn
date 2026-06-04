@@ -212,7 +212,8 @@
 		<h2 class="text-2xl font-bold">Profile settings</h2>
 		<p class="text-sm text-base-content/70 mt-1">
 			Set your business location and choose which categories and sub-categories you can deliver for
-			customers.
+			customers. This is separate from your designer or customer dashboards — you can edit it anytime,
+			even while another role is active.
 		</p>
 	</div>
 
