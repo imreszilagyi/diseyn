@@ -80,11 +80,21 @@ export async function logout(): Promise<void> {
 	await signOut(auth);
 }
 
+function fallbackProfile(user: User): UserProfile {
+	const { profile } = normalizeProfile(user);
+	return profile;
+}
+
 if (browser && auth) {
 	onAuthStateChanged(auth, async (user) => {
 		authUser.set(user);
 		if (user) {
-			userProfile.set(await ensureUserProfile(user));
+			try {
+				userProfile.set(await ensureUserProfile(user));
+			} catch (error) {
+				console.error('Failed to load user profile; using defaults.', error);
+				userProfile.set(fallbackProfile(user));
+			}
 		} else {
 			userProfile.set(null);
 		}

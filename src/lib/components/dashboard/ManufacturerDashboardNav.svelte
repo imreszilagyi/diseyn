@@ -1,7 +1,7 @@
 <script lang="ts">
-	import { page } from '$app/state';
+	import { page } from '$app/stores';
 
-	const isSettings = $derived(page.url.pathname.startsWith('/dashboard/manufacturer/settings'));
+	const isSettings = $derived($page.url.pathname.startsWith('/dashboard/manufacturer/settings'));
 </script>
 
 <nav aria-label="Contractor dashboard" class="mb-4">

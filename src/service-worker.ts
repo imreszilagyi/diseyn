@@ -27,8 +27,21 @@ self.addEventListener('activate', (event) => {
 	);
 });
 
+function isDocumentRequest(request: Request): boolean {
+	return (
+		request.mode === 'navigate' ||
+		(request.headers.get('accept') ?? '').includes('text/html')
+	);
+}
+
 self.addEventListener('fetch', (event) => {
 	if (event.request.method !== 'GET') return;
+
+	// Always fetch HTML navigations from the network so new routes and UI ship immediately.
+	if (isDocumentRequest(event.request)) {
+		event.respondWith(fetch(event.request));
+		return;
+	}
 
 	event.respondWith(
 		(async () => {

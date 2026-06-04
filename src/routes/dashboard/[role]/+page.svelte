@@ -6,6 +6,7 @@
 	import DesignerConceptsSection from '$lib/components/dashboard/DesignerConceptsSection.svelte';
 	import ContractorCatalogSection from '$lib/components/dashboard/ContractorCatalogSection.svelte';
 	import ManufacturerDashboardNav from '$lib/components/dashboard/ManufacturerDashboardNav.svelte';
+	import ManufacturerProfileSettings from '$lib/components/dashboard/ManufacturerProfileSettings.svelte';
 	import {
 		listDesignCategories,
 		listDesignSubcategories,
@@ -33,22 +34,30 @@
 
 	const allRoles: UserRole[] = ['customer', 'manufacturer', 'designer', 'admin'];
 
+	const roleTabLabels: Record<UserRole, string> = {
+		customer: 'Customer',
+		designer: 'Designer',
+		manufacturer: 'Contractor',
+		admin: 'Admin'
+	};
+
 	/** Tabs shown in “Switch role”; manufacturer is labeled Contractor. */
 	function buildSwitchTabs(roles: UserRole[]): { role: UserRole; label: string }[] {
-		const tabs: { role: UserRole; label: string }[] = [
-			{ role: 'customer', label: 'Customer' },
-			{ role: 'designer', label: 'Designer' },
-			{ role: 'manufacturer', label: 'Contractor' }
-		];
-		if (roles.includes('admin')) {
-			tabs.push({ role: 'admin', label: 'Admin' });
-		}
-		return tabs;
+		return roleOrder
+			.filter((role) => roles.includes(role))
+			.map((role) => ({ role, label: roleTabLabels[role] }));
 	}
 
+	const roleOrder: UserRole[] = ['customer', 'designer', 'manufacturer', 'admin'];
+
 	const activeRouteRole = $derived((($page.params.role as UserRole) || '') as UserRole | '');
-	const allowedRoles = $derived(($userProfile?.roles ?? []) as UserRole[]);
+	const allowedRoles = $derived(
+		($authUser
+			? ($userProfile?.roles ?? (['customer', 'designer', 'manufacturer'] as UserRole[]))
+			: []) as UserRole[]
+	);
 	const switchTabs = $derived(buildSwitchTabs(allowedRoles));
+	const hasContractorAccess = $derived(allowedRoles.includes('manufacturer'));
 	const isAuthorized = $derived(allowedRoles.includes(activeRouteRole as UserRole));
 	const currentRole = $derived(activeRouteRole as UserRole);
 
@@ -246,8 +255,21 @@
 						</button>
 					{/each}
 				</div>
+				{#if hasContractorAccess}
+					<div class="flex flex-wrap gap-2 items-center pt-2 border-t border-base-300 mt-2">
+						<span class="text-sm text-base-content/70">Contractor</span>
+						<a class="btn btn-primary btn-sm" href="/dashboard/manufacturer/settings">
+							Profile settings
+						</a>
+						<a class="btn btn-ghost btn-sm" href="/dashboard/manufacturer">Contractor dashboard</a>
+					</div>
+				{/if}
 			</div>
 		</div>
+
+		{#if hasContractorAccess}
+			<ManufacturerDashboardNav />
+		{/if}
 
 		{#if !isAuthorized}
 			<div class="card bg-base-100 border border-error">
@@ -354,30 +376,11 @@
 			{/if}
 
 			{#if currentRole === 'manufacturer' && $authUser}
-				<ManufacturerDashboardNav />
-
-				<div class="card bg-base-100 border border-base-300">
-					<div class="card-body flex-row flex-wrap items-center justify-between gap-3">
-						<div>
-							<h2 class="card-title text-lg">Profile settings</h2>
-							<p class="text-sm text-base-content/70">
-								Set your address, map location, and delivery categories for customers.
-							</p>
-							{#if manufacturerProfile?.location}
-								<p class="text-xs text-base-content/60 mt-1 font-mono">
-									{manufacturerProfile.location.latitude.toFixed(4)},
-									{manufacturerProfile.location.longitude.toFixed(4)}
-									{#if manufacturerProfile.city}
-										· {manufacturerProfile.city}
-									{/if}
-								</p>
-							{/if}
-						</div>
-						<a class="btn btn-primary btn-sm" href="/dashboard/manufacturer/settings">
-							Open settings
-						</a>
-					</div>
-				</div>
+				<ManufacturerProfileSettings
+					manufacturerId={$authUser.uid}
+					initialProfile={manufacturerProfile}
+					onSaved={() => void loadRoleData()}
+				/>
 
 				<ContractorCatalogSection manufacturerId={$authUser.uid} />
 

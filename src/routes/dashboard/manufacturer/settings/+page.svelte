@@ -47,11 +47,6 @@
 			<span>You must sign in first.</span>
 			<a class="btn btn-sm btn-primary" href="/auth">Go to auth</a>
 		</div>
-	{:else if !$userProfile?.roles?.includes('manufacturer')}
-		<div class="alert alert-error">
-			<span>You need the contractor (manufacturer) role to edit profile settings.</span>
-			<a class="btn btn-sm btn-ghost" href="/dashboard">Back to dashboard</a>
-		</div>
 	{:else if loadingProfile}
 		<div class="flex justify-center py-12">
 			<span class="loading loading-spinner loading-lg"></span>
