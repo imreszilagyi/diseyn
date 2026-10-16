@@ -1,0 +1,5825 @@
+{
+  "directed": false,
+  "multigraph": false,
+  "graph": {},
+  "nodes": [
+    {
+      "label": "mcp.json",
+      "file_type": "code",
+      "source_file": ".cursor/mcp.json",
+      "source_location": "L1",
+      "metadata": {
+        "mcp_kind": "mcp_config_file"
+      },
+      "id": "cursor_mcp",
+      "community": 14,
+      "norm_label": "mcp.json"
+    },
+    {
+      "label": "svelte",
+      "file_type": "code",
+      "source_file": ".cursor/mcp.json",
+      "source_location": "L1",
+      "metadata": {
+        "mcp_kind": "mcp_server"
+      },
+      "id": "cursor_mcp_mcp_server_svelte",
+      "community": 14,
+      "norm_label": "svelte"
+    },
+    {
+      "label": "npx",
+      "file_type": "code",
+      "source_file": ".cursor/mcp.json",
+      "source_location": "L1",
+      "metadata": {
+        "mcp_kind": "mcp_command"
+      },
+      "id": "mcp_command_npx",
+      "community": 14,
+      "norm_label": "npx"
+    },
+    {
+      "label": "@sveltejs/mcp",
+      "file_type": "code",
+      "source_file": ".cursor/mcp.json",
+      "source_location": "L1",
+      "metadata": {
+        "mcp_kind": "mcp_package"
+      },
+      "id": "mcp_package_sveltejs_mcp",
+      "community": 14,
+      "norm_label": "@sveltejs/mcp"
+    },
+    {
+      "label": "firebase.json",
+      "file_type": "code",
+      "source_file": "firebase.json",
+      "source_location": "L1",
+      "id": "firebase",
+      "community": 2,
+      "norm_label": "firebase.json"
+    },
+    {
+      "label": "firestore",
+      "file_type": "code",
+      "source_file": "firebase.json",
+      "source_location": "L2",
+      "id": "firebase_firestore",
+      "community": 2,
+      "norm_label": "firestore"
+    },
+    {
+      "label": "rules",
+      "file_type": "code",
+      "source_file": "firebase.json",
+      "source_location": "L3",
+      "id": "firebase_firestore_rules",
+      "community": 2,
+      "norm_label": "rules"
+    },
+    {
+      "label": "indexes",
+      "file_type": "code",
+      "source_file": "firebase.json",
+      "source_location": "L4",
+      "id": "firebase_firestore_indexes",
+      "community": 2,
+      "norm_label": "indexes"
+    },
+    {
+      "label": "storage",
+      "file_type": "code",
+      "source_file": "firebase.json",
+      "source_location": "L6",
+      "id": "firebase_storage",
+      "community": 2,
+      "norm_label": "storage"
+    },
+    {
+      "label": "rules",
+      "file_type": "code",
+      "source_file": "firebase.json",
+      "source_location": "L7",
+      "id": "firebase_storage_rules",
+      "community": 2,
+      "norm_label": "rules"
+    },
+    {
+      "label": "emulators",
+      "file_type": "code",
+      "source_file": "firebase.json",
+      "source_location": "L9",
+      "id": "firebase_emulators",
+      "community": 2,
+      "norm_label": "emulators"
+    },
+    {
+      "label": "auth",
+      "file_type": "code",
+      "source_file": "firebase.json",
+      "source_location": "L10",
+      "id": "firebase_emulators_auth",
+      "community": 2,
+      "norm_label": "auth"
+    },
+    {
+      "label": "port",
+      "file_type": "code",
+      "source_file": "firebase.json",
+      "source_location": "L11",
+      "id": "firebase_auth_port",
+      "community": 2,
+      "norm_label": "port"
+    },
+    {
+      "label": "firestore",
+      "file_type": "code",
+      "source_file": "firebase.json",
+      "source_location": "L13",
+      "id": "firebase_emulators_firestore",
+      "community": 2,
+      "norm_label": "firestore"
+    },
+    {
+      "label": "port",
+      "file_type": "code",
+      "source_file": "firebase.json",
+      "source_location": "L14",
+      "id": "firebase_firestore_port",
+      "community": 2,
+      "norm_label": "port"
+    },
+    {
+      "label": "storage",
+      "file_type": "code",
+      "source_file": "firebase.json",
+      "source_location": "L16",
+      "id": "firebase_emulators_storage",
+      "community": 2,
+      "norm_label": "storage"
+    },
+    {
+      "label": "port",
+      "file_type": "code",
+      "source_file": "firebase.json",
+      "source_location": "L17",
+      "id": "firebase_storage_port",
+      "community": 2,
+      "norm_label": "port"
+    },
+    {
+      "label": "ui",
+      "file_type": "code",
+      "source_file": "firebase.json",
+      "source_location": "L19",
+      "id": "firebase_emulators_ui",
+      "community": 2,
+      "norm_label": "ui"
+    },
+    {
+      "label": "enabled",
+      "file_type": "code",
+      "source_file": "firebase.json",
+      "source_location": "L20",
+      "id": "firebase_ui_enabled",
+      "community": 2,
+      "norm_label": "enabled"
+    },
+    {
+      "label": "port",
+      "file_type": "code",
+      "source_file": "firebase.json",
+      "source_location": "L21",
+      "id": "firebase_ui_port",
+      "community": 2,
+      "norm_label": "port"
+    },
+    {
+      "label": "singleProjectMode",
+      "file_type": "code",
+      "source_file": "firebase.json",
+      "source_location": "L23",
+      "id": "firebase_emulators_singleprojectmode",
+      "community": 2,
+      "norm_label": "singleprojectmode"
+    },
+    {
+      "label": "firestore.indexes.json",
+      "file_type": "code",
+      "source_file": "firestore.indexes.json",
+      "source_location": "L1",
+      "id": "firestore_indexes",
+      "community": 17,
+      "norm_label": "firestore.indexes.json"
+    },
+    {
+      "label": "indexes",
+      "file_type": "code",
+      "source_file": "firestore.indexes.json",
+      "source_location": "L2",
+      "id": "firestore_indexes_indexes",
+      "community": 17,
+      "norm_label": "indexes"
+    },
+    {
+      "label": "fieldOverrides",
+      "file_type": "code",
+      "source_file": "firestore.indexes.json",
+      "source_location": "L178",
+      "id": "firestore_indexes_fieldoverrides",
+      "community": 17,
+      "norm_label": "fieldoverrides"
+    },
+    {
+      "label": "package.json",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L1",
+      "id": "package",
+      "community": 2,
+      "norm_label": "package.json"
+    },
+    {
+      "label": "name",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L2",
+      "id": "package_name",
+      "community": 2,
+      "norm_label": "name"
+    },
+    {
+      "label": "private",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L3",
+      "id": "package_private",
+      "community": 2,
+      "norm_label": "private"
+    },
+    {
+      "label": "version",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L4",
+      "id": "package_version",
+      "community": 2,
+      "norm_label": "version"
+    },
+    {
+      "label": "type",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L5",
+      "id": "package_type",
+      "community": 2,
+      "norm_label": "type"
+    },
+    {
+      "label": "scripts",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L6",
+      "id": "package_scripts",
+      "community": 6,
+      "norm_label": "scripts"
+    },
+    {
+      "label": "dev",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L7",
+      "id": "package_scripts_dev",
+      "community": 6,
+      "norm_label": "dev"
+    },
+    {
+      "label": "build",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L8",
+      "id": "package_scripts_build",
+      "community": 6,
+      "norm_label": "build"
+    },
+    {
+      "label": "preview",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L9",
+      "id": "package_scripts_preview",
+      "community": 6,
+      "norm_label": "preview"
+    },
+    {
+      "label": "check",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L10",
+      "id": "package_scripts_check",
+      "community": 6,
+      "norm_label": "check"
+    },
+    {
+      "label": "check:watch",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L11",
+      "id": "package_scripts_check_watch",
+      "community": 6,
+      "norm_label": "check:watch"
+    },
+    {
+      "label": "lint",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L12",
+      "id": "package_scripts_lint",
+      "community": 6,
+      "norm_label": "lint"
+    },
+    {
+      "label": "test",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L13",
+      "id": "package_scripts_test",
+      "community": 6,
+      "norm_label": "test"
+    },
+    {
+      "label": "test:watch",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L14",
+      "id": "package_scripts_test_watch",
+      "community": 6,
+      "norm_label": "test:watch"
+    },
+    {
+      "label": "firebase:emulators",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L15",
+      "id": "package_scripts_firebase_emulators",
+      "community": 6,
+      "norm_label": "firebase:emulators"
+    },
+    {
+      "label": "firebase:deploy:rules",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L16",
+      "id": "package_scripts_firebase_deploy_rules",
+      "community": 6,
+      "norm_label": "firebase:deploy:rules"
+    },
+    {
+      "label": "firebase:deploy:indexes",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L17",
+      "id": "package_scripts_firebase_deploy_indexes",
+      "community": 6,
+      "norm_label": "firebase:deploy:indexes"
+    },
+    {
+      "label": "firebase:deploy",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L18",
+      "id": "package_scripts_firebase_deploy",
+      "community": 6,
+      "norm_label": "firebase:deploy"
+    },
+    {
+      "label": "taxonomy:seed",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L19",
+      "id": "package_scripts_taxonomy_seed",
+      "community": 6,
+      "norm_label": "taxonomy:seed"
+    },
+    {
+      "label": "devDependencies",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L21",
+      "id": "package_devdependencies",
+      "community": 5,
+      "norm_label": "devdependencies"
+    },
+    {
+      "label": "@sveltejs/adapter-auto",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L22",
+      "id": "package_devdependencies_sveltejs_adapter_auto",
+      "community": 5,
+      "norm_label": "@sveltejs/adapter-auto"
+    },
+    {
+      "label": "@sveltejs/kit",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L23",
+      "id": "package_devdependencies_sveltejs_kit",
+      "community": 5,
+      "norm_label": "@sveltejs/kit"
+    },
+    {
+      "label": "@sveltejs/vite-plugin-svelte",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L24",
+      "id": "package_devdependencies_sveltejs_vite_plugin_svelte",
+      "community": 5,
+      "norm_label": "@sveltejs/vite-plugin-svelte"
+    },
+    {
+      "label": "@tailwindcss/vite",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L25",
+      "id": "package_devdependencies_tailwindcss_vite",
+      "community": 5,
+      "norm_label": "@tailwindcss/vite"
+    },
+    {
+      "label": "@types/node",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L26",
+      "id": "package_devdependencies_types_node",
+      "community": 5,
+      "norm_label": "@types/node"
+    },
+    {
+      "label": "daisyui",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L27",
+      "id": "package_devdependencies_daisyui",
+      "community": 5,
+      "norm_label": "daisyui"
+    },
+    {
+      "label": "firebase-tools",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L28",
+      "id": "package_devdependencies_firebase_tools",
+      "community": 5,
+      "norm_label": "firebase-tools"
+    },
+    {
+      "label": "svelte",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L29",
+      "id": "package_devdependencies_svelte",
+      "community": 5,
+      "norm_label": "svelte"
+    },
+    {
+      "label": "svelte-check",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L30",
+      "id": "package_devdependencies_svelte_check",
+      "community": 5,
+      "norm_label": "svelte-check"
+    },
+    {
+      "label": "tailwindcss",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L31",
+      "id": "package_devdependencies_tailwindcss",
+      "community": 5,
+      "norm_label": "tailwindcss"
+    },
+    {
+      "label": "typescript",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L32",
+      "id": "package_devdependencies_typescript",
+      "community": 5,
+      "norm_label": "typescript"
+    },
+    {
+      "label": "vite",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L33",
+      "id": "package_devdependencies_vite",
+      "community": 5,
+      "norm_label": "vite"
+    },
+    {
+      "label": "vitest",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L34",
+      "id": "package_devdependencies_vitest",
+      "community": 5,
+      "norm_label": "vitest"
+    },
+    {
+      "label": "dependencies",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L36",
+      "id": "package_dependencies",
+      "community": 2,
+      "norm_label": "dependencies"
+    },
+    {
+      "label": "firebase",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L37",
+      "id": "package_dependencies_firebase",
+      "community": 2,
+      "norm_label": "firebase"
+    },
+    {
+      "label": "firebase-admin",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L38",
+      "id": "package_dependencies_firebase_admin",
+      "community": 2,
+      "norm_label": "firebase-admin"
+    },
+    {
+      "label": "seed-taxonomy.mjs",
+      "file_type": "code",
+      "source_file": "scripts/seed-taxonomy.mjs",
+      "source_location": "L1",
+      "id": "scripts_seed_taxonomy",
+      "community": 11,
+      "norm_label": "seed-taxonomy.mjs"
+    },
+    {
+      "label": "requireEnv()",
+      "file_type": "code",
+      "source_file": "scripts/seed-taxonomy.mjs",
+      "source_location": "L4",
+      "id": "scripts_seed_taxonomy_requireenv",
+      "community": 11,
+      "norm_label": "requireenv()"
+    },
+    {
+      "label": "getPrivateKey()",
+      "file_type": "code",
+      "source_file": "scripts/seed-taxonomy.mjs",
+      "source_location": "L12",
+      "id": "scripts_seed_taxonomy_getprivatekey",
+      "community": 11,
+      "norm_label": "getprivatekey()"
+    },
+    {
+      "label": "slugify()",
+      "file_type": "code",
+      "source_file": "scripts/seed-taxonomy.mjs",
+      "source_location": "L16",
+      "id": "scripts_seed_taxonomy_slugify",
+      "community": 11,
+      "norm_label": "slugify()"
+    },
+    {
+      "label": "getAdminDb()",
+      "file_type": "code",
+      "source_file": "scripts/seed-taxonomy.mjs",
+      "source_location": "L24",
+      "id": "scripts_seed_taxonomy_getadmindb",
+      "community": 11,
+      "norm_label": "getadmindb()"
+    },
+    {
+      "label": "upsertCategory()",
+      "file_type": "code",
+      "source_file": "scripts/seed-taxonomy.mjs",
+      "source_location": "L38",
+      "id": "scripts_seed_taxonomy_upsertcategory",
+      "community": 11,
+      "norm_label": "upsertcategory()"
+    },
+    {
+      "label": "upsertSubcategory()",
+      "file_type": "code",
+      "source_file": "scripts/seed-taxonomy.mjs",
+      "source_location": "L57",
+      "id": "scripts_seed_taxonomy_upsertsubcategory",
+      "community": 11,
+      "norm_label": "upsertsubcategory()"
+    },
+    {
+      "label": "assignOakDinnerTaxonomy()",
+      "file_type": "code",
+      "source_file": "scripts/seed-taxonomy.mjs",
+      "source_location": "L78",
+      "id": "scripts_seed_taxonomy_assignoakdinnertaxonomy",
+      "community": 11,
+      "norm_label": "assignoakdinnertaxonomy()"
+    },
+    {
+      "label": "main()",
+      "file_type": "code",
+      "source_file": "scripts/seed-taxonomy.mjs",
+      "source_location": "L104",
+      "id": "scripts_seed_taxonomy_main",
+      "community": 11,
+      "norm_label": "main()"
+    },
+    {
+      "label": "app.d.ts",
+      "file_type": "code",
+      "source_file": "src/app.d.ts",
+      "source_location": "L1",
+      "id": "src_app_d",
+      "community": 22,
+      "norm_label": "app.d.ts"
+    },
+    {
+      "label": "hooks.client.ts",
+      "file_type": "code",
+      "source_file": "src/hooks.client.ts",
+      "source_location": "L1",
+      "id": "src_hooks_client",
+      "community": 1,
+      "norm_label": "hooks.client.ts"
+    },
+    {
+      "label": "hooks.server.ts",
+      "file_type": "code",
+      "source_file": "src/hooks.server.ts",
+      "source_location": "L1",
+      "id": "src_hooks_server",
+      "community": 1,
+      "norm_label": "hooks.server.ts"
+    },
+    {
+      "label": "handle()",
+      "file_type": "code",
+      "source_file": "src/hooks.server.ts",
+      "source_location": "L10",
+      "id": "src_hooks_server_handle",
+      "community": 1,
+      "norm_label": "handle()"
+    },
+    {
+      "label": "$lib/components/dashboard/ContractorCatalogSection.svelte",
+      "file_type": "code",
+      "source_file": "src/lib/components/dashboard/ContractorCatalogSection.svelte",
+      "source_location": "L1",
+      "confidence": "EXTRACTED",
+      "id": "dashboard_contractorcatalogsection",
+      "community": 0,
+      "norm_label": "$lib/components/dashboard/contractorcatalogsection.svelte"
+    },
+    {
+      "label": "svelte",
+      "file_type": "code",
+      "source_file": "svelte",
+      "confidence": "EXTRACTED",
+      "id": "svelte",
+      "community": 0,
+      "norm_label": "svelte"
+    },
+    {
+      "label": "$lib/services/designs",
+      "file_type": "code",
+      "source_file": "src/lib/services/designs",
+      "confidence": "EXTRACTED",
+      "id": "users_imreszilagyi_dev_diseyn_src_lib_services_designs",
+      "community": 0,
+      "norm_label": "$lib/services/designs"
+    },
+    {
+      "label": "$lib/services/manufacturer-design-decisions",
+      "file_type": "code",
+      "source_file": "src/lib/services/manufacturer-design-decisions",
+      "confidence": "EXTRACTED",
+      "id": "users_imreszilagyi_dev_diseyn_src_lib_services_manufacturer_design_decisions",
+      "community": 0,
+      "norm_label": "$lib/services/manufacturer-design-decisions"
+    },
+    {
+      "label": "$lib/types/domain",
+      "file_type": "code",
+      "source_file": "src/lib/types/domain",
+      "confidence": "EXTRACTED",
+      "id": "users_imreszilagyi_dev_diseyn_src_lib_types_domain",
+      "community": 0,
+      "norm_label": "$lib/types/domain"
+    },
+    {
+      "label": "$lib/utils/design-media",
+      "file_type": "code",
+      "source_file": "src/lib/utils/design-media",
+      "confidence": "EXTRACTED",
+      "id": "users_imreszilagyi_dev_diseyn_src_lib_utils_design_media",
+      "community": 0,
+      "norm_label": "$lib/utils/design-media"
+    },
+    {
+      "label": "$lib/components/dashboard/DesignerConceptsSection.svelte",
+      "file_type": "code",
+      "source_file": "src/lib/components/dashboard/DesignerConceptsSection.svelte",
+      "source_location": "L1",
+      "confidence": "EXTRACTED",
+      "id": "dashboard_designerconceptssection",
+      "community": 0,
+      "norm_label": "$lib/components/dashboard/designerconceptssection.svelte"
+    },
+    {
+      "label": "$lib/services/design-storage",
+      "file_type": "code",
+      "source_file": "src/lib/services/design-storage",
+      "confidence": "EXTRACTED",
+      "id": "users_imreszilagyi_dev_diseyn_src_lib_services_design_storage",
+      "community": 0,
+      "norm_label": "$lib/services/design-storage"
+    },
+    {
+      "label": "$lib/components/dashboard/ManufacturerDashboardNav.svelte",
+      "file_type": "code",
+      "source_file": "src/lib/components/dashboard/ManufacturerDashboardNav.svelte",
+      "source_location": "L1",
+      "confidence": "EXTRACTED",
+      "id": "dashboard_manufacturerdashboardnav",
+      "community": 0,
+      "norm_label": "$lib/components/dashboard/manufacturerdashboardnav.svelte"
+    },
+    {
+      "label": "isSettings",
+      "file_type": "code",
+      "source_file": "src/lib/components/dashboard/ManufacturerDashboardNav.svelte",
+      "source_location": "L5",
+      "id": "dashboard_manufacturerdashboardnav_issettings",
+      "community": 0,
+      "norm_label": "issettings"
+    },
+    {
+      "label": "isCatalog",
+      "file_type": "code",
+      "source_file": "src/lib/components/dashboard/ManufacturerDashboardNav.svelte",
+      "source_location": "L8",
+      "id": "dashboard_manufacturerdashboardnav_iscatalog",
+      "community": 0,
+      "norm_label": "iscatalog"
+    },
+    {
+      "label": "$app/stores",
+      "file_type": "code",
+      "source_file": "$app/stores",
+      "confidence": "EXTRACTED",
+      "id": "stores",
+      "community": 0,
+      "norm_label": "$app/stores"
+    },
+    {
+      "label": "$lib/components/dashboard/ManufacturerProfileSettings.svelte",
+      "file_type": "code",
+      "source_file": "src/lib/components/dashboard/ManufacturerProfileSettings.svelte",
+      "source_location": "L1",
+      "confidence": "EXTRACTED",
+      "id": "dashboard_manufacturerprofilesettings",
+      "community": 0,
+      "norm_label": "$lib/components/dashboard/manufacturerprofilesettings.svelte"
+    },
+    {
+      "label": "loading",
+      "file_type": "code",
+      "source_file": "src/lib/components/dashboard/ManufacturerProfileSettings.svelte",
+      "source_location": "L297",
+      "id": "dashboard_manufacturerprofilesettings_loading",
+      "community": 0,
+      "norm_label": "loading"
+    },
+    {
+      "label": "$lib/services/geocode",
+      "file_type": "code",
+      "source_file": "src/lib/services/geocode",
+      "confidence": "EXTRACTED",
+      "id": "users_imreszilagyi_dev_diseyn_src_lib_services_geocode",
+      "community": 0,
+      "norm_label": "$lib/services/geocode"
+    },
+    {
+      "label": "$lib/services/manufacturers",
+      "file_type": "code",
+      "source_file": "src/lib/services/manufacturers",
+      "confidence": "EXTRACTED",
+      "id": "users_imreszilagyi_dev_diseyn_src_lib_services_manufacturers",
+      "community": 0,
+      "norm_label": "$lib/services/manufacturers"
+    },
+    {
+      "label": "client.ts",
+      "file_type": "code",
+      "source_file": "src/lib/firebase/client.ts",
+      "source_location": "L1",
+      "id": "firebase_client",
+      "community": 1,
+      "norm_label": "client.ts"
+    },
+    {
+      "label": "firebaseConfig",
+      "file_type": "code",
+      "source_file": "src/lib/firebase/client.ts",
+      "source_location": "L9",
+      "id": "firebase_client_firebaseconfig",
+      "community": 1,
+      "norm_label": "firebaseconfig"
+    },
+    {
+      "label": "firestoreEmulatorPort",
+      "file_type": "code",
+      "source_file": "src/lib/firebase/client.ts",
+      "source_location": "L29",
+      "id": "firebase_client_firestoreemulatorport",
+      "community": 1,
+      "norm_label": "firestoreemulatorport"
+    },
+    {
+      "label": "authEmulatorPort",
+      "file_type": "code",
+      "source_file": "src/lib/firebase/client.ts",
+      "source_location": "L30",
+      "id": "firebase_client_authemulatorport",
+      "community": 1,
+      "norm_label": "authemulatorport"
+    },
+    {
+      "label": "storageEmulatorPort",
+      "file_type": "code",
+      "source_file": "src/lib/firebase/client.ts",
+      "source_location": "L31",
+      "id": "firebase_client_storageemulatorport",
+      "community": 1,
+      "norm_label": "storageemulatorport"
+    },
+    {
+      "label": "firebase-admin.ts",
+      "file_type": "code",
+      "source_file": "src/lib/server/firebase-admin.ts",
+      "source_location": "L1",
+      "id": "server_firebase_admin",
+      "community": 12,
+      "norm_label": "firebase-admin.ts"
+    },
+    {
+      "label": "getPrivateKey()",
+      "file_type": "code",
+      "source_file": "src/lib/server/firebase-admin.ts",
+      "source_location": "L7",
+      "id": "server_firebase_admin_getprivatekey",
+      "community": 12,
+      "norm_label": "getprivatekey()"
+    },
+    {
+      "label": "getServiceAccount()",
+      "file_type": "code",
+      "source_file": "src/lib/server/firebase-admin.ts",
+      "source_location": "L12",
+      "id": "server_firebase_admin_getserviceaccount",
+      "community": 12,
+      "norm_label": "getserviceaccount()"
+    },
+    {
+      "label": "serviceAccount",
+      "file_type": "code",
+      "source_file": "src/lib/server/firebase-admin.ts",
+      "source_location": "L26",
+      "id": "server_firebase_admin_serviceaccount",
+      "community": 12,
+      "norm_label": "serviceaccount"
+    },
+    {
+      "label": "adminAuth",
+      "file_type": "code",
+      "source_file": "src/lib/server/firebase-admin.ts",
+      "source_location": "L42",
+      "id": "server_firebase_admin_adminauth",
+      "community": 12,
+      "norm_label": "adminauth"
+    },
+    {
+      "label": "adminDb",
+      "file_type": "code",
+      "source_file": "src/lib/server/firebase-admin.ts",
+      "source_location": "L43",
+      "id": "server_firebase_admin_admindb",
+      "community": 12,
+      "norm_label": "admindb"
+    },
+    {
+      "label": "adminStorage",
+      "file_type": "code",
+      "source_file": "src/lib/server/firebase-admin.ts",
+      "source_location": "L44",
+      "id": "server_firebase_admin_adminstorage",
+      "community": 12,
+      "norm_label": "adminstorage"
+    },
+    {
+      "label": "getAdminApp()",
+      "file_type": "code",
+      "source_file": "src/lib/server/firebase-admin.ts",
+      "source_location": "L46",
+      "id": "server_firebase_admin_getadminapp",
+      "community": 12,
+      "norm_label": "getadminapp()"
+    },
+    {
+      "label": "design-storage.ts",
+      "file_type": "code",
+      "source_file": "src/lib/services/design-storage.ts",
+      "source_location": "L1",
+      "id": "services_design_storage",
+      "community": 1,
+      "norm_label": "design-storage.ts"
+    },
+    {
+      "label": "requireStorage()",
+      "file_type": "code",
+      "source_file": "src/lib/services/design-storage.ts",
+      "source_location": "L4",
+      "id": "services_design_storage_requirestorage",
+      "community": 1,
+      "norm_label": "requirestorage()"
+    },
+    {
+      "label": "uploadDesignConceptImage()",
+      "file_type": "code",
+      "source_file": "src/lib/services/design-storage.ts",
+      "source_location": "L12",
+      "id": "services_design_storage_uploaddesignconceptimage",
+      "community": 1,
+      "norm_label": "uploaddesignconceptimage()"
+    },
+    {
+      "label": "designs.ts",
+      "file_type": "code",
+      "source_file": "src/lib/services/designs.ts",
+      "source_location": "L1",
+      "id": "services_designs",
+      "community": 4,
+      "norm_label": "designs.ts"
+    },
+    {
+      "label": "requireDb()",
+      "file_type": "code",
+      "source_file": "src/lib/services/designs.ts",
+      "source_location": "L17",
+      "id": "services_designs_requiredb",
+      "community": 4,
+      "norm_label": "requiredb()"
+    },
+    {
+      "label": "slugify()",
+      "file_type": "code",
+      "source_file": "src/lib/services/designs.ts",
+      "source_location": "L22",
+      "id": "services_designs_slugify",
+      "community": 4,
+      "norm_label": "slugify()"
+    },
+    {
+      "label": "subcategoryCache",
+      "file_type": "code",
+      "source_file": "src/lib/services/designs.ts",
+      "source_location": "L31",
+      "id": "services_designs_subcategorycache",
+      "community": 4,
+      "norm_label": "subcategorycache"
+    },
+    {
+      "label": "normalizeDesignItem()",
+      "file_type": "code",
+      "source_file": "src/lib/services/designs.ts",
+      "source_location": "L33",
+      "id": "services_designs_normalizedesignitem",
+      "community": 4,
+      "norm_label": "normalizedesignitem()"
+    },
+    {
+      "label": "listDesignCategories()",
+      "file_type": "code",
+      "source_file": "src/lib/services/designs.ts",
+      "source_location": "L43",
+      "id": "services_designs_listdesigncategories",
+      "community": 4,
+      "norm_label": "listdesigncategories()"
+    },
+    {
+      "label": "ListPublishedDesignFilters",
+      "file_type": "code",
+      "source_file": "src/lib/services/designs.ts",
+      "source_location": "L54",
+      "id": "services_designs_listpublisheddesignfilters",
+      "community": 4,
+      "norm_label": "listpublisheddesignfilters"
+    },
+    {
+      "label": "isMissingIndexError()",
+      "file_type": "code",
+      "source_file": "src/lib/services/designs.ts",
+      "source_location": "L60",
+      "id": "services_designs_ismissingindexerror",
+      "community": 4,
+      "norm_label": "ismissingindexerror()"
+    },
+    {
+      "label": "listDesignSubcategories()",
+      "file_type": "code",
+      "source_file": "src/lib/services/designs.ts",
+      "source_location": "L71",
+      "id": "services_designs_listdesignsubcategories",
+      "community": 4,
+      "norm_label": "listdesignsubcategories()"
+    },
+    {
+      "label": "createDesignCategory()",
+      "file_type": "code",
+      "source_file": "src/lib/services/designs.ts",
+      "source_location": "L89",
+      "id": "services_designs_createdesigncategory",
+      "community": 4,
+      "norm_label": "createdesigncategory()"
+    },
+    {
+      "label": "createDesignSubcategory()",
+      "file_type": "code",
+      "source_file": "src/lib/services/designs.ts",
+      "source_location": "L107",
+      "id": "services_designs_createdesignsubcategory",
+      "community": 4,
+      "norm_label": "createdesignsubcategory()"
+    },
+    {
+      "label": "normalizeSubcategoryIds()",
+      "file_type": "code",
+      "source_file": "src/lib/services/designs.ts",
+      "source_location": "L145",
+      "id": "services_designs_normalizesubcategoryids",
+      "community": 4,
+      "norm_label": "normalizesubcategoryids()"
+    },
+    {
+      "label": "listPublishedDesigns()",
+      "file_type": "code",
+      "source_file": "src/lib/services/designs.ts",
+      "source_location": "L163",
+      "id": "services_designs_listpublisheddesigns",
+      "community": 4,
+      "norm_label": "listpublisheddesigns()"
+    },
+    {
+      "label": "getDesignById()",
+      "file_type": "code",
+      "source_file": "src/lib/services/designs.ts",
+      "source_location": "L225",
+      "id": "services_designs_getdesignbyid",
+      "community": 4,
+      "norm_label": "getdesignbyid()"
+    },
+    {
+      "label": "listDesignerDesigns()",
+      "file_type": "code",
+      "source_file": "src/lib/services/designs.ts",
+      "source_location": "L233",
+      "id": "services_designs_listdesignerdesigns",
+      "community": 4,
+      "norm_label": "listdesignerdesigns()"
+    },
+    {
+      "label": "createDesignItem()",
+      "file_type": "code",
+      "source_file": "src/lib/services/designs.ts",
+      "source_location": "L249",
+      "id": "services_designs_createdesignitem",
+      "community": 4,
+      "norm_label": "createdesignitem()"
+    },
+    {
+      "label": "updateDesignItem()",
+      "file_type": "code",
+      "source_file": "src/lib/services/designs.ts",
+      "source_location": "L263",
+      "id": "services_designs_updatedesignitem",
+      "community": 4,
+      "norm_label": "updatedesignitem()"
+    },
+    {
+      "label": "geocode.ts",
+      "file_type": "code",
+      "source_file": "src/lib/services/geocode.ts",
+      "source_location": "L1",
+      "id": "services_geocode",
+      "community": 15,
+      "norm_label": "geocode.ts"
+    },
+    {
+      "label": "GeocodeResult",
+      "file_type": "code",
+      "source_file": "src/lib/services/geocode.ts",
+      "source_location": "L1",
+      "id": "services_geocode_geocoderesult",
+      "community": 15,
+      "norm_label": "geocoderesult"
+    },
+    {
+      "label": "geocodeAddress()",
+      "file_type": "code",
+      "source_file": "src/lib/services/geocode.ts",
+      "source_location": "L8",
+      "id": "services_geocode_geocodeaddress",
+      "community": 15,
+      "norm_label": "geocodeaddress()"
+    },
+    {
+      "label": "formatAddressQuery()",
+      "file_type": "code",
+      "source_file": "src/lib/services/geocode.ts",
+      "source_location": "L23",
+      "id": "services_geocode_formataddressquery",
+      "community": 15,
+      "norm_label": "formataddressquery()"
+    },
+    {
+      "label": "manufacturer-design-decisions.ts",
+      "file_type": "code",
+      "source_file": "src/lib/services/manufacturer-design-decisions.ts",
+      "source_location": "L1",
+      "id": "services_manufacturer_design_decisions",
+      "community": 3,
+      "norm_label": "manufacturer-design-decisions.ts"
+    },
+    {
+      "label": "requireDb()",
+      "file_type": "code",
+      "source_file": "src/lib/services/manufacturer-design-decisions.ts",
+      "source_location": "L7",
+      "id": "services_manufacturer_design_decisions_requiredb",
+      "community": 3,
+      "norm_label": "requiredb()"
+    },
+    {
+      "label": "manufacturerDesignDecisionDocId()",
+      "file_type": "code",
+      "source_file": "src/lib/services/manufacturer-design-decisions.ts",
+      "source_location": "L12",
+      "id": "services_manufacturer_design_decisions_manufacturerdesigndecisiondocid",
+      "community": 3,
+      "norm_label": "manufacturerdesigndecisiondocid()"
+    },
+    {
+      "label": "setManufacturerDesignDecision()",
+      "file_type": "code",
+      "source_file": "src/lib/services/manufacturer-design-decisions.ts",
+      "source_location": "L16",
+      "id": "services_manufacturer_design_decisions_setmanufacturerdesigndecision",
+      "community": 3,
+      "norm_label": "setmanufacturerdesigndecision()"
+    },
+    {
+      "label": "listDecisionsForManufacturer()",
+      "file_type": "code",
+      "source_file": "src/lib/services/manufacturer-design-decisions.ts",
+      "source_location": "L35",
+      "id": "services_manufacturer_design_decisions_listdecisionsformanufacturer",
+      "community": 3,
+      "norm_label": "listdecisionsformanufacturer()"
+    },
+    {
+      "label": "manufacturers.ts",
+      "file_type": "code",
+      "source_file": "src/lib/services/manufacturers.ts",
+      "source_location": "L1",
+      "id": "services_manufacturers",
+      "community": 8,
+      "norm_label": "manufacturers.ts"
+    },
+    {
+      "label": "ManufacturerProfileUpdate",
+      "file_type": "code",
+      "source_file": "src/lib/services/manufacturers.ts",
+      "source_location": "L5",
+      "id": "services_manufacturers_manufacturerprofileupdate",
+      "community": 8,
+      "norm_label": "manufacturerprofileupdate"
+    },
+    {
+      "label": "requireDb()",
+      "file_type": "code",
+      "source_file": "src/lib/services/manufacturers.ts",
+      "source_location": "L13",
+      "id": "services_manufacturers_requiredb",
+      "community": 8,
+      "norm_label": "requiredb()"
+    },
+    {
+      "label": "listAvailableManufacturers()",
+      "file_type": "code",
+      "source_file": "src/lib/services/manufacturers.ts",
+      "source_location": "L18",
+      "id": "services_manufacturers_listavailablemanufacturers",
+      "community": 8,
+      "norm_label": "listavailablemanufacturers()"
+    },
+    {
+      "label": "locationEqual()",
+      "file_type": "code",
+      "source_file": "src/lib/services/manufacturers.ts",
+      "source_location": "L28",
+      "id": "services_manufacturers_locationequal",
+      "community": 8,
+      "norm_label": "locationequal()"
+    },
+    {
+      "label": "profilePatchChanged()",
+      "file_type": "code",
+      "source_file": "src/lib/services/manufacturers.ts",
+      "source_location": "L38",
+      "id": "services_manufacturers_profilepatchchanged",
+      "community": 8,
+      "norm_label": "profilepatchchanged()"
+    },
+    {
+      "label": "upsertManufacturerProfile()",
+      "file_type": "code",
+      "source_file": "src/lib/services/manufacturers.ts",
+      "source_location": "L54",
+      "id": "services_manufacturers_upsertmanufacturerprofile",
+      "community": 8,
+      "norm_label": "upsertmanufacturerprofile()"
+    },
+    {
+      "label": "getManufacturerProfile()",
+      "file_type": "code",
+      "source_file": "src/lib/services/manufacturers.ts",
+      "source_location": "L68",
+      "id": "services_manufacturers_getmanufacturerprofile",
+      "community": 8,
+      "norm_label": "getmanufacturerprofile()"
+    },
+    {
+      "label": "normalizeIds()",
+      "file_type": "code",
+      "source_file": "src/lib/services/manufacturers.ts",
+      "source_location": "L77",
+      "id": "services_manufacturers_normalizeids",
+      "community": 8,
+      "norm_label": "normalizeids()"
+    },
+    {
+      "label": "arraysEqual()",
+      "file_type": "code",
+      "source_file": "src/lib/services/manufacturers.ts",
+      "source_location": "L87",
+      "id": "services_manufacturers_arraysequal",
+      "community": 8,
+      "norm_label": "arraysequal()"
+    },
+    {
+      "label": "updateManufacturerSubscriptions()",
+      "file_type": "code",
+      "source_file": "src/lib/services/manufacturers.ts",
+      "source_location": "L92",
+      "id": "services_manufacturers_updatemanufacturersubscriptions",
+      "community": 8,
+      "norm_label": "updatemanufacturersubscriptions()"
+    },
+    {
+      "label": "orders.ts",
+      "file_type": "code",
+      "source_file": "src/lib/services/orders.ts",
+      "source_location": "L1",
+      "id": "services_orders",
+      "community": 13,
+      "norm_label": "orders.ts"
+    },
+    {
+      "label": "requireDb()",
+      "file_type": "code",
+      "source_file": "src/lib/services/orders.ts",
+      "source_location": "L14",
+      "id": "services_orders_requiredb",
+      "community": 13,
+      "norm_label": "requiredb()"
+    },
+    {
+      "label": "createOrder()",
+      "file_type": "code",
+      "source_file": "src/lib/services/orders.ts",
+      "source_location": "L19",
+      "id": "services_orders_createorder",
+      "community": 13,
+      "norm_label": "createorder()"
+    },
+    {
+      "label": "listCustomerOrders()",
+      "file_type": "code",
+      "source_file": "src/lib/services/orders.ts",
+      "source_location": "L24",
+      "id": "services_orders_listcustomerorders",
+      "community": 13,
+      "norm_label": "listcustomerorders()"
+    },
+    {
+      "label": "listManufacturerOrders()",
+      "file_type": "code",
+      "source_file": "src/lib/services/orders.ts",
+      "source_location": "L35",
+      "id": "services_orders_listmanufacturerorders",
+      "community": 13,
+      "norm_label": "listmanufacturerorders()"
+    },
+    {
+      "label": "updateOrderStatus()",
+      "file_type": "code",
+      "source_file": "src/lib/services/orders.ts",
+      "source_location": "L46",
+      "id": "services_orders_updateorderstatus",
+      "community": 13,
+      "norm_label": "updateorderstatus()"
+    },
+    {
+      "label": "users.ts",
+      "file_type": "code",
+      "source_file": "src/lib/services/users.ts",
+      "source_location": "L1",
+      "id": "services_users",
+      "community": 3,
+      "norm_label": "users.ts"
+    },
+    {
+      "label": "requireDb()",
+      "file_type": "code",
+      "source_file": "src/lib/services/users.ts",
+      "source_location": "L5",
+      "id": "services_users_requiredb",
+      "community": 3,
+      "norm_label": "requiredb()"
+    },
+    {
+      "label": "getUserProfile()",
+      "file_type": "code",
+      "source_file": "src/lib/services/users.ts",
+      "source_location": "L10",
+      "id": "services_users_getuserprofile",
+      "community": 3,
+      "norm_label": "getuserprofile()"
+    },
+    {
+      "label": "assignRoles()",
+      "file_type": "code",
+      "source_file": "src/lib/services/users.ts",
+      "source_location": "L15",
+      "id": "services_users_assignroles",
+      "community": 3,
+      "norm_label": "assignroles()"
+    },
+    {
+      "label": "saveUserProfile()",
+      "file_type": "code",
+      "source_file": "src/lib/services/users.ts",
+      "source_location": "L21",
+      "id": "services_users_saveuserprofile",
+      "community": 3,
+      "norm_label": "saveuserprofile()"
+    },
+    {
+      "label": "auth.test.ts",
+      "file_type": "code",
+      "source_file": "src/lib/stores/auth.test.ts",
+      "source_location": "L1",
+      "id": "stores_auth_test",
+      "community": 3,
+      "norm_label": "auth.test.ts"
+    },
+    {
+      "label": "auth.ts",
+      "file_type": "code",
+      "source_file": "src/lib/stores/auth.ts",
+      "source_location": "L1",
+      "id": "stores_auth",
+      "community": 1,
+      "norm_label": "auth.ts"
+    },
+    {
+      "label": "authUser",
+      "file_type": "code",
+      "source_file": "src/lib/stores/auth.ts",
+      "source_location": "L8",
+      "id": "stores_auth_authuser",
+      "community": 1,
+      "norm_label": "authuser"
+    },
+    {
+      "label": "authLoading",
+      "file_type": "code",
+      "source_file": "src/lib/stores/auth.ts",
+      "source_location": "L9",
+      "id": "stores_auth_authloading",
+      "community": 1,
+      "norm_label": "authloading"
+    },
+    {
+      "label": "userProfile",
+      "file_type": "code",
+      "source_file": "src/lib/stores/auth.ts",
+      "source_location": "L10",
+      "id": "stores_auth_userprofile",
+      "community": 1,
+      "norm_label": "userprofile"
+    },
+    {
+      "label": "baselineRoles",
+      "file_type": "code",
+      "source_file": "src/lib/stores/auth.ts",
+      "source_location": "L12",
+      "id": "stores_auth_baselineroles",
+      "community": 1,
+      "norm_label": "baselineroles"
+    },
+    {
+      "label": "roleOrder",
+      "file_type": "code",
+      "source_file": "src/lib/stores/auth.ts",
+      "source_location": "L13",
+      "id": "stores_auth_roleorder",
+      "community": 1,
+      "norm_label": "roleorder"
+    },
+    {
+      "label": "normalizeProfile()",
+      "file_type": "code",
+      "source_file": "src/lib/stores/auth.ts",
+      "source_location": "L15",
+      "id": "stores_auth_normalizeprofile",
+      "community": 1,
+      "norm_label": "normalizeprofile()"
+    },
+    {
+      "label": "ensureUserProfile()",
+      "file_type": "code",
+      "source_file": "src/lib/stores/auth.ts",
+      "source_location": "L43",
+      "id": "stores_auth_ensureuserprofile",
+      "community": 1,
+      "norm_label": "ensureuserprofile()"
+    },
+    {
+      "label": "switchActiveRole()",
+      "file_type": "code",
+      "source_file": "src/lib/stores/auth.ts",
+      "source_location": "L66",
+      "id": "stores_auth_switchactiverole",
+      "community": 1,
+      "norm_label": "switchactiverole()"
+    },
+    {
+      "label": "logout()",
+      "file_type": "code",
+      "source_file": "src/lib/stores/auth.ts",
+      "source_location": "L78",
+      "id": "stores_auth_logout",
+      "community": 1,
+      "norm_label": "logout()"
+    },
+    {
+      "label": "fallbackProfile()",
+      "file_type": "code",
+      "source_file": "src/lib/stores/auth.ts",
+      "source_location": "L83",
+      "id": "stores_auth_fallbackprofile",
+      "community": 1,
+      "norm_label": "fallbackprofile()"
+    },
+    {
+      "label": "domain.ts",
+      "file_type": "code",
+      "source_file": "src/lib/types/domain.ts",
+      "source_location": "L1",
+      "id": "types_domain",
+      "community": 3,
+      "norm_label": "domain.ts"
+    },
+    {
+      "label": "UserRole",
+      "file_type": "code",
+      "source_file": "src/lib/types/domain.ts",
+      "source_location": "L1",
+      "id": "types_domain_userrole",
+      "community": 3,
+      "norm_label": "userrole"
+    },
+    {
+      "label": "UserProfile",
+      "file_type": "code",
+      "source_file": "src/lib/types/domain.ts",
+      "source_location": "L3",
+      "id": "types_domain_userprofile",
+      "community": 3,
+      "norm_label": "userprofile"
+    },
+    {
+      "label": "DesignCategory",
+      "file_type": "code",
+      "source_file": "src/lib/types/domain.ts",
+      "source_location": "L12",
+      "id": "types_domain_designcategory",
+      "community": 3,
+      "norm_label": "designcategory"
+    },
+    {
+      "label": "DesignSubcategory",
+      "file_type": "code",
+      "source_file": "src/lib/types/domain.ts",
+      "source_location": "L21",
+      "id": "types_domain_designsubcategory",
+      "community": 3,
+      "norm_label": "designsubcategory"
+    },
+    {
+      "label": "DesignCharacteristic",
+      "file_type": "code",
+      "source_file": "src/lib/types/domain.ts",
+      "source_location": "L32",
+      "id": "types_domain_designcharacteristic",
+      "community": 3,
+      "norm_label": "designcharacteristic"
+    },
+    {
+      "label": "DesignItem",
+      "file_type": "code",
+      "source_file": "src/lib/types/domain.ts",
+      "source_location": "L37",
+      "id": "types_domain_designitem",
+      "community": 3,
+      "norm_label": "designitem"
+    },
+    {
+      "label": "ManufacturerDesignVerdict",
+      "file_type": "code",
+      "source_file": "src/lib/types/domain.ts",
+      "source_location": "L53",
+      "id": "types_domain_manufacturerdesignverdict",
+      "community": 3,
+      "norm_label": "manufacturerdesignverdict"
+    },
+    {
+      "label": "ManufacturerDesignDecision",
+      "file_type": "code",
+      "source_file": "src/lib/types/domain.ts",
+      "source_location": "L55",
+      "id": "types_domain_manufacturerdesigndecision",
+      "community": 3,
+      "norm_label": "manufacturerdesigndecision"
+    },
+    {
+      "label": "ManufacturerLocation",
+      "file_type": "code",
+      "source_file": "src/lib/types/domain.ts",
+      "source_location": "L62",
+      "id": "types_domain_manufacturerlocation",
+      "community": 8,
+      "norm_label": "manufacturerlocation"
+    },
+    {
+      "label": "ManufacturerProfile",
+      "file_type": "code",
+      "source_file": "src/lib/types/domain.ts",
+      "source_location": "L69",
+      "id": "types_domain_manufacturerprofile",
+      "community": 8,
+      "norm_label": "manufacturerprofile"
+    },
+    {
+      "label": "OrderStatus",
+      "file_type": "code",
+      "source_file": "src/lib/types/domain.ts",
+      "source_location": "L85",
+      "id": "types_domain_orderstatus",
+      "community": 13,
+      "norm_label": "orderstatus"
+    },
+    {
+      "label": "Order",
+      "file_type": "code",
+      "source_file": "src/lib/types/domain.ts",
+      "source_location": "L92",
+      "id": "types_domain_order",
+      "community": 13,
+      "norm_label": "order"
+    },
+    {
+      "label": "design-media.ts",
+      "file_type": "code",
+      "source_file": "src/lib/utils/design-media.ts",
+      "source_location": "L1",
+      "id": "utils_design_media",
+      "community": 3,
+      "norm_label": "design-media.ts"
+    },
+    {
+      "label": "designCoverImageUrl()",
+      "file_type": "code",
+      "source_file": "src/lib/utils/design-media.ts",
+      "source_location": "L3",
+      "id": "utils_design_media_designcoverimageurl",
+      "community": 3,
+      "norm_label": "designcoverimageurl()"
+    },
+    {
+      "label": "roles.ts",
+      "file_type": "code",
+      "source_file": "src/lib/utils/roles.ts",
+      "source_location": "L1",
+      "id": "utils_roles",
+      "community": 3,
+      "norm_label": "roles.ts"
+    },
+    {
+      "label": "rolePriority",
+      "file_type": "code",
+      "source_file": "src/lib/utils/roles.ts",
+      "source_location": "L3",
+      "id": "utils_roles_rolepriority",
+      "community": 3,
+      "norm_label": "rolepriority"
+    },
+    {
+      "label": "getHighestRole()",
+      "file_type": "code",
+      "source_file": "src/lib/utils/roles.ts",
+      "source_location": "L5",
+      "id": "utils_roles_gethighestrole",
+      "community": 3,
+      "norm_label": "gethighestrole()"
+    },
+    {
+      "label": "+layout.svelte",
+      "file_type": "code",
+      "source_file": "src/routes/+layout.svelte",
+      "source_location": "L1",
+      "id": "routes_layout",
+      "community": 0,
+      "norm_label": "+layout.svelte"
+    },
+    {
+      "label": "../app.css",
+      "file_type": "code",
+      "source_file": "src/app.css",
+      "confidence": "EXTRACTED",
+      "id": "users_imreszilagyi_dev_diseyn_src_app_css",
+      "community": 0,
+      "norm_label": "../app.css"
+    },
+    {
+      "label": "$lib/stores/auth",
+      "file_type": "code",
+      "source_file": "src/lib/stores/auth",
+      "confidence": "EXTRACTED",
+      "id": "users_imreszilagyi_dev_diseyn_src_lib_stores_auth",
+      "community": 0,
+      "norm_label": "$lib/stores/auth"
+    },
+    {
+      "label": "+page.svelte",
+      "file_type": "code",
+      "source_file": "src/routes/+page.svelte",
+      "source_location": "L1",
+      "id": "routes_page",
+      "community": 0,
+      "norm_label": "+page.svelte"
+    },
+    {
+      "label": "svelte/store",
+      "file_type": "code",
+      "source_file": "svelte/store",
+      "confidence": "EXTRACTED",
+      "id": "store",
+      "community": 0,
+      "norm_label": "svelte/store"
+    },
+    {
+      "label": "+server.ts",
+      "file_type": "code",
+      "source_file": "src/routes/api/geocode/+server.ts",
+      "source_location": "L1",
+      "id": "geocode_server",
+      "community": 1,
+      "norm_label": "+server.ts"
+    },
+    {
+      "label": "NominatimResult",
+      "file_type": "code",
+      "source_file": "src/routes/api/geocode/+server.ts",
+      "source_location": "L4",
+      "id": "geocode_server_nominatimresult",
+      "community": 1,
+      "norm_label": "nominatimresult"
+    },
+    {
+      "label": "GET()",
+      "file_type": "code",
+      "source_file": "src/routes/api/geocode/+server.ts",
+      "source_location": "L18",
+      "id": "geocode_server_get",
+      "community": 1,
+      "norm_label": "get()"
+    },
+    {
+      "label": "+page.svelte",
+      "file_type": "code",
+      "source_file": "src/routes/auth/+page.svelte",
+      "source_location": "L1",
+      "id": "auth_page",
+      "community": 1,
+      "norm_label": "+page.svelte"
+    },
+    {
+      "label": "if()",
+      "file_type": "code",
+      "source_file": "src/routes/auth/+page.svelte",
+      "source_location": "L156",
+      "id": "auth_page_if",
+      "community": 1,
+      "norm_label": "if()"
+    },
+    {
+      "label": "$app/environment",
+      "file_type": "code",
+      "source_file": "$app/environment",
+      "confidence": "EXTRACTED",
+      "id": "environment",
+      "community": 1,
+      "norm_label": "$app/environment"
+    },
+    {
+      "label": "firebase/auth",
+      "file_type": "code",
+      "source_file": "firebase/auth",
+      "confidence": "EXTRACTED",
+      "id": "auth",
+      "community": 1,
+      "norm_label": "firebase/auth"
+    },
+    {
+      "label": "$lib/firebase/client",
+      "file_type": "code",
+      "source_file": "src/lib/firebase/client",
+      "confidence": "EXTRACTED",
+      "id": "users_imreszilagyi_dev_diseyn_src_lib_firebase_client",
+      "community": 1,
+      "norm_label": "$lib/firebase/client"
+    },
+    {
+      "label": "+page.svelte",
+      "file_type": "code",
+      "source_file": "src/routes/dashboard/+page.svelte",
+      "source_location": "L1",
+      "id": "dashboard_page",
+      "community": 0,
+      "norm_label": "+page.svelte"
+    },
+    {
+      "label": "$app/navigation",
+      "file_type": "code",
+      "source_file": "$app/navigation",
+      "confidence": "EXTRACTED",
+      "id": "navigation",
+      "community": 0,
+      "norm_label": "$app/navigation"
+    },
+    {
+      "label": "+layout.svelte",
+      "file_type": "code",
+      "source_file": "src/routes/dashboard/[role]/+layout.svelte",
+      "source_location": "L1",
+      "id": "role_layout",
+      "community": 21,
+      "norm_label": "+layout.svelte"
+    },
+    {
+      "label": "+page.svelte",
+      "file_type": "code",
+      "source_file": "src/routes/dashboard/[role]/+page.svelte",
+      "source_location": "L1",
+      "id": "role_page",
+      "community": 0,
+      "norm_label": "+page.svelte"
+    },
+    {
+      "label": "catch()",
+      "file_type": "code",
+      "source_file": "src/routes/dashboard/[role]/+page.svelte",
+      "source_location": "L193",
+      "id": "role_page_catch",
+      "community": 0,
+      "norm_label": "catch()"
+    },
+    {
+      "label": "$lib/services/orders",
+      "file_type": "code",
+      "source_file": "src/lib/services/orders",
+      "confidence": "EXTRACTED",
+      "id": "users_imreszilagyi_dev_diseyn_src_lib_services_orders",
+      "community": 0,
+      "norm_label": "$lib/services/orders"
+    },
+    {
+      "label": "$lib/services/users",
+      "file_type": "code",
+      "source_file": "src/lib/services/users",
+      "confidence": "EXTRACTED",
+      "id": "users_imreszilagyi_dev_diseyn_src_lib_services_users",
+      "community": 0,
+      "norm_label": "$lib/services/users"
+    },
+    {
+      "label": "+page.svelte",
+      "file_type": "code",
+      "source_file": "src/routes/dashboard/[role]/settings/+page.svelte",
+      "source_location": "L1",
+      "id": "src_routes_dashboard_role_settings_page_svelte_settings_page",
+      "community": 0,
+      "norm_label": "+page.svelte"
+    },
+    {
+      "label": "+page.ts",
+      "file_type": "code",
+      "source_file": "src/routes/dashboard/[role]/settings/+page.ts",
+      "source_location": "L1",
+      "id": "src_routes_dashboard_role_settings_page_ts_settings_page",
+      "community": 19,
+      "norm_label": "+page.ts"
+    },
+    {
+      "label": "load()",
+      "file_type": "code",
+      "source_file": "src/routes/dashboard/[role]/settings/+page.ts",
+      "source_location": "L5",
+      "id": "src_routes_dashboard_role_settings_page_ts_settings_page_load",
+      "community": 19,
+      "norm_label": "load()"
+    },
+    {
+      "label": "+layout.svelte",
+      "file_type": "code",
+      "source_file": "src/routes/dashboard/manufacturer/+layout.svelte",
+      "source_location": "L1",
+      "id": "manufacturer_layout",
+      "community": 0,
+      "norm_label": "+layout.svelte"
+    },
+    {
+      "label": "+page.svelte",
+      "file_type": "code",
+      "source_file": "src/routes/dashboard/manufacturer/+page.svelte",
+      "source_location": "L1",
+      "id": "manufacturer_page",
+      "community": 0,
+      "norm_label": "+page.svelte"
+    },
+    {
+      "label": "+page.svelte",
+      "file_type": "code",
+      "source_file": "src/routes/dashboard/manufacturer/catalog/+page.svelte",
+      "source_location": "L1",
+      "id": "catalog_page",
+      "community": 0,
+      "norm_label": "+page.svelte"
+    },
+    {
+      "label": "+page.ts",
+      "file_type": "code",
+      "source_file": "src/routes/dashboard/manufacturer/settings/+page.ts",
+      "source_location": "L1",
+      "id": "src_routes_dashboard_manufacturer_settings_page_ts_settings_page",
+      "community": 18,
+      "norm_label": "+page.ts"
+    },
+    {
+      "label": "load()",
+      "file_type": "code",
+      "source_file": "src/routes/dashboard/manufacturer/settings/+page.ts",
+      "source_location": "L3",
+      "id": "src_routes_dashboard_manufacturer_settings_page_ts_settings_page_load",
+      "community": 18,
+      "norm_label": "load()"
+    },
+    {
+      "label": "+page.svelte",
+      "file_type": "code",
+      "source_file": "src/routes/design/[id]/+page.svelte",
+      "source_location": "L1",
+      "id": "id_page",
+      "community": 0,
+      "norm_label": "+page.svelte"
+    },
+    {
+      "label": "$app/state",
+      "file_type": "code",
+      "source_file": "$app/state",
+      "confidence": "EXTRACTED",
+      "id": "state",
+      "community": 0,
+      "norm_label": "$app/state"
+    },
+    {
+      "label": "+page.svelte",
+      "file_type": "code",
+      "source_file": "src/routes/offline/+page.svelte",
+      "source_location": "L1",
+      "id": "src_routes_offline_page_svelte_offline_page",
+      "community": 23,
+      "norm_label": "+page.svelte"
+    },
+    {
+      "label": "+page.ts",
+      "file_type": "code",
+      "source_file": "src/routes/offline/+page.ts",
+      "source_location": "L1",
+      "id": "src_routes_offline_page_ts_offline_page",
+      "community": 24,
+      "norm_label": "+page.ts"
+    },
+    {
+      "label": "service-worker.ts",
+      "file_type": "code",
+      "source_file": "src/service-worker.ts",
+      "source_location": "L1",
+      "id": "src_service_worker",
+      "community": 16,
+      "norm_label": "service-worker.ts"
+    },
+    {
+      "label": "self",
+      "file_type": "code",
+      "source_file": "src/service-worker.ts",
+      "source_location": "L8",
+      "id": "src_service_worker_self",
+      "community": 16,
+      "norm_label": "self"
+    },
+    {
+      "label": "ASSETS",
+      "file_type": "code",
+      "source_file": "src/service-worker.ts",
+      "source_location": "L10",
+      "id": "src_service_worker_assets",
+      "community": 16,
+      "norm_label": "assets"
+    },
+    {
+      "label": "isDocumentRequest()",
+      "file_type": "code",
+      "source_file": "src/service-worker.ts",
+      "source_location": "L30",
+      "id": "src_service_worker_isdocumentrequest",
+      "community": 16,
+      "norm_label": "isdocumentrequest()"
+    },
+    {
+      "label": "svelte.config.js",
+      "file_type": "code",
+      "source_file": "svelte.config.js",
+      "source_location": "L1",
+      "id": "svelte_config",
+      "community": 20,
+      "norm_label": "svelte.config.js"
+    },
+    {
+      "label": "config",
+      "file_type": "code",
+      "source_file": "svelte.config.js",
+      "source_location": "L5",
+      "id": "svelte_config_config",
+      "community": 20,
+      "norm_label": "config"
+    },
+    {
+      "label": "tsconfig.json",
+      "file_type": "code",
+      "source_file": "tsconfig.json",
+      "source_location": "L1",
+      "id": "tsconfig",
+      "community": 9,
+      "norm_label": "tsconfig.json"
+    },
+    {
+      "label": "extends",
+      "file_type": "code",
+      "source_file": "tsconfig.json",
+      "source_location": "L2",
+      "id": "tsconfig_extends",
+      "community": 9,
+      "norm_label": "extends"
+    },
+    {
+      "label": "compilerOptions",
+      "file_type": "code",
+      "source_file": "tsconfig.json",
+      "source_location": "L3",
+      "id": "tsconfig_compileroptions",
+      "community": 9,
+      "norm_label": "compileroptions"
+    },
+    {
+      "label": "allowJs",
+      "file_type": "code",
+      "source_file": "tsconfig.json",
+      "source_location": "L4",
+      "id": "tsconfig_compileroptions_allowjs",
+      "community": 9,
+      "norm_label": "allowjs"
+    },
+    {
+      "label": "checkJs",
+      "file_type": "code",
+      "source_file": "tsconfig.json",
+      "source_location": "L5",
+      "id": "tsconfig_compileroptions_checkjs",
+      "community": 9,
+      "norm_label": "checkjs"
+    },
+    {
+      "label": "esModuleInterop",
+      "file_type": "code",
+      "source_file": "tsconfig.json",
+      "source_location": "L6",
+      "id": "tsconfig_compileroptions_esmoduleinterop",
+      "community": 9,
+      "norm_label": "esmoduleinterop"
+    },
+    {
+      "label": "forceConsistentCasingInFileNames",
+      "file_type": "code",
+      "source_file": "tsconfig.json",
+      "source_location": "L7",
+      "id": "tsconfig_compileroptions_forceconsistentcasinginfilenames",
+      "community": 9,
+      "norm_label": "forceconsistentcasinginfilenames"
+    },
+    {
+      "label": "resolveJsonModule",
+      "file_type": "code",
+      "source_file": "tsconfig.json",
+      "source_location": "L8",
+      "id": "tsconfig_compileroptions_resolvejsonmodule",
+      "community": 9,
+      "norm_label": "resolvejsonmodule"
+    },
+    {
+      "label": "skipLibCheck",
+      "file_type": "code",
+      "source_file": "tsconfig.json",
+      "source_location": "L9",
+      "id": "tsconfig_compileroptions_skiplibcheck",
+      "community": 9,
+      "norm_label": "skiplibcheck"
+    },
+    {
+      "label": "sourceMap",
+      "file_type": "code",
+      "source_file": "tsconfig.json",
+      "source_location": "L10",
+      "id": "tsconfig_compileroptions_sourcemap",
+      "community": 9,
+      "norm_label": "sourcemap"
+    },
+    {
+      "label": "strict",
+      "file_type": "code",
+      "source_file": "tsconfig.json",
+      "source_location": "L11",
+      "id": "tsconfig_compileroptions_strict",
+      "community": 9,
+      "norm_label": "strict"
+    },
+    {
+      "label": "moduleResolution",
+      "file_type": "code",
+      "source_file": "tsconfig.json",
+      "source_location": "L12",
+      "id": "tsconfig_compileroptions_moduleresolution",
+      "community": 9,
+      "norm_label": "moduleresolution"
+    },
+    {
+      "label": "vite.config.ts",
+      "file_type": "code",
+      "source_file": "vite.config.ts",
+      "source_location": "L1",
+      "id": "vite_config",
+      "community": 25,
+      "norm_label": "vite.config.ts"
+    },
+    {
+      "label": "AGENTS.md",
+      "file_type": "document",
+      "source_file": "AGENTS.md",
+      "source_location": "L1",
+      "id": "agents",
+      "community": 10,
+      "norm_label": "agents.md"
+    },
+    {
+      "label": "AGENTS.md",
+      "file_type": "document",
+      "source_file": "AGENTS.md",
+      "source_location": "L1",
+      "id": "agents_agents_md",
+      "community": 10,
+      "norm_label": "agents.md"
+    },
+    {
+      "label": "Project Context",
+      "file_type": "document",
+      "source_file": "AGENTS.md",
+      "source_location": "L5",
+      "id": "agents_project_context",
+      "community": 10,
+      "norm_label": "project context"
+    },
+    {
+      "label": "Coding Rules",
+      "file_type": "document",
+      "source_file": "AGENTS.md",
+      "source_location": "L13",
+      "id": "agents_coding_rules",
+      "community": 10,
+      "norm_label": "coding rules"
+    },
+    {
+      "label": "Firebase Environment Contract",
+      "file_type": "document",
+      "source_file": "AGENTS.md",
+      "source_location": "L31",
+      "id": "agents_firebase_environment_contract",
+      "community": 10,
+      "norm_label": "firebase environment contract"
+    },
+    {
+      "label": "Marketplace Taxonomy Contract",
+      "file_type": "document",
+      "source_file": "AGENTS.md",
+      "source_location": "L37",
+      "id": "agents_marketplace_taxonomy_contract",
+      "community": 10,
+      "norm_label": "marketplace taxonomy contract"
+    },
+    {
+      "label": "Firestore Performance Guardrails",
+      "file_type": "document",
+      "source_file": "AGENTS.md",
+      "source_location": "L47",
+      "id": "agents_firestore_performance_guardrails",
+      "community": 10,
+      "norm_label": "firestore performance guardrails"
+    },
+    {
+      "label": "Firestore composite indexes (required for new query shapes)",
+      "file_type": "document",
+      "source_file": "AGENTS.md",
+      "source_location": "L56",
+      "id": "agents_firestore_composite_indexes_required_for_new_query_shapes",
+      "community": 10,
+      "norm_label": "firestore composite indexes (required for new query shapes)"
+    },
+    {
+      "label": "Keep This File Up To Date",
+      "file_type": "document",
+      "source_file": "AGENTS.md",
+      "source_location": "L67",
+      "id": "agents_keep_this_file_up_to_date",
+      "community": 10,
+      "norm_label": "keep this file up to date"
+    },
+    {
+      "label": "README.md",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L1",
+      "id": "readme",
+      "community": 7,
+      "norm_label": "readme.md"
+    },
+    {
+      "label": "Diseyn",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L1",
+      "id": "readme_diseyn",
+      "community": 7,
+      "norm_label": "diseyn"
+    },
+    {
+      "label": "Tech stack",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L5",
+      "id": "readme_tech_stack",
+      "community": 7,
+      "norm_label": "tech stack"
+    },
+    {
+      "label": "Local setup",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L12",
+      "id": "readme_local_setup",
+      "community": 7,
+      "norm_label": "local setup"
+    },
+    {
+      "label": "Firestore configuration",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L34",
+      "id": "readme_firestore_configuration",
+      "community": 7,
+      "norm_label": "firestore configuration"
+    },
+    {
+      "label": "1) Configure environments",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L36",
+      "id": "readme_1_configure_environments",
+      "community": 7,
+      "norm_label": "1) configure environments"
+    },
+    {
+      "label": "2) Start local Firebase emulators",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L43",
+      "id": "readme_2_start_local_firebase_emulators",
+      "community": 7,
+      "norm_label": "2) start local firebase emulators"
+    },
+    {
+      "label": "3) Deploy rules and indexes",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L51",
+      "id": "readme_3_deploy_rules_and_indexes",
+      "community": 7,
+      "norm_label": "3) deploy rules and indexes"
+    },
+    {
+      "label": "4) Seed fixed taxonomy (admin)",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L64",
+      "id": "readme_4_seed_fixed_taxonomy_admin",
+      "community": 7,
+      "norm_label": "4) seed fixed taxonomy (admin)"
+    },
+    {
+      "label": "Server-side Firebase access (Admin SDK)",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L74",
+      "id": "readme_server_side_firebase_access_admin_sdk",
+      "community": 7,
+      "norm_label": "server-side firebase access (admin sdk)"
+    },
+    {
+      "label": "Get Firebase Admin credentials (service account key)",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L88",
+      "id": "readme_get_firebase_admin_credentials_service_account_key",
+      "community": 7,
+      "norm_label": "get firebase admin credentials (service account key)"
+    },
+    {
+      "label": "Quality checks",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L114",
+      "id": "readme_quality_checks",
+      "community": 7,
+      "norm_label": "quality checks"
+    },
+    {
+      "label": "Firebase data model (MVP)",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L128",
+      "id": "readme_firebase_data_model_mvp",
+      "community": 7,
+      "norm_label": "firebase data model (mvp)"
+    },
+    {
+      "label": "Security rules",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L136",
+      "id": "readme_security_rules",
+      "community": 7,
+      "norm_label": "security rules"
+    }
+  ],
+  "links": [
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".cursor/mcp.json",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "cursor_mcp",
+      "target": "cursor_mcp_mcp_server_svelte"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".cursor/mcp.json",
+      "source_location": "L1",
+      "weight": 1.0,
+      "context": "command",
+      "source": "cursor_mcp_mcp_server_svelte",
+      "target": "mcp_command_npx"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".cursor/mcp.json",
+      "source_location": "L1",
+      "weight": 1.0,
+      "context": "package",
+      "source": "cursor_mcp_mcp_server_svelte",
+      "target": "mcp_package_sveltejs_mcp"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "firebase.json",
+      "source_location": "L9",
+      "weight": 1.0,
+      "source": "firebase",
+      "target": "firebase_emulators",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "firebase.json",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "firebase",
+      "target": "firebase_firestore",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "firebase.json",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "firebase",
+      "target": "firebase_storage",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L37",
+      "weight": 1.0,
+      "context": "import",
+      "source": "package_dependencies_firebase",
+      "target": "firebase",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "firebase.json",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "firebase_firestore",
+      "target": "firebase_firestore_indexes",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "firebase.json",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "firebase_firestore",
+      "target": "firebase_firestore_rules",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "firebase.json",
+      "source_location": "L7",
+      "weight": 1.0,
+      "source": "firebase_storage",
+      "target": "firebase_storage_rules",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "firebase.json",
+      "source_location": "L10",
+      "weight": 1.0,
+      "source": "firebase_emulators",
+      "target": "firebase_emulators_auth",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "firebase.json",
+      "source_location": "L13",
+      "weight": 1.0,
+      "source": "firebase_emulators",
+      "target": "firebase_emulators_firestore",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "firebase.json",
+      "source_location": "L23",
+      "weight": 1.0,
+      "source": "firebase_emulators",
+      "target": "firebase_emulators_singleprojectmode",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "firebase.json",
+      "source_location": "L16",
+      "weight": 1.0,
+      "source": "firebase_emulators",
+      "target": "firebase_emulators_storage",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "firebase.json",
+      "source_location": "L19",
+      "weight": 1.0,
+      "source": "firebase_emulators",
+      "target": "firebase_emulators_ui",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "firebase.json",
+      "source_location": "L11",
+      "weight": 1.0,
+      "source": "firebase_emulators_auth",
+      "target": "firebase_auth_port",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "firebase.json",
+      "source_location": "L14",
+      "weight": 1.0,
+      "source": "firebase_emulators_firestore",
+      "target": "firebase_firestore_port",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "firebase.json",
+      "source_location": "L17",
+      "weight": 1.0,
+      "source": "firebase_emulators_storage",
+      "target": "firebase_storage_port",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "firebase.json",
+      "source_location": "L20",
+      "weight": 1.0,
+      "source": "firebase_emulators_ui",
+      "target": "firebase_ui_enabled",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "firebase.json",
+      "source_location": "L21",
+      "weight": 1.0,
+      "source": "firebase_emulators_ui",
+      "target": "firebase_ui_port",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "firestore.indexes.json",
+      "source_location": "L178",
+      "weight": 1.0,
+      "source": "firestore_indexes",
+      "target": "firestore_indexes_fieldoverrides",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "firestore.indexes.json",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "firestore_indexes",
+      "target": "firestore_indexes_indexes",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L36",
+      "weight": 1.0,
+      "source": "package",
+      "target": "package_dependencies",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L21",
+      "weight": 1.0,
+      "source": "package",
+      "target": "package_devdependencies",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "package",
+      "target": "package_name",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "package",
+      "target": "package_private",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "package",
+      "target": "package_scripts",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "package",
+      "target": "package_type",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "package",
+      "target": "package_version",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L8",
+      "weight": 1.0,
+      "source": "package_scripts",
+      "target": "package_scripts_build",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L10",
+      "weight": 1.0,
+      "source": "package_scripts",
+      "target": "package_scripts_check",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L11",
+      "weight": 1.0,
+      "source": "package_scripts",
+      "target": "package_scripts_check_watch",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L7",
+      "weight": 1.0,
+      "source": "package_scripts",
+      "target": "package_scripts_dev",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L18",
+      "weight": 1.0,
+      "source": "package_scripts",
+      "target": "package_scripts_firebase_deploy",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L17",
+      "weight": 1.0,
+      "source": "package_scripts",
+      "target": "package_scripts_firebase_deploy_indexes",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L16",
+      "weight": 1.0,
+      "source": "package_scripts",
+      "target": "package_scripts_firebase_deploy_rules",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L15",
+      "weight": 1.0,
+      "source": "package_scripts",
+      "target": "package_scripts_firebase_emulators",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L12",
+      "weight": 1.0,
+      "source": "package_scripts",
+      "target": "package_scripts_lint",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L9",
+      "weight": 1.0,
+      "source": "package_scripts",
+      "target": "package_scripts_preview",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L19",
+      "weight": 1.0,
+      "source": "package_scripts",
+      "target": "package_scripts_taxonomy_seed",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L13",
+      "weight": 1.0,
+      "source": "package_scripts",
+      "target": "package_scripts_test",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L14",
+      "weight": 1.0,
+      "source": "package_scripts",
+      "target": "package_scripts_test_watch",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L27",
+      "weight": 1.0,
+      "source": "package_devdependencies",
+      "target": "package_devdependencies_daisyui",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L28",
+      "weight": 1.0,
+      "source": "package_devdependencies",
+      "target": "package_devdependencies_firebase_tools",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L29",
+      "weight": 1.0,
+      "source": "package_devdependencies",
+      "target": "package_devdependencies_svelte",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L30",
+      "weight": 1.0,
+      "source": "package_devdependencies",
+      "target": "package_devdependencies_svelte_check",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L22",
+      "weight": 1.0,
+      "source": "package_devdependencies",
+      "target": "package_devdependencies_sveltejs_adapter_auto",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L23",
+      "weight": 1.0,
+      "source": "package_devdependencies",
+      "target": "package_devdependencies_sveltejs_kit",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L24",
+      "weight": 1.0,
+      "source": "package_devdependencies",
+      "target": "package_devdependencies_sveltejs_vite_plugin_svelte",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L31",
+      "weight": 1.0,
+      "source": "package_devdependencies",
+      "target": "package_devdependencies_tailwindcss",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L25",
+      "weight": 1.0,
+      "source": "package_devdependencies",
+      "target": "package_devdependencies_tailwindcss_vite",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L26",
+      "weight": 1.0,
+      "source": "package_devdependencies",
+      "target": "package_devdependencies_types_node",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L32",
+      "weight": 1.0,
+      "source": "package_devdependencies",
+      "target": "package_devdependencies_typescript",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L33",
+      "weight": 1.0,
+      "source": "package_devdependencies",
+      "target": "package_devdependencies_vite",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L34",
+      "weight": 1.0,
+      "source": "package_devdependencies",
+      "target": "package_devdependencies_vitest",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L29",
+      "weight": 1.0,
+      "context": "import",
+      "source": "package_devdependencies_svelte",
+      "target": "svelte",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L37",
+      "weight": 1.0,
+      "source": "package_dependencies",
+      "target": "package_dependencies_firebase",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L38",
+      "weight": 1.0,
+      "source": "package_dependencies",
+      "target": "package_dependencies_firebase_admin",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts/seed-taxonomy.mjs",
+      "source_location": "L78",
+      "weight": 1.0,
+      "source": "scripts_seed_taxonomy",
+      "target": "scripts_seed_taxonomy_assignoakdinnertaxonomy",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts/seed-taxonomy.mjs",
+      "source_location": "L24",
+      "weight": 1.0,
+      "source": "scripts_seed_taxonomy",
+      "target": "scripts_seed_taxonomy_getadmindb",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts/seed-taxonomy.mjs",
+      "source_location": "L12",
+      "weight": 1.0,
+      "source": "scripts_seed_taxonomy",
+      "target": "scripts_seed_taxonomy_getprivatekey",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts/seed-taxonomy.mjs",
+      "source_location": "L104",
+      "weight": 1.0,
+      "source": "scripts_seed_taxonomy",
+      "target": "scripts_seed_taxonomy_main",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts/seed-taxonomy.mjs",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "scripts_seed_taxonomy",
+      "target": "scripts_seed_taxonomy_requireenv",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts/seed-taxonomy.mjs",
+      "source_location": "L16",
+      "weight": 1.0,
+      "source": "scripts_seed_taxonomy",
+      "target": "scripts_seed_taxonomy_slugify",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts/seed-taxonomy.mjs",
+      "source_location": "L38",
+      "weight": 1.0,
+      "source": "scripts_seed_taxonomy",
+      "target": "scripts_seed_taxonomy_upsertcategory",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts/seed-taxonomy.mjs",
+      "source_location": "L57",
+      "weight": 1.0,
+      "source": "scripts_seed_taxonomy",
+      "target": "scripts_seed_taxonomy_upsertsubcategory",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts/seed-taxonomy.mjs",
+      "source_location": "L25",
+      "weight": 1.0,
+      "source": "scripts_seed_taxonomy_getadmindb",
+      "target": "scripts_seed_taxonomy_requireenv",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts/seed-taxonomy.mjs",
+      "source_location": "L13",
+      "weight": 1.0,
+      "source": "scripts_seed_taxonomy_getprivatekey",
+      "target": "scripts_seed_taxonomy_requireenv",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts/seed-taxonomy.mjs",
+      "source_location": "L27",
+      "weight": 1.0,
+      "source": "scripts_seed_taxonomy_getadmindb",
+      "target": "scripts_seed_taxonomy_getprivatekey",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts/seed-taxonomy.mjs",
+      "source_location": "L45",
+      "weight": 1.0,
+      "source": "scripts_seed_taxonomy_upsertcategory",
+      "target": "scripts_seed_taxonomy_slugify",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts/seed-taxonomy.mjs",
+      "source_location": "L66",
+      "weight": 1.0,
+      "source": "scripts_seed_taxonomy_upsertsubcategory",
+      "target": "scripts_seed_taxonomy_slugify",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts/seed-taxonomy.mjs",
+      "source_location": "L105",
+      "weight": 1.0,
+      "source": "scripts_seed_taxonomy_main",
+      "target": "scripts_seed_taxonomy_getadmindb",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts/seed-taxonomy.mjs",
+      "source_location": "L107",
+      "weight": 1.0,
+      "source": "scripts_seed_taxonomy_main",
+      "target": "scripts_seed_taxonomy_upsertcategory",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts/seed-taxonomy.mjs",
+      "source_location": "L120",
+      "weight": 1.0,
+      "source": "scripts_seed_taxonomy_main",
+      "target": "scripts_seed_taxonomy_upsertsubcategory",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts/seed-taxonomy.mjs",
+      "source_location": "L132",
+      "weight": 1.0,
+      "source": "scripts_seed_taxonomy_main",
+      "target": "scripts_seed_taxonomy_assignoakdinnertaxonomy",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/hooks.client.ts",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "src_hooks_client",
+      "target": "environment",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/hooks.server.ts",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "src_hooks_server",
+      "target": "environment",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/hooks.server.ts",
+      "source_location": "L10",
+      "weight": 1.0,
+      "source": "src_hooks_server",
+      "target": "src_hooks_server_handle",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src/routes/dashboard/manufacturer/catalog/+page.svelte",
+      "source": "catalog_page",
+      "target": "dashboard_contractorcatalogsection",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/components/dashboard/ContractorCatalogSection.svelte",
+      "source": "dashboard_contractorcatalogsection",
+      "target": "svelte",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/components/dashboard/ContractorCatalogSection.svelte",
+      "source": "dashboard_contractorcatalogsection",
+      "target": "users_imreszilagyi_dev_diseyn_src_lib_services_designs",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/components/dashboard/ContractorCatalogSection.svelte",
+      "source": "dashboard_contractorcatalogsection",
+      "target": "users_imreszilagyi_dev_diseyn_src_lib_services_manufacturer_design_decisions",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/components/dashboard/ContractorCatalogSection.svelte",
+      "source": "dashboard_contractorcatalogsection",
+      "target": "users_imreszilagyi_dev_diseyn_src_lib_types_domain",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/components/dashboard/ContractorCatalogSection.svelte",
+      "source": "dashboard_contractorcatalogsection",
+      "target": "users_imreszilagyi_dev_diseyn_src_lib_utils_design_media",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src/routes/dashboard/manufacturer/catalog/+page.svelte",
+      "source": "catalog_page",
+      "target": "svelte",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/components/dashboard/DesignerConceptsSection.svelte",
+      "source": "dashboard_designerconceptssection",
+      "target": "svelte",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/components/dashboard/ManufacturerProfileSettings.svelte",
+      "source": "dashboard_manufacturerprofilesettings",
+      "target": "svelte",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src/routes/dashboard/+page.svelte",
+      "source": "dashboard_page",
+      "target": "svelte",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src/routes/design/[id]/+page.svelte",
+      "source": "id_page",
+      "target": "svelte",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src/routes/dashboard/manufacturer/+page.svelte",
+      "source": "manufacturer_page",
+      "target": "svelte",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src/routes/dashboard/[role]/+page.svelte",
+      "source": "role_page",
+      "target": "svelte",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src/routes/+page.svelte",
+      "source": "routes_page",
+      "target": "svelte",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src/routes/dashboard/[role]/settings/+page.svelte",
+      "source": "src_routes_dashboard_role_settings_page_svelte_settings_page",
+      "target": "svelte",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/components/dashboard/DesignerConceptsSection.svelte",
+      "source": "dashboard_designerconceptssection",
+      "target": "users_imreszilagyi_dev_diseyn_src_lib_services_designs",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/components/dashboard/ManufacturerProfileSettings.svelte",
+      "source": "dashboard_manufacturerprofilesettings",
+      "target": "users_imreszilagyi_dev_diseyn_src_lib_services_designs",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src/routes/design/[id]/+page.svelte",
+      "source": "id_page",
+      "target": "users_imreszilagyi_dev_diseyn_src_lib_services_designs",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src/routes/dashboard/[role]/+page.svelte",
+      "source": "role_page",
+      "target": "users_imreszilagyi_dev_diseyn_src_lib_services_designs",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src/routes/+page.svelte",
+      "source": "routes_page",
+      "target": "users_imreszilagyi_dev_diseyn_src_lib_services_designs",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src/routes/design/[id]/+page.svelte",
+      "source": "id_page",
+      "target": "users_imreszilagyi_dev_diseyn_src_lib_services_manufacturer_design_decisions",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src/routes/dashboard/manufacturer/catalog/+page.svelte",
+      "source": "catalog_page",
+      "target": "users_imreszilagyi_dev_diseyn_src_lib_types_domain",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/components/dashboard/DesignerConceptsSection.svelte",
+      "source": "dashboard_designerconceptssection",
+      "target": "users_imreszilagyi_dev_diseyn_src_lib_types_domain",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/components/dashboard/ManufacturerProfileSettings.svelte",
+      "source": "dashboard_manufacturerprofilesettings",
+      "target": "users_imreszilagyi_dev_diseyn_src_lib_types_domain",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src/routes/design/[id]/+page.svelte",
+      "source": "id_page",
+      "target": "users_imreszilagyi_dev_diseyn_src_lib_types_domain",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src/routes/dashboard/manufacturer/+page.svelte",
+      "source": "manufacturer_page",
+      "target": "users_imreszilagyi_dev_diseyn_src_lib_types_domain",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src/routes/dashboard/[role]/+page.svelte",
+      "source": "role_page",
+      "target": "users_imreszilagyi_dev_diseyn_src_lib_types_domain",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src/routes/+page.svelte",
+      "source": "routes_page",
+      "target": "users_imreszilagyi_dev_diseyn_src_lib_types_domain",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src/routes/dashboard/[role]/settings/+page.svelte",
+      "source": "src_routes_dashboard_role_settings_page_svelte_settings_page",
+      "target": "users_imreszilagyi_dev_diseyn_src_lib_types_domain",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/components/dashboard/DesignerConceptsSection.svelte",
+      "source": "dashboard_designerconceptssection",
+      "target": "users_imreszilagyi_dev_diseyn_src_lib_utils_design_media",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src/routes/design/[id]/+page.svelte",
+      "source": "id_page",
+      "target": "users_imreszilagyi_dev_diseyn_src_lib_utils_design_media",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src/routes/+page.svelte",
+      "source": "routes_page",
+      "target": "users_imreszilagyi_dev_diseyn_src_lib_utils_design_media",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/components/dashboard/DesignerConceptsSection.svelte",
+      "source": "dashboard_designerconceptssection",
+      "target": "users_imreszilagyi_dev_diseyn_src_lib_services_design_storage",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src/routes/dashboard/[role]/+page.svelte",
+      "source": "role_page",
+      "target": "dashboard_designerconceptssection",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/components/dashboard/ManufacturerDashboardNav.svelte",
+      "source_location": "L8",
+      "weight": 1.0,
+      "source": "dashboard_manufacturerdashboardnav",
+      "target": "dashboard_manufacturerdashboardnav_iscatalog",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/components/dashboard/ManufacturerDashboardNav.svelte",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "dashboard_manufacturerdashboardnav",
+      "target": "dashboard_manufacturerdashboardnav_issettings",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/components/dashboard/ManufacturerDashboardNav.svelte",
+      "source": "dashboard_manufacturerdashboardnav",
+      "target": "stores",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src/routes/dashboard/manufacturer/+layout.svelte",
+      "source": "manufacturer_layout",
+      "target": "dashboard_manufacturerdashboardnav",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src/routes/dashboard/[role]/+page.svelte",
+      "source": "role_page",
+      "target": "dashboard_manufacturerdashboardnav",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src/routes/dashboard/[role]/+page.svelte",
+      "source": "role_page",
+      "target": "stores",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src/routes/dashboard/[role]/settings/+page.svelte",
+      "source": "src_routes_dashboard_role_settings_page_svelte_settings_page",
+      "target": "stores",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/components/dashboard/ManufacturerProfileSettings.svelte",
+      "source_location": "L297",
+      "weight": 1.0,
+      "source": "dashboard_manufacturerprofilesettings",
+      "target": "dashboard_manufacturerprofilesettings_loading",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/components/dashboard/ManufacturerProfileSettings.svelte",
+      "source": "dashboard_manufacturerprofilesettings",
+      "target": "users_imreszilagyi_dev_diseyn_src_lib_services_geocode",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/components/dashboard/ManufacturerProfileSettings.svelte",
+      "source": "dashboard_manufacturerprofilesettings",
+      "target": "users_imreszilagyi_dev_diseyn_src_lib_services_manufacturers",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src/routes/dashboard/manufacturer/+page.svelte",
+      "source": "manufacturer_page",
+      "target": "dashboard_manufacturerprofilesettings",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src/routes/dashboard/[role]/settings/+page.svelte",
+      "source": "src_routes_dashboard_role_settings_page_svelte_settings_page",
+      "target": "dashboard_manufacturerprofilesettings",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src/routes/dashboard/manufacturer/+page.svelte",
+      "source": "manufacturer_page",
+      "target": "users_imreszilagyi_dev_diseyn_src_lib_services_manufacturers",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src/routes/dashboard/[role]/settings/+page.svelte",
+      "source": "src_routes_dashboard_role_settings_page_svelte_settings_page",
+      "target": "users_imreszilagyi_dev_diseyn_src_lib_services_manufacturers",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/firebase/client.ts",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "firebase_client",
+      "target": "auth",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/firebase/client.ts",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "firebase_client",
+      "target": "environment",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/firebase/client.ts",
+      "source_location": "L30",
+      "weight": 1.0,
+      "source": "firebase_client",
+      "target": "firebase_client_authemulatorport",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/firebase/client.ts",
+      "source_location": "L9",
+      "weight": 1.0,
+      "source": "firebase_client",
+      "target": "firebase_client_firebaseconfig",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/firebase/client.ts",
+      "source_location": "L29",
+      "weight": 1.0,
+      "source": "firebase_client",
+      "target": "firebase_client_firestoreemulatorport",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/firebase/client.ts",
+      "source_location": "L31",
+      "weight": 1.0,
+      "source": "firebase_client",
+      "target": "firebase_client_storageemulatorport",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/services/design-storage.ts",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "services_design_storage",
+      "target": "firebase_client",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/services/designs.ts",
+      "source_location": "L14",
+      "weight": 1.0,
+      "source": "services_designs",
+      "target": "firebase_client",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/services/manufacturer-design-decisions.ts",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "services_manufacturer_design_decisions",
+      "target": "firebase_client",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/services/manufacturers.ts",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "services_manufacturers",
+      "target": "firebase_client",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/services/orders.ts",
+      "source_location": "L11",
+      "weight": 1.0,
+      "source": "services_orders",
+      "target": "firebase_client",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/services/users.ts",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "services_users",
+      "target": "firebase_client",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/stores/auth.ts",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "stores_auth",
+      "target": "firebase_client",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/server/firebase-admin.ts",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "server_firebase_admin",
+      "target": "auth",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/server/firebase-admin.ts",
+      "source_location": "L42",
+      "weight": 1.0,
+      "source": "server_firebase_admin",
+      "target": "server_firebase_admin_adminauth",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/server/firebase-admin.ts",
+      "source_location": "L43",
+      "weight": 1.0,
+      "source": "server_firebase_admin",
+      "target": "server_firebase_admin_admindb",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/server/firebase-admin.ts",
+      "source_location": "L44",
+      "weight": 1.0,
+      "source": "server_firebase_admin",
+      "target": "server_firebase_admin_adminstorage",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/server/firebase-admin.ts",
+      "source_location": "L46",
+      "weight": 1.0,
+      "source": "server_firebase_admin",
+      "target": "server_firebase_admin_getadminapp",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/server/firebase-admin.ts",
+      "source_location": "L7",
+      "weight": 1.0,
+      "source": "server_firebase_admin",
+      "target": "server_firebase_admin_getprivatekey",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/server/firebase-admin.ts",
+      "source_location": "L12",
+      "weight": 1.0,
+      "source": "server_firebase_admin",
+      "target": "server_firebase_admin_getserviceaccount",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/server/firebase-admin.ts",
+      "source_location": "L26",
+      "weight": 1.0,
+      "source": "server_firebase_admin",
+      "target": "server_firebase_admin_serviceaccount",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/server/firebase-admin.ts",
+      "source_location": "L15",
+      "weight": 1.0,
+      "source": "server_firebase_admin_getserviceaccount",
+      "target": "server_firebase_admin_getprivatekey",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/services/design-storage.ts",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "services_design_storage",
+      "target": "services_design_storage_requirestorage",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/services/design-storage.ts",
+      "source_location": "L12",
+      "weight": 1.0,
+      "source": "services_design_storage",
+      "target": "services_design_storage_uploaddesignconceptimage",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/services/design-storage.ts",
+      "source_location": "L19",
+      "weight": 1.0,
+      "source": "services_design_storage_uploaddesignconceptimage",
+      "target": "services_design_storage_requirestorage",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/services/designs.ts",
+      "source_location": "L89",
+      "weight": 1.0,
+      "source": "services_designs",
+      "target": "services_designs_createdesigncategory",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/services/designs.ts",
+      "source_location": "L249",
+      "weight": 1.0,
+      "source": "services_designs",
+      "target": "services_designs_createdesignitem",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/services/designs.ts",
+      "source_location": "L107",
+      "weight": 1.0,
+      "source": "services_designs",
+      "target": "services_designs_createdesignsubcategory",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/services/designs.ts",
+      "source_location": "L225",
+      "weight": 1.0,
+      "source": "services_designs",
+      "target": "services_designs_getdesignbyid",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/services/designs.ts",
+      "source_location": "L60",
+      "weight": 1.0,
+      "source": "services_designs",
+      "target": "services_designs_ismissingindexerror",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/services/designs.ts",
+      "source_location": "L43",
+      "weight": 1.0,
+      "source": "services_designs",
+      "target": "services_designs_listdesigncategories",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/services/designs.ts",
+      "source_location": "L233",
+      "weight": 1.0,
+      "source": "services_designs",
+      "target": "services_designs_listdesignerdesigns",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/services/designs.ts",
+      "source_location": "L71",
+      "weight": 1.0,
+      "source": "services_designs",
+      "target": "services_designs_listdesignsubcategories",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/services/designs.ts",
+      "source_location": "L54",
+      "weight": 1.0,
+      "source": "services_designs",
+      "target": "services_designs_listpublisheddesignfilters",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/services/designs.ts",
+      "source_location": "L163",
+      "weight": 1.0,
+      "source": "services_designs",
+      "target": "services_designs_listpublisheddesigns",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/services/designs.ts",
+      "source_location": "L33",
+      "weight": 1.0,
+      "source": "services_designs",
+      "target": "services_designs_normalizedesignitem",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/services/designs.ts",
+      "source_location": "L145",
+      "weight": 1.0,
+      "source": "services_designs",
+      "target": "services_designs_normalizesubcategoryids",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/services/designs.ts",
+      "source_location": "L17",
+      "weight": 1.0,
+      "source": "services_designs",
+      "target": "services_designs_requiredb",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/services/designs.ts",
+      "source_location": "L22",
+      "weight": 1.0,
+      "source": "services_designs",
+      "target": "services_designs_slugify",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/services/designs.ts",
+      "source_location": "L31",
+      "weight": 1.0,
+      "source": "services_designs",
+      "target": "services_designs_subcategorycache",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/services/designs.ts",
+      "source_location": "L263",
+      "weight": 1.0,
+      "source": "services_designs",
+      "target": "services_designs_updatedesignitem",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/services/designs.ts",
+      "source_location": "L15",
+      "weight": 1.0,
+      "source": "services_designs",
+      "target": "types_domain",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/services/designs.ts",
+      "source_location": "L15",
+      "weight": 1.0,
+      "source": "services_designs",
+      "target": "types_domain_designcategory",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/services/designs.ts",
+      "source_location": "L15",
+      "weight": 1.0,
+      "source": "services_designs",
+      "target": "types_domain_designitem",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/services/designs.ts",
+      "source_location": "L15",
+      "weight": 1.0,
+      "source": "services_designs",
+      "target": "types_domain_designsubcategory",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/services/designs.ts",
+      "source_location": "L96",
+      "weight": 1.0,
+      "source": "services_designs_createdesigncategory",
+      "target": "services_designs_requiredb",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/services/designs.ts",
+      "source_location": "L255",
+      "weight": 1.0,
+      "source": "services_designs_createdesignitem",
+      "target": "services_designs_requiredb",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/services/designs.ts",
+      "source_location": "L121",
+      "weight": 1.0,
+      "source": "services_designs_createdesignsubcategory",
+      "target": "services_designs_requiredb",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/services/designs.ts",
+      "source_location": "L226",
+      "weight": 1.0,
+      "source": "services_designs_getdesignbyid",
+      "target": "services_designs_requiredb",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/services/designs.ts",
+      "source_location": "L45",
+      "weight": 1.0,
+      "source": "services_designs_listdesigncategories",
+      "target": "services_designs_requiredb",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/services/designs.ts",
+      "source_location": "L240",
+      "weight": 1.0,
+      "source": "services_designs_listdesignerdesigns",
+      "target": "services_designs_requiredb",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/services/designs.ts",
+      "source_location": "L80",
+      "weight": 1.0,
+      "source": "services_designs_listdesignsubcategories",
+      "target": "services_designs_requiredb",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/services/designs.ts",
+      "source_location": "L168",
+      "weight": 1.0,
+      "source": "services_designs_listpublisheddesigns",
+      "target": "services_designs_requiredb",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/services/designs.ts",
+      "source_location": "L282",
+      "weight": 1.0,
+      "source": "services_designs_updatedesignitem",
+      "target": "services_designs_requiredb",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/services/designs.ts",
+      "source_location": "L98",
+      "weight": 1.0,
+      "source": "services_designs_createdesigncategory",
+      "target": "services_designs_slugify",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/services/designs.ts",
+      "source_location": "L135",
+      "weight": 1.0,
+      "source": "services_designs_createdesignsubcategory",
+      "target": "services_designs_slugify",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/services/designs.ts",
+      "source_location": "L229",
+      "weight": 1.0,
+      "source": "services_designs_getdesignbyid",
+      "target": "services_designs_normalizedesignitem",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/services/designs.ts",
+      "source_location": "L187",
+      "weight": 1.0,
+      "source": "services_designs_listpublisheddesigns",
+      "target": "services_designs_ismissingindexerror",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/services/designs.ts",
+      "source_location": "L158",
+      "weight": 1.0,
+      "source": "services_designs_normalizesubcategoryids",
+      "target": "services_designs_listdesignsubcategories",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/services/designs.ts",
+      "source_location": "L254",
+      "weight": 1.0,
+      "source": "services_designs_createdesignitem",
+      "target": "services_designs_normalizesubcategoryids",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/services/designs.ts",
+      "source_location": "L276",
+      "weight": 1.0,
+      "source": "services_designs_updatedesignitem",
+      "target": "services_designs_normalizesubcategoryids",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/services/designs.ts",
+      "source_location": "L268",
+      "weight": 1.0,
+      "source": "services_designs_updatedesignitem",
+      "target": "services_designs_getdesignbyid",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/services/geocode.ts",
+      "source_location": "L23",
+      "weight": 1.0,
+      "source": "services_geocode",
+      "target": "services_geocode_formataddressquery",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/services/geocode.ts",
+      "source_location": "L8",
+      "weight": 1.0,
+      "source": "services_geocode",
+      "target": "services_geocode_geocodeaddress",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/services/geocode.ts",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "services_geocode",
+      "target": "services_geocode_geocoderesult",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/services/manufacturer-design-decisions.ts",
+      "source_location": "L35",
+      "weight": 1.0,
+      "source": "services_manufacturer_design_decisions",
+      "target": "services_manufacturer_design_decisions_listdecisionsformanufacturer",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/services/manufacturer-design-decisions.ts",
+      "source_location": "L12",
+      "weight": 1.0,
+      "source": "services_manufacturer_design_decisions",
+      "target": "services_manufacturer_design_decisions_manufacturerdesigndecisiondocid",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/services/manufacturer-design-decisions.ts",
+      "source_location": "L7",
+      "weight": 1.0,
+      "source": "services_manufacturer_design_decisions",
+      "target": "services_manufacturer_design_decisions_requiredb",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/services/manufacturer-design-decisions.ts",
+      "source_location": "L16",
+      "weight": 1.0,
+      "source": "services_manufacturer_design_decisions",
+      "target": "services_manufacturer_design_decisions_setmanufacturerdesigndecision",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/services/manufacturer-design-decisions.ts",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "services_manufacturer_design_decisions",
+      "target": "types_domain",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/services/manufacturer-design-decisions.ts",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "services_manufacturer_design_decisions",
+      "target": "types_domain_manufacturerdesigndecision",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/services/manufacturer-design-decisions.ts",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "services_manufacturer_design_decisions",
+      "target": "types_domain_manufacturerdesignverdict",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/services/manufacturer-design-decisions.ts",
+      "source_location": "L39",
+      "weight": 1.0,
+      "source": "services_manufacturer_design_decisions_listdecisionsformanufacturer",
+      "target": "services_manufacturer_design_decisions_requiredb",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/services/manufacturer-design-decisions.ts",
+      "source_location": "L28",
+      "weight": 1.0,
+      "source": "services_manufacturer_design_decisions_setmanufacturerdesigndecision",
+      "target": "services_manufacturer_design_decisions_requiredb",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/services/manufacturer-design-decisions.ts",
+      "source_location": "L28",
+      "weight": 1.0,
+      "source": "services_manufacturer_design_decisions_setmanufacturerdesigndecision",
+      "target": "services_manufacturer_design_decisions_manufacturerdesigndecisiondocid",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/services/manufacturers.ts",
+      "source_location": "L87",
+      "weight": 1.0,
+      "source": "services_manufacturers",
+      "target": "services_manufacturers_arraysequal",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/services/manufacturers.ts",
+      "source_location": "L68",
+      "weight": 1.0,
+      "source": "services_manufacturers",
+      "target": "services_manufacturers_getmanufacturerprofile",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/services/manufacturers.ts",
+      "source_location": "L18",
+      "weight": 1.0,
+      "source": "services_manufacturers",
+      "target": "services_manufacturers_listavailablemanufacturers",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/services/manufacturers.ts",
+      "source_location": "L28",
+      "weight": 1.0,
+      "source": "services_manufacturers",
+      "target": "services_manufacturers_locationequal",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/services/manufacturers.ts",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "services_manufacturers",
+      "target": "services_manufacturers_manufacturerprofileupdate",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/services/manufacturers.ts",
+      "source_location": "L77",
+      "weight": 1.0,
+      "source": "services_manufacturers",
+      "target": "services_manufacturers_normalizeids",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/services/manufacturers.ts",
+      "source_location": "L38",
+      "weight": 1.0,
+      "source": "services_manufacturers",
+      "target": "services_manufacturers_profilepatchchanged",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/services/manufacturers.ts",
+      "source_location": "L13",
+      "weight": 1.0,
+      "source": "services_manufacturers",
+      "target": "services_manufacturers_requiredb",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/services/manufacturers.ts",
+      "source_location": "L92",
+      "weight": 1.0,
+      "source": "services_manufacturers",
+      "target": "services_manufacturers_updatemanufacturersubscriptions",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/services/manufacturers.ts",
+      "source_location": "L54",
+      "weight": 1.0,
+      "source": "services_manufacturers",
+      "target": "services_manufacturers_upsertmanufacturerprofile",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/services/manufacturers.ts",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "services_manufacturers",
+      "target": "types_domain",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/services/manufacturers.ts",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "services_manufacturers",
+      "target": "types_domain_manufacturerlocation",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/services/manufacturers.ts",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "services_manufacturers",
+      "target": "types_domain_manufacturerprofile",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/services/manufacturers.ts",
+      "source_location": "L69",
+      "weight": 1.0,
+      "source": "services_manufacturers_getmanufacturerprofile",
+      "target": "services_manufacturers_requiredb",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/services/manufacturers.ts",
+      "source_location": "L21",
+      "weight": 1.0,
+      "source": "services_manufacturers_listavailablemanufacturers",
+      "target": "services_manufacturers_requiredb",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/services/manufacturers.ts",
+      "source_location": "L110",
+      "weight": 1.0,
+      "source": "services_manufacturers_updatemanufacturersubscriptions",
+      "target": "services_manufacturers_requiredb",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/services/manufacturers.ts",
+      "source_location": "L59",
+      "weight": 1.0,
+      "source": "services_manufacturers_upsertmanufacturerprofile",
+      "target": "services_manufacturers_requiredb",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/services/manufacturers.ts",
+      "source_location": "L46",
+      "weight": 1.0,
+      "source": "services_manufacturers_profilepatchchanged",
+      "target": "services_manufacturers_locationequal",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/services/manufacturers.ts",
+      "source_location": "L56",
+      "weight": 1.0,
+      "source": "services_manufacturers_upsertmanufacturerprofile",
+      "target": "services_manufacturers_profilepatchchanged",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/services/manufacturers.ts",
+      "source_location": "L55",
+      "weight": 1.0,
+      "source": "services_manufacturers_upsertmanufacturerprofile",
+      "target": "services_manufacturers_getmanufacturerprofile",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/services/manufacturers.ts",
+      "source_location": "L96",
+      "weight": 1.0,
+      "source": "services_manufacturers_updatemanufacturersubscriptions",
+      "target": "services_manufacturers_getmanufacturerprofile",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/services/manufacturers.ts",
+      "source_location": "L97",
+      "weight": 1.0,
+      "source": "services_manufacturers_updatemanufacturersubscriptions",
+      "target": "services_manufacturers_normalizeids",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/services/manufacturers.ts",
+      "source_location": "L103",
+      "weight": 1.0,
+      "source": "services_manufacturers_updatemanufacturersubscriptions",
+      "target": "services_manufacturers_arraysequal",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/services/orders.ts",
+      "source_location": "L19",
+      "weight": 1.0,
+      "source": "services_orders",
+      "target": "services_orders_createorder",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/services/orders.ts",
+      "source_location": "L24",
+      "weight": 1.0,
+      "source": "services_orders",
+      "target": "services_orders_listcustomerorders",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/services/orders.ts",
+      "source_location": "L35",
+      "weight": 1.0,
+      "source": "services_orders",
+      "target": "services_orders_listmanufacturerorders",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/services/orders.ts",
+      "source_location": "L14",
+      "weight": 1.0,
+      "source": "services_orders",
+      "target": "services_orders_requiredb",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/services/orders.ts",
+      "source_location": "L46",
+      "weight": 1.0,
+      "source": "services_orders",
+      "target": "services_orders_updateorderstatus",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/services/orders.ts",
+      "source_location": "L12",
+      "weight": 1.0,
+      "source": "services_orders",
+      "target": "types_domain",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/services/orders.ts",
+      "source_location": "L12",
+      "weight": 1.0,
+      "source": "services_orders",
+      "target": "types_domain_order",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/services/orders.ts",
+      "source_location": "L12",
+      "weight": 1.0,
+      "source": "services_orders",
+      "target": "types_domain_orderstatus",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/services/orders.ts",
+      "source_location": "L20",
+      "weight": 1.0,
+      "source": "services_orders_createorder",
+      "target": "services_orders_requiredb",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/services/orders.ts",
+      "source_location": "L27",
+      "weight": 1.0,
+      "source": "services_orders_listcustomerorders",
+      "target": "services_orders_requiredb",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/services/orders.ts",
+      "source_location": "L38",
+      "weight": 1.0,
+      "source": "services_orders_listmanufacturerorders",
+      "target": "services_orders_requiredb",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/services/orders.ts",
+      "source_location": "L51",
+      "weight": 1.0,
+      "source": "services_orders_updateorderstatus",
+      "target": "services_orders_requiredb",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/services/users.ts",
+      "source_location": "L15",
+      "weight": 1.0,
+      "source": "services_users",
+      "target": "services_users_assignroles",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/services/users.ts",
+      "source_location": "L10",
+      "weight": 1.0,
+      "source": "services_users",
+      "target": "services_users_getuserprofile",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/services/users.ts",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "services_users",
+      "target": "services_users_requiredb",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/services/users.ts",
+      "source_location": "L21",
+      "weight": 1.0,
+      "source": "services_users",
+      "target": "services_users_saveuserprofile",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/services/users.ts",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "services_users",
+      "target": "types_domain",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/services/users.ts",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "services_users",
+      "target": "types_domain_userprofile",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/services/users.ts",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "services_users",
+      "target": "types_domain_userrole",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/services/users.ts",
+      "source_location": "L16",
+      "weight": 1.0,
+      "source": "services_users_assignroles",
+      "target": "services_users_requiredb",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/services/users.ts",
+      "source_location": "L11",
+      "weight": 1.0,
+      "source": "services_users_getuserprofile",
+      "target": "services_users_requiredb",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/services/users.ts",
+      "source_location": "L22",
+      "weight": 1.0,
+      "source": "services_users_saveuserprofile",
+      "target": "services_users_requiredb",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/stores/auth.test.ts",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "stores_auth_test",
+      "target": "utils_roles",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/stores/auth.test.ts",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "stores_auth_test",
+      "target": "utils_roles_gethighestrole",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/stores/auth.ts",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "stores_auth",
+      "target": "auth",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/stores/auth.ts",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "stores_auth",
+      "target": "environment",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/stores/auth.ts",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "stores_auth",
+      "target": "store",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/stores/auth.ts",
+      "source_location": "L9",
+      "weight": 1.0,
+      "source": "stores_auth",
+      "target": "stores_auth_authloading",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/stores/auth.ts",
+      "source_location": "L8",
+      "weight": 1.0,
+      "source": "stores_auth",
+      "target": "stores_auth_authuser",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/stores/auth.ts",
+      "source_location": "L12",
+      "weight": 1.0,
+      "source": "stores_auth",
+      "target": "stores_auth_baselineroles",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/stores/auth.ts",
+      "source_location": "L43",
+      "weight": 1.0,
+      "source": "stores_auth",
+      "target": "stores_auth_ensureuserprofile",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/stores/auth.ts",
+      "source_location": "L83",
+      "weight": 1.0,
+      "source": "stores_auth",
+      "target": "stores_auth_fallbackprofile",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/stores/auth.ts",
+      "source_location": "L78",
+      "weight": 1.0,
+      "source": "stores_auth",
+      "target": "stores_auth_logout",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/stores/auth.ts",
+      "source_location": "L15",
+      "weight": 1.0,
+      "source": "stores_auth",
+      "target": "stores_auth_normalizeprofile",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/stores/auth.ts",
+      "source_location": "L13",
+      "weight": 1.0,
+      "source": "stores_auth",
+      "target": "stores_auth_roleorder",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/stores/auth.ts",
+      "source_location": "L66",
+      "weight": 1.0,
+      "source": "stores_auth",
+      "target": "stores_auth_switchactiverole",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/stores/auth.ts",
+      "source_location": "L10",
+      "weight": 1.0,
+      "source": "stores_auth",
+      "target": "stores_auth_userprofile",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/stores/auth.ts",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "stores_auth",
+      "target": "types_domain",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/stores/auth.ts",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "stores_auth",
+      "target": "types_domain_userprofile",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/stores/auth.ts",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "stores_auth",
+      "target": "types_domain_userrole",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/stores/auth.ts",
+      "source_location": "L53",
+      "weight": 1.0,
+      "source": "stores_auth_ensureuserprofile",
+      "target": "stores_auth_normalizeprofile",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/stores/auth.ts",
+      "source_location": "L84",
+      "weight": 1.0,
+      "source": "stores_auth_fallbackprofile",
+      "target": "stores_auth_normalizeprofile",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "src/lib/stores/auth.ts",
+      "source_location": "L69",
+      "weight": 1.0,
+      "source": "stores_auth_switchactiverole",
+      "target": "geocode_server_get"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/types/domain.ts",
+      "source_location": "L12",
+      "weight": 1.0,
+      "source": "types_domain",
+      "target": "types_domain_designcategory",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/types/domain.ts",
+      "source_location": "L32",
+      "weight": 1.0,
+      "source": "types_domain",
+      "target": "types_domain_designcharacteristic",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/types/domain.ts",
+      "source_location": "L37",
+      "weight": 1.0,
+      "source": "types_domain",
+      "target": "types_domain_designitem",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/types/domain.ts",
+      "source_location": "L21",
+      "weight": 1.0,
+      "source": "types_domain",
+      "target": "types_domain_designsubcategory",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/types/domain.ts",
+      "source_location": "L55",
+      "weight": 1.0,
+      "source": "types_domain",
+      "target": "types_domain_manufacturerdesigndecision",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/types/domain.ts",
+      "source_location": "L53",
+      "weight": 1.0,
+      "source": "types_domain",
+      "target": "types_domain_manufacturerdesignverdict",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/types/domain.ts",
+      "source_location": "L62",
+      "weight": 1.0,
+      "source": "types_domain",
+      "target": "types_domain_manufacturerlocation",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/types/domain.ts",
+      "source_location": "L69",
+      "weight": 1.0,
+      "source": "types_domain",
+      "target": "types_domain_manufacturerprofile",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/types/domain.ts",
+      "source_location": "L92",
+      "weight": 1.0,
+      "source": "types_domain",
+      "target": "types_domain_order",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/types/domain.ts",
+      "source_location": "L85",
+      "weight": 1.0,
+      "source": "types_domain",
+      "target": "types_domain_orderstatus",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/types/domain.ts",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "types_domain",
+      "target": "types_domain_userprofile",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/types/domain.ts",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "types_domain",
+      "target": "types_domain_userrole",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/utils/design-media.ts",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "utils_design_media",
+      "target": "types_domain",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/utils/roles.ts",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "utils_roles",
+      "target": "types_domain",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/utils/roles.ts",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "utils_roles",
+      "target": "types_domain_userrole",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/utils/design-media.ts",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "utils_design_media",
+      "target": "types_domain_designitem",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/utils/design-media.ts",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "utils_design_media",
+      "target": "utils_design_media_designcoverimageurl",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/utils/roles.ts",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "utils_roles",
+      "target": "utils_roles_gethighestrole",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/utils/roles.ts",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "utils_roles",
+      "target": "utils_roles_rolepriority",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src/routes/+layout.svelte",
+      "source": "routes_layout",
+      "target": "users_imreszilagyi_dev_diseyn_src_app_css",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src/routes/+layout.svelte",
+      "source": "routes_layout",
+      "target": "users_imreszilagyi_dev_diseyn_src_lib_stores_auth",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src/routes/auth/+page.svelte",
+      "source": "auth_page",
+      "target": "users_imreszilagyi_dev_diseyn_src_lib_stores_auth",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src/routes/dashboard/manufacturer/catalog/+page.svelte",
+      "source": "catalog_page",
+      "target": "users_imreszilagyi_dev_diseyn_src_lib_stores_auth",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src/routes/dashboard/+page.svelte",
+      "source": "dashboard_page",
+      "target": "users_imreszilagyi_dev_diseyn_src_lib_stores_auth",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src/routes/design/[id]/+page.svelte",
+      "source": "id_page",
+      "target": "users_imreszilagyi_dev_diseyn_src_lib_stores_auth",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src/routes/dashboard/manufacturer/+page.svelte",
+      "source": "manufacturer_page",
+      "target": "users_imreszilagyi_dev_diseyn_src_lib_stores_auth",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src/routes/dashboard/[role]/+page.svelte",
+      "source": "role_page",
+      "target": "users_imreszilagyi_dev_diseyn_src_lib_stores_auth",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src/routes/+page.svelte",
+      "source": "routes_page",
+      "target": "users_imreszilagyi_dev_diseyn_src_lib_stores_auth",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src/routes/dashboard/[role]/settings/+page.svelte",
+      "source": "src_routes_dashboard_role_settings_page_svelte_settings_page",
+      "target": "users_imreszilagyi_dev_diseyn_src_lib_stores_auth",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src/routes/+page.svelte",
+      "source": "routes_page",
+      "target": "store",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src/routes/dashboard/manufacturer/catalog/+page.svelte",
+      "source": "catalog_page",
+      "target": "store",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src/routes/design/[id]/+page.svelte",
+      "source": "id_page",
+      "target": "store",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src/routes/dashboard/manufacturer/+page.svelte",
+      "source": "manufacturer_page",
+      "target": "store",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src/routes/dashboard/[role]/+page.svelte",
+      "source": "role_page",
+      "target": "store",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src/routes/dashboard/[role]/settings/+page.svelte",
+      "source": "src_routes_dashboard_role_settings_page_svelte_settings_page",
+      "target": "store",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/routes/api/geocode/+server.ts",
+      "source_location": "L18",
+      "weight": 1.0,
+      "source": "geocode_server",
+      "target": "geocode_server_get",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/routes/api/geocode/+server.ts",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "geocode_server",
+      "target": "geocode_server_nominatimresult",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src/routes/auth/+page.svelte",
+      "source": "auth_page",
+      "target": "auth",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/routes/auth/+page.svelte",
+      "source_location": "L217",
+      "weight": 1.0,
+      "source": "auth_page",
+      "target": "auth_page_if",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src/routes/auth/+page.svelte",
+      "source": "auth_page",
+      "target": "environment",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src/routes/auth/+page.svelte",
+      "source": "auth_page",
+      "target": "users_imreszilagyi_dev_diseyn_src_lib_firebase_client",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src/routes/dashboard/+page.svelte",
+      "source": "dashboard_page",
+      "target": "navigation",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src/routes/dashboard/[role]/+page.svelte",
+      "source": "role_page",
+      "target": "navigation",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/routes/dashboard/[role]/+page.svelte",
+      "source_location": "L193",
+      "weight": 1.0,
+      "source": "role_page",
+      "target": "role_page_catch",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src/routes/dashboard/[role]/+page.svelte",
+      "source": "role_page",
+      "target": "users_imreszilagyi_dev_diseyn_src_lib_services_orders",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src/routes/dashboard/[role]/+page.svelte",
+      "source": "role_page",
+      "target": "users_imreszilagyi_dev_diseyn_src_lib_services_users",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src/routes/dashboard/manufacturer/catalog/+page.svelte",
+      "source": "catalog_page",
+      "target": "users_imreszilagyi_dev_diseyn_src_lib_services_orders",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/routes/dashboard/[role]/settings/+page.ts",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "src_routes_dashboard_role_settings_page_ts_settings_page",
+      "target": "src_routes_dashboard_role_settings_page_ts_settings_page_load",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/routes/dashboard/manufacturer/settings/+page.ts",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "src_routes_dashboard_manufacturer_settings_page_ts_settings_page",
+      "target": "src_routes_dashboard_manufacturer_settings_page_ts_settings_page_load",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src/routes/design/[id]/+page.svelte",
+      "source": "id_page",
+      "target": "state",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/service-worker.ts",
+      "source_location": "L10",
+      "weight": 1.0,
+      "source": "src_service_worker",
+      "target": "src_service_worker_assets",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/service-worker.ts",
+      "source_location": "L30",
+      "weight": 1.0,
+      "source": "src_service_worker",
+      "target": "src_service_worker_isdocumentrequest",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/service-worker.ts",
+      "source_location": "L8",
+      "weight": 1.0,
+      "source": "src_service_worker",
+      "target": "src_service_worker_self",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "svelte.config.js",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "svelte_config",
+      "target": "svelte_config_config",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tsconfig.json",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "tsconfig",
+      "target": "tsconfig_compileroptions",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tsconfig.json",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "tsconfig",
+      "target": "tsconfig_extends",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tsconfig.json",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "tsconfig_compileroptions",
+      "target": "tsconfig_compileroptions_allowjs",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tsconfig.json",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "tsconfig_compileroptions",
+      "target": "tsconfig_compileroptions_checkjs",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tsconfig.json",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "tsconfig_compileroptions",
+      "target": "tsconfig_compileroptions_esmoduleinterop",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tsconfig.json",
+      "source_location": "L7",
+      "weight": 1.0,
+      "source": "tsconfig_compileroptions",
+      "target": "tsconfig_compileroptions_forceconsistentcasinginfilenames",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tsconfig.json",
+      "source_location": "L12",
+      "weight": 1.0,
+      "source": "tsconfig_compileroptions",
+      "target": "tsconfig_compileroptions_moduleresolution",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tsconfig.json",
+      "source_location": "L8",
+      "weight": 1.0,
+      "source": "tsconfig_compileroptions",
+      "target": "tsconfig_compileroptions_resolvejsonmodule",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tsconfig.json",
+      "source_location": "L9",
+      "weight": 1.0,
+      "source": "tsconfig_compileroptions",
+      "target": "tsconfig_compileroptions_skiplibcheck",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tsconfig.json",
+      "source_location": "L10",
+      "weight": 1.0,
+      "source": "tsconfig_compileroptions",
+      "target": "tsconfig_compileroptions_sourcemap",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tsconfig.json",
+      "source_location": "L11",
+      "weight": 1.0,
+      "source": "tsconfig_compileroptions",
+      "target": "tsconfig_compileroptions_strict",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "AGENTS.md",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "agents",
+      "target": "agents_agents_md",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "AGENTS.md",
+      "source_location": "L13",
+      "weight": 1.0,
+      "source": "agents_agents_md",
+      "target": "agents_coding_rules",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "AGENTS.md",
+      "source_location": "L31",
+      "weight": 1.0,
+      "source": "agents_agents_md",
+      "target": "agents_firebase_environment_contract",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "AGENTS.md",
+      "source_location": "L56",
+      "weight": 1.0,
+      "source": "agents_agents_md",
+      "target": "agents_firestore_composite_indexes_required_for_new_query_shapes",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "AGENTS.md",
+      "source_location": "L47",
+      "weight": 1.0,
+      "source": "agents_agents_md",
+      "target": "agents_firestore_performance_guardrails",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "AGENTS.md",
+      "source_location": "L67",
+      "weight": 1.0,
+      "source": "agents_agents_md",
+      "target": "agents_keep_this_file_up_to_date",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "AGENTS.md",
+      "source_location": "L37",
+      "weight": 1.0,
+      "source": "agents_agents_md",
+      "target": "agents_marketplace_taxonomy_contract",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "AGENTS.md",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "agents_agents_md",
+      "target": "agents_project_context",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "readme",
+      "target": "readme_diseyn",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L128",
+      "weight": 1.0,
+      "source": "readme_diseyn",
+      "target": "readme_firebase_data_model_mvp",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L34",
+      "weight": 1.0,
+      "source": "readme_diseyn",
+      "target": "readme_firestore_configuration",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L12",
+      "weight": 1.0,
+      "source": "readme_diseyn",
+      "target": "readme_local_setup",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L114",
+      "weight": 1.0,
+      "source": "readme_diseyn",
+      "target": "readme_quality_checks",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L136",
+      "weight": 1.0,
+      "source": "readme_diseyn",
+      "target": "readme_security_rules",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L74",
+      "weight": 1.0,
+      "source": "readme_diseyn",
+      "target": "readme_server_side_firebase_access_admin_sdk",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "readme_diseyn",
+      "target": "readme_tech_stack",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L36",
+      "weight": 1.0,
+      "source": "readme_firestore_configuration",
+      "target": "readme_1_configure_environments",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L43",
+      "weight": 1.0,
+      "source": "readme_firestore_configuration",
+      "target": "readme_2_start_local_firebase_emulators",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L51",
+      "weight": 1.0,
+      "source": "readme_firestore_configuration",
+      "target": "readme_3_deploy_rules_and_indexes",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L64",
+      "weight": 1.0,
+      "source": "readme_firestore_configuration",
+      "target": "readme_4_seed_fixed_taxonomy_admin",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L88",
+      "weight": 1.0,
+      "source": "readme_server_side_firebase_access_admin_sdk",
+      "target": "readme_get_firebase_admin_credentials_service_account_key",
+      "confidence_score": 1.0
+    }
+  ],
+  "hyperedges": [],
+  "built_at_commit": "7b2ffccba94fbd401949b2a80ba3f02ab913acb5"
+}
